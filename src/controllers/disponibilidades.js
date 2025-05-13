@@ -3,10 +3,17 @@ const db = require('../dataBase/connection');
 module.exports = {
     async listarDisponibilidades(request, response) {
         try {
+            const sql = `
+            SELECT 
+            SELECT dsp_id, lcz_id, dsp_dia_semana, dsp_horario, 
+            dsp_status FROM disponibilidades;
+            `;
+            const [rows] = await db.query(sql);
             return response.status(200).json({
                 sucesso: true, 
                 mensagem: 'Lista de Disponibilidades', 
-                dados: null
+                itens: rows.length,
+                dados: rows
             });
         } catch (error) {
             return response.status(500).json({

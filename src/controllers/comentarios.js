@@ -3,10 +3,17 @@ const db = require('../dataBase/connection');
 module.exports = {
     async listarComentarios(request, response) {
         try {
+            const sql = `
+            SELECT 
+            SELECT com_id, pub_id, usu_id,
+             com_texto, com_moderacao FROM comentarios;
+            `;
+            const [rows] = await db.query(sql);
             return response.status(200).json({
                 sucesso: true, 
                 mensagem: 'Lista de comentarios', 
-                dados: null
+                itens: rows.length,
+                dados: rows
             });
         } catch (error) {
             return response.status(500).json({
@@ -18,6 +25,7 @@ module.exports = {
     }, 
     async cadastrarComentarios(request, response) {
         try {
+           
             return response.status(200).json({
                 sucesso: true, 
                 mensagem: 'Cadastro de comentarios', 
