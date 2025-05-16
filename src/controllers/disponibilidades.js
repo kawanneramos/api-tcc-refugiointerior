@@ -4,7 +4,7 @@ module.exports = {
     async listarDisponibilidades(request, response) {
         try {
             const sql = `
-            SELECT 
+             
             SELECT dsp_id, lcz_id, dsp_dia_semana, dsp_horario, 
             dsp_status FROM disponibilidades;
             `;
@@ -25,10 +25,31 @@ module.exports = {
     }, 
     async cadastrarDisponibilidades(request, response) {
         try {
+
+             const {lcz_id, dia_semana, horario, status} = request.body;
+             
+             const sql = `
+             INSERT INTO disponibilidades 
+             (lcz_id, dsp_dia_semana, dsp_horario, dsp_status)
+              VALUES
+                (?,?,?,?);
+            `;
+            const values = [lcz_id, dia_semana, horario, status];
+            
+            const [result] = await db.query(sql, values);
+
+            const dados = {
+                dsp_id: result.insertId,
+                dia_semana,
+                horario,
+                status
+            };
+
+
             return response.status(200).json({
                 sucesso: true, 
                 mensagem: 'Cadastro de disponibilidades', 
-                dados: null
+                dados: dados
             });
         } catch (error) {
             return response.status(500).json({

@@ -25,11 +25,29 @@ module.exports = {
     }, 
     async cadastrarComentarios(request, response) {
         try {
+
+            const {pub_id, usu_id, texto, moderacao} = request.body;
+             
+             const sql = `
+                INSERT INTO comentarios (pub_id, usu_id, com_texto, com_moderacao) VALUES 
+                (?,?,?,?);
+            `;
+
+            const values = [pub_id, usu_id, texto, moderacao];
+            
+            const [result] = await db.query(sql, values);
+
+            const dados = {
+                com_id: result.insertId,
+                texto,
+                moderacao
+                
+            };
            
             return response.status(200).json({
                 sucesso: true, 
                 mensagem: 'Cadastro de comentarios', 
-                dados: null
+                dados: dados
             });
         } catch (error) {
             return response.status(500).json({
@@ -44,7 +62,7 @@ module.exports = {
             return response.status(200).json({
                 sucesso: true, 
                 mensagem: 'Alteração no cadastro de comentario', 
-                dados: null
+                dados: dados
             });
         } catch (error) {
             return response.status(500).json({
