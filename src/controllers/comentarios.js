@@ -4,7 +4,7 @@ module.exports = {
     async listarComentarios(request, response) {
         try {
             const sql = `
-            SELECT 
+             
             SELECT com_id, pub_id, usu_id,
              com_texto, com_moderacao FROM comentarios;
             `;
@@ -39,8 +39,7 @@ module.exports = {
 
             const dados = {
                 com_id: result.insertId,
-                texto,
-                moderacao
+                texto
                 
             };
            
@@ -59,6 +58,19 @@ module.exports = {
     }, 
     async editarComentarios(request, response) {
         try {
+            const {pub_id, usu_id, texto, moderacao} = request.body;
+
+            const {id} = request.params;
+
+            const sql = `
+            UPTADE comentarios SET
+            pub_id = ?, usu_id = ?,
+             com_texto = ?, com_moderacao = ?
+            WHERE
+            com_id = ?;
+            `;
+
+            const values = [com_id, pub_id, usu_id,com_texto, com_moderacao ]
             return response.status(200).json({
                 sucesso: true, 
                 mensagem: 'Alteração no cadastro de comentario', 

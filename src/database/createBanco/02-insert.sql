@@ -119,8 +119,7 @@ VALUES
 
 
 
-INSERT INTO disponibilidades (dsp_id, lcz_id, dsp_dia_semana, dsp_horario, dsp_status) VALUES -- 0 disponivel, 1-nao disponivel
-(1, 1, 1, '08:00:00', 1),  -- Segunda-feira 
+   -- Segunda-feira 
 (2, 1, 1, '14:00:00', 1),  -- Segunda-feira
 (3, 2, 2, '10:00:00', 1),  -- Terça-feira
 (4, 3, 3, '09:30:00', 0),  -- Quarta-feira (Não disponível)
