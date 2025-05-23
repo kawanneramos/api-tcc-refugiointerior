@@ -5,7 +5,7 @@ module.exports = {
         try {
             const sql = `
              
-            SELECT dsp_id, lcz_id, dsp_dia_semana, dsp_horario, 
+            SELECT id, lcz_id, dsp_dia_semana, dsp_horario, 
             dsp_status FROM disponibilidades;
             `;
             const [rows] = await db.query(sql);
@@ -39,7 +39,7 @@ module.exports = {
             const [result] = await db.query(sql, values);
 
             const dados = {
-                dsp_id: result.insertId,
+                id: result.insertId,
                 dia_semana,
                 horario,
                 status
@@ -61,10 +61,40 @@ module.exports = {
     }, 
     async editarDisponibilidades(request, response) {
         try {
+            const {lcz_id, dia_semana, horario, status} = request.body;
+
+            const {id} = request.params;
+
+            const sql = `
+            UPTADE disponibilidades SET
+            lcz_id = ?, dsp_dia_semana = ?,
+             dsp_horario = ?,  dsp_status = ?
+            WHERE
+            id = ?;
+            `;
+
+            const values = [ lcz_id, dia_semana, horario, status, id ];
+            const [result] = await db.query(sql, values);
+
+            if (result.affectedRows === 0) {
+               return response.status(404).json({
+                sucesso: false,
+                mensagem: `diponibilidade ${id}não encontrada!`,
+                dados: null
+
+               });
+
+            }
+            const dados = {
+               id,
+               dia_semana,
+               horario,
+               status
+            };
             return response.status(200).json({
                 sucesso: true, 
                 mensagem: 'Alteração no cadastro de Disponibilidade', 
-                dados: null
+                dados
             });
         } catch (error) {
             return response.status(500).json({

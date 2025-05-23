@@ -5,7 +5,7 @@ module.exports = {
         try {
             const sql = `
              
-            SELECT com_id, pub_id, usu_id,
+            SELECT id, pub_id, usu_id,
              com_texto, com_moderacao FROM comentarios;
             `;
             const [rows] = await db.query(sql);
@@ -38,7 +38,7 @@ module.exports = {
             const [result] = await db.query(sql, values);
 
             const dados = {
-                com_id: result.insertId,
+                id: result.insertId,
                 texto
                 
             };
@@ -67,14 +67,29 @@ module.exports = {
             pub_id = ?, usu_id = ?,
              com_texto = ?, com_moderacao = ?
             WHERE
-            com_id = ?;
+            id = ?;
             `;
 
-            const values = [com_id, pub_id, usu_id,com_texto, com_moderacao ]
+            const values = [ pub_id, usu_id,com_texto, com_moderacao, id ];
+            const [result] = await db.query(sql, values);
+
+            if (result.affectedRows === 0) {
+               return response.status(404).json({
+                sucesso: false,
+                mensagem: `Comentario ${id}não encontrado!`,
+                dados: null
+
+               });
+
+            }
+            const dados = {
+               id,
+               texto
+            };
             return response.status(200).json({
                 sucesso: true, 
-                mensagem: 'Alteração no cadastro de comentario', 
-                dados: dados
+                mensagem: 'Alteração no cadastro de comentario ${id}', 
+                dados
             });
         } catch (error) {
             return response.status(500).json({
@@ -86,6 +101,7 @@ module.exports = {
     }, 
     async apagarComentarios(request, response) {
         try {
+            const {id} = request.params
             return response.status(200).json({
                 sucesso: true, 
                 mensagem: 'Exclusão de comentario', 
