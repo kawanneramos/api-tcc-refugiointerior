@@ -26,20 +26,21 @@ module.exports = {
     async cadastrarComentarios(request, response) {
         try {
 
-            const {pub_id, usu_id, texto, moderacao} = request.body;
+            const {pub_id, usu_id, com_texto, com_moderacao} = request.body;
              
              const sql = `
                 INSERT INTO comentarios (pub_id, usu_id, com_texto, com_moderacao) VALUES 
                 (?,?,?,?);
             `;
 
-            const values = [pub_id, usu_id, texto, moderacao];
+            const values = [pub_id, usu_id, com_texto, com_moderacao];
             
             const [result] = await db.query(sql, values);
 
             const dados = {
                 id: result.insertId,
-                texto
+                com_texto,
+                com_moderacao
                 
             };
            
@@ -58,16 +59,16 @@ module.exports = {
     }, 
     async editarComentarios(request, response) {
         try {
-            const {pub_id, usu_id, texto, moderacao} = request.body;
+            const {pub_id, usu_id, com_texto, com_moderacao} = request.body;
 
             const {id} = request.params;
 
             const sql = `
-            UPTADE comentarios SET
+            UPDATE Comentarios SET
             pub_id = ?, usu_id = ?,
              com_texto = ?, com_moderacao = ?
             WHERE
-            id = ?;
+            com_id = ?;
             `;
 
             const values = [ pub_id, usu_id,com_texto, com_moderacao, id ];
@@ -76,7 +77,6 @@ module.exports = {
             if (result.affectedRows === 0) {
                return response.status(404).json({
                 sucesso: false,
-                id,
                 mensagem: `Comentario ${id}não encontrado!`,
                 dados: null
 
@@ -85,7 +85,8 @@ module.exports = {
             }
             const dados = {
                id,
-               texto
+               com_texto,
+               com_moderacao
             };
             return response.status(200).json({
                 sucesso: true, 

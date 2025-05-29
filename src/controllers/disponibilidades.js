@@ -40,9 +40,9 @@ module.exports = {
 
             const dados = {
                 id: result.insertId,
-                dia_semana,
-                horario,
-                status
+                dsp_dia_semana,
+                dsp_horario,
+                dsp_status
             };
 
 
