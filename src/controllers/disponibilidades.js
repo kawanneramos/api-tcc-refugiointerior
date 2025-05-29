@@ -3,9 +3,9 @@ const db = require('../dataBase/connection');
 module.exports = {
     async listarDisponibilidades(request, response) {
         try {
-            const sql = `
-             
-            SELECT id, lcz_id, dsp_dia_semana, dsp_horario, 
+            const sql = 
+             `
+            SELECT dsp_id, lcz_id, dsp_dia_semana, dsp_horario, 
             dsp_status FROM disponibilidades;
             `;
             const [rows] = await db.query(sql);
@@ -26,7 +26,7 @@ module.exports = {
     async cadastrarDisponibilidades(request, response) {
         try {
 
-             const {lcz_id, dia_semana, horario, status} = request.body;
+             const {lcz_id, dsp_dia_semana, dsp_horario, dsp_status} = request.body;
              
              const sql = `
              INSERT INTO disponibilidades 
@@ -34,7 +34,7 @@ module.exports = {
               VALUES
                 (?,?,?,?);
             `;
-            const values = [lcz_id, dia_semana, horario, status];
+            const values = [lcz_id, dsp_dia_semana, dsp_horario, dsp_status];
             
             const [result] = await db.query(sql, values);
 
@@ -61,19 +61,19 @@ module.exports = {
     }, 
     async editarDisponibilidades(request, response) {
         try {
-            const {lcz_id, dia_semana, horario, status} = request.body;
+            const {lcz_id, dsp_dia_semana, dsp_horario, dsp_status} = request.body;
 
             const {id} = request.params;
 
             const sql = `
-            UPTADE disponibilidades SET
+            UPDATE disponibilidades SET
             lcz_id = ?, dsp_dia_semana = ?,
              dsp_horario = ?,  dsp_status = ?
             WHERE
-            id = ?;
+            dsp_id = ?;
             `;
 
-            const values = [ lcz_id, dia_semana, horario, status, id ];
+            const values = [ lcz_id, dsp_dia_semana, dsp_horario, dsp_status, id ];
             const [result] = await db.query(sql, values);
 
             if (result.affectedRows === 0) {
@@ -87,9 +87,9 @@ module.exports = {
             }
             const dados = {
                id,
-               dia_semana,
-               horario,
-               status
+               dsp_dia_semana,
+               dsp_horario,
+               dsp_status
             };
             return response.status(200).json({
                 sucesso: true, 

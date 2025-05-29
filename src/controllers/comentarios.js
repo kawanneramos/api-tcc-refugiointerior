@@ -5,7 +5,7 @@ module.exports = {
         try {
             const sql = `
              
-            SELECT id, pub_id, usu_id,
+            SELECT com_id, pub_id, usu_id,
              com_texto, com_moderacao FROM comentarios;
             `;
             const [rows] = await db.query(sql);
@@ -76,6 +76,7 @@ module.exports = {
             if (result.affectedRows === 0) {
                return response.status(404).json({
                 sucesso: false,
+                id,
                 mensagem: `Comentario ${id}não encontrado!`,
                 dados: null
 
