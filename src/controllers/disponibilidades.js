@@ -106,9 +106,22 @@ module.exports = {
     }, 
     async apagarDisponibilidades(request, response) {
         try {
+            const { id } = request.params;
+            const sql = `DELETE FROM Disponibilidades WHERE dsp_id = ?`;
+            const values = [id];
+            const[result] = await db.query(sql, values);
+
+            if (result.affectedRows === 0){
+                return response.status(404).json({
+                    sucesso: false,
+                    mensagem: `Disponibilidade ${id} não encontrada!`,
+                    dados: null
+                });
+            }
+            
             return response.status(200).json({
                 sucesso: true, 
-                mensagem: 'Exclusão de Disponibilidade', 
+                mensagem: `Disponibilidade ${id} Excluida com sucesso `, 
                 dados: null
             });
         } catch (error) {
