@@ -1,0 +1,337 @@
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Refúgio Interior • Redes de Apoio</title>
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ======= CSS Custom Properties ======= */
+    :root {
+      --clr-primary: #b8ccf7;
+      --clr-primary-light: #d7e4ff;
+      --clr-primary-dark: #7a9be3;
+      --clr-white: #ffffff;
+      --clr-gray-light: #f5f7fb;
+      --clr-gray: #6c757d;
+      --clr-dark: #2f3b52;
+      --radius: 1.25rem;
+      --transition: 0.3s ease-in-out;
+    }
+
+    /* ======= Global Styles ======= */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.6;
+      color: var(--clr-dark);
+      background: var(--clr-gray-light);
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* ======= Utility Classes ======= */
+    .container {
+      width: min(90%, 1180px);
+      margin-inline: auto;
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--clr-primary-dark);
+      color: var(--clr-white);
+      padding: 0.5rem 1.5rem;
+      border: none;
+      border-radius: var(--radius);
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .btn:hover,
+    .btn:focus-visible {
+      background: var(--clr-dark);
+      transform: translateY(-2px);
+    }
+
+    /* ======= Top Bar ======= */
+    .top-bar {
+      background: var(--clr-primary-dark);
+      color: var(--clr-white);
+      font-size: 0.875rem;
+    }
+
+    .top-bar .container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.25rem 0;
+    }
+
+    .top-bar svg {
+      margin-right: 0.25rem;
+    }
+
+    /* ======= Header & Navigation ======= */
+    header {
+      background: var(--clr-primary);
+    }
+
+    .main-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-block: 0.75rem;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--clr-dark);
+    }
+
+    .logo img {
+      width: 36px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      background: var(--clr-white);
+      padding: 0.4rem 1rem;
+      border-radius: var(--radius);
+      font-size: 0.925rem;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    nav a:hover,
+    nav a:focus-visible {
+      background: var(--clr-dark);
+      color: var(--clr-white);
+    }
+
+    /* ======= Hero Section ======= */
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      padding-block: 4rem 2rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-illustration {
+      flex: 1 1 280px;
+      max-width: 320px;
+    }
+
+    .hero-text {
+      flex: 1 1 340px;
+    }
+
+    .hero-text h1 {
+      font-size: clamp(2.25rem, 5vw + 1rem, 3.5rem);
+      font-weight: 700;
+      color: var(--clr-primary-dark);
+      letter-spacing: 1px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
+      margin-bottom: 1rem;
+    }
+
+    .hero-text p {
+      font-size: 1.125rem;
+      max-width: 40ch;
+    }
+
+    /* ======= Cards Section ======= */
+    .cards {
+      padding-block: 3rem 4rem;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      background: var(--clr-white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.07);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      transition: var(--transition);
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    }
+
+    .card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+    }
+
+    .card .btn {
+      margin: 0.75rem auto 0.5rem;
+    }
+
+    .card h3 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 0 0.75rem 1.25rem;
+    }
+
+    /* ======= Footer (Optional) ======= */
+    footer {
+      background: var(--clr-primary-dark);
+      color: var(--clr-white);
+      text-align: center;
+      padding: 2rem 0 1rem;
+      font-size: 0.875rem;
+    }
+
+    /* ======= Media Queries ======= */
+    @media (max-width: 640px) {
+      .main-nav {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      nav ul {
+        justify-content: center;
+      }
+
+      .hero {
+        padding-top: 2.5rem;
+      }
+
+      .hero-text p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- ===== Top Bar ===== -->
+  <div class="top-bar">
+    <div class="container">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+        <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v.217l-8 4.8-8-4.8V4zm0 1.383v6.528l5.803-3.482L0 5.383zM6.761 9.227 0 12.917V13a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-.083l-6.761-3.69L8 10.383l-1.239-.74zM16 5.383l-5.803 3.046L16 11.911V5.383z"/>
+      </svg>
+      refugiointerior@gmail.com
+    </div>
+  </div>
+
+  <!-- ===== Header & Navigation ===== -->
+  <header>
+    <div class="container main-nav">
+      <div class="logo">
+        <!-- Placeholder brain icon -->
+        <img src="https://raw.githubusercontent.com/encharm/Font-Awesome-SVG-PNG/master/black/png/32/brain.png" alt="logo"/>
+        Refúgio Interior
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#">Início</a></li>
+          <li><a href="#">Publicações</a></li>
+          <li><a href="#">Redes de apoio</a></li>
+          <li><a href="#">Psicólogos</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== Hero Section ===== -->
+  <section class="hero container">
+    <img src="https://raw.githubusercontent.com/mishapixel/illustrations/main/yoga/yoga12.svg" alt="Pessoa meditando" class="hero-illustration" />
+    <div class="hero-text">
+      <h1>Saúde Mental</h1>
+      <p>
+        Bem-vindo, esta é a página de redes de apoio da <em>Refúgio Interior</em>, pensada para dedicar um espaço de cuidado à saúde mental. Desça a página e conheça!
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== Cards Section ===== -->
+  <section class="cards container">
+    <div class="cards-grid">
+      <!-- Card 1 -->
+      <article class="card">
+        <img src="https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?auto=format&fit=crop&w=800&q=60" alt="Mãos dadas" />
+        <button class="btn" onclick="alert('Mais informações em breve!')">Ver sobre</button>
+        <h3>Centro de Valorização da Vida (CVV)</h3>
+      </article>
+
+      <!-- Card 2 -->
+      <article class="card">
+        <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=800&q=60" alt="Mulher respirando ar puro" />
+        <button class="btn" onclick="alert('Mais informações em breve!')">Ver sobre</button>
+        <h3>Instituto Sedes Sapientiae (ISS)</h3>
+      </article>
+
+      <!-- Card 3 -->
+      <article class="card">
+        <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=800&q=60" alt="Criança em terapia" />
+        <button class="btn" onclick="alert('Mais informações em breve!')">Ver sobre</button>
+        <h3>Instituto Vita Alere (IVA)</h3>
+      </article>
+
+      <!-- Card 4 -->
+      <article class="card">
+        <img src="https://images.unsplash.com/photo-1511988617509-a57c8a288659?auto=format&fit=crop&w=800&q=60" alt="Sala confortável" />
+        <button class="btn" onclick="alert('Mais informações em breve!')">Ver sobre</button>
+        <h3>Instituto Bem do Estar (IBE)</h3>
+      </article>
+      <article class="card">
+        <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=800&q=60" alt="Pessoa segurando uma planta" />
+        <button class="btn">Ver sobre</button>
+        <h3>Centro de Apoio Emocional (CAE)</h3>
+      </article>
+      <article class="card">
+        <img src="https://images.unsplash.com/photo-1520975869010-5d89f04c0a7e?auto=format&fit=crop&w=800&q=60" alt="Pessoas conversando" />
+        <button class="btn">Ver sobre</button>
+        <h3>Rede de Cuidado Humanizado (RCH)</h3>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer>
+    <p>© 2025 Refúgio Interior — Todos os direitos reservados.</p>
+  </footer>
+</body>
+</html>
+
