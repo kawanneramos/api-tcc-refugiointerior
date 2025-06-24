@@ -139,36 +139,56 @@
 
     /* ======= Hero Section ======= */
     .hero {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 2rem;
-      padding-block: 4rem 2rem;
-      flex-wrap: wrap;
-    }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding-block: 4rem 2rem;
+  flex-wrap: nowrap; /* lado a lado */
+  flex-direction: row;
+}
 
-    .hero-illustration {
-      flex: 1 1 280px;
-      max-width: 320px;
-    }
+.hero-illustration {
+  flex: 0 0 auto;
+  max-width: 320px;
+  width: 100%;
+  height: auto;
+}
 
-    .hero-text {
-      flex: 1 1 340px;
-    }
+.hero-text {
+  flex: 1 1 340px;
+  max-width: 600px;
+}
 
-    .hero-text h1 {
-      font-size: clamp(2.25rem, 5vw + 1rem, 3.5rem);
-      font-weight: 10000;
-      color: var(--clr-primary-dark);
-      letter-spacing: 1px;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
-      margin-bottom: 1rem;
-    }
+.hero-text h1 {
+  font-size: clamp(3.5rem, 7vw + 1rem, 5rem);
+  font-weight: 10000;
+  color: var(--clr-primary-dark);
+  letter-spacing: 1px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
+  margin-bottom: 1.5rem;
+}
 
-    .hero-text p {
-      font-size: 1.125rem;
-      max-width: 40ch;
-    }
+.hero-text p {
+  font-size: 1.75rem;
+  max-width: 50ch;
+}
+
+/* Responsividade para telas pequenas */
+@media (max-width: 640px) {
+  .hero {
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+
+  .hero-illustration {
+    max-width: 100%;
+  }
+
+  .hero-text {
+    max-width: 100%;
+  }
+}
 
     /* ======= Cards Section ======= */
     .cards {
@@ -239,7 +259,7 @@
       }
 
       .hero-text p {
-        font-size: 1rem;
+        font-size: 100rem;
       }
 
       header .container {
