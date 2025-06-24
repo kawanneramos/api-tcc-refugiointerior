@@ -1,18 +1,17 @@
 const express = require('express'); 
 const router = express.Router(); 
 
-const DisponibilidadesController = require('../controllers/disponibilidades'); 
-const ComentariosController = require('../controllers/comentarios');  
+const RotasKawanne = require('./routes-kawanne');  
+router.use('/', RotasKawanne); 
 
-router.get('/disponibilidades',DisponibilidadesController.listarDisponibilidades); 
-router.post('/disponibilidades',DisponibilidadesController.cadastrarDisponibilidades); 
-router.patch('/disponibilidades/:id',DisponibilidadesController.editarDisponibilidades); 
-router.delete('/disponibilidades/:id',DisponibilidadesController.apagarDisponibilidades); 
+const RotasMafer = require('./routes-mafer');  
+router.use('/', RotasMafer); 
 
-router.get('/comentarios',ComentariosController.listarComentarios); 
-router.post('/comentarios',ComentariosController.cadastrarComentarios); 
-router.patch('/comentarios/:id',ComentariosController.editarComentarios); 
-router.delete('/comentarios/:id',ComentariosController.apagarComentarios); 
+const RotasJamily = require('./routes-jamily');  
+router.use('/', RotasJamily); 
+
+const RotasLohana = require('./routes-lohana');  
+router.use('/', RotasLohana); 
 
 
 module.exports = router;
