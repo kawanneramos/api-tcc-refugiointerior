@@ -25,7 +25,7 @@ module.exports = {
     }, 
     async cadastrarLocalizacoes(request, response) {
         try {
-            const{psi_id, nome_clin, CEP, bairro, complemento, cidade, estado}= request.body;
+            const{psi_id, lcz_nome_clinica, lcz_cep, lcz_bairro, lcz_complemento, lcz_cidade, lcz_estado}= request.body;
 
             const sql= `
                 INSERT INTO localizacoes 
@@ -33,18 +33,19 @@ module.exports = {
                 VALUES
                      (?, ?, ?, ?, ?, ?, ?);
             `
-            const values= [psi_id, nome_clin, CEP, bairro, complemento, cidade, estado];
+            const values= [psi_id, lcz_nome_clinica, lcz_cep, lcz_bairro, lcz_complemento, lcz_cidade, lcz_estado];
 
             const [result]= await db.query(sql, values);
 
             const dados= {
                 lcz_id: result.insertId,
-                nome_clin,
-                CEP, 
-                bairro,
-                complemento, 
-                cidade, 
-                estado
+                lcz_nome_clinica,
+                lcz_complemento,
+                lcz_cep, 
+                lcz_bairro,
+                lcz_cidade, 
+                lcz_estado
+                 
             };
 
             return response.status(200).json({
@@ -62,17 +63,17 @@ module.exports = {
     }, 
     async editarLocalizacoes(request, response) {
         try {
-            const{psi_id, nome_clin, CEP, bairro, complemento, cidade, estado}= request.body;
+            const{psi_id, lcz_nome_clinica, lcz_cep, lcz_bairro, lcz_complemento, lcz_cidade, lcz_estado}= request.body;
             const {lcz_id} = request.params;
 
             const sql= `
-                UPDATE localizacoes SET
-                   psi_id = ?, lcz_nome_clinica = ?, lcz_cep= ?, lcz_bairro = ?, lcz_complemento = ?, lcz_cidade = ?, lcz_estado = ? 
+                UPDATE localizacoes SET 
+                   psi_id = ?, lcz_nome_clinica = ?, lcz_cep = ?, lcz_bairro = ?, lcz_complemento = ?, lcz_cidade = ?, lcz_estado = ? 
                    WHERE 
                      lcz_id = ?;
             `;
 
-            const values= [psi_id, nome_clin, CEP, bairro, complemento, cidade, estado,lcz_id ];
+            const values= [psi_id, lcz_nome_clinica, lcz_cep, lcz_bairro, lcz_complemento, lcz_cidade, lcz_estado ];
 
             const [result]= await db.query(sql, values);
 
@@ -85,13 +86,14 @@ module.exports = {
             }
 
             const dados = {
-                lcz_id,
-                nome_clin,
-                CEP, 
-                bairro,
-                complemento, 
-                cidade, 
-                estado
+                lcz_id: result.insertId,
+                lcz_nome_clinica,
+                lcz_complemento,
+                lcz_cep, 
+                lcz_bairro,
+                lcz_cidade, 
+                lcz_estado
+                 
             };
 
             return response.status(200).json({
