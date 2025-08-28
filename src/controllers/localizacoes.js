@@ -73,7 +73,7 @@ module.exports = {
                      lcz_id = ?;
             `;
 
-            const values= [psi_id, lcz_nome_clinica, lcz_cep, lcz_bairro, lcz_complemento, lcz_cidade, lcz_estado ];
+            const values= [psi_id, lcz_nome_clinica, lcz_cep, lcz_bairro, lcz_complemento, lcz_cidade, lcz_estado, lcz_id ];
 
             const [result]= await db.query(sql, values);
 
