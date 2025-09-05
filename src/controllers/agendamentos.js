@@ -5,7 +5,7 @@ module.exports = {
 
            const sql = `
            SELECT 
-           agd_id, psi_id, usu_id, agd_data_consulta, agd_inicio_consulta, 
+           agd_id, psi_id, usu_id, DATE_FORMAT(agd_data_consulta, '%d/%m/%Y') AS agd_data_consulta, agd_inicio_consulta, 
            agd_fim_consulta, agd_anotacoes_consulta 
            FROM agendamentos;
            `;
@@ -14,7 +14,7 @@ module.exports = {
             return response.status(200).json({
                 sucesso: true, 
                 mensagem: 'Lista de Agendamento', 
-                itens: rows.lenght,
+                itens: rows.length,
                 dados: rows
             });
         } catch (error) {
@@ -85,7 +85,8 @@ module.exports = {
            WHERE
              agd_id = ?;
        `;
-       const values = [agd_id, psi_id ,usu_id, agd_data_consulta,agd_inicio_consulta,agd_fim_consulta, agd_anotacoes_consulta];
+       const values = [psi_id, usu_id, agd_data_consulta, agd_inicio_consulta, agd_fim_consulta, agd_anotacoes_consulta, agd_id];
+
 
        const [result] = await db.query(sql, values);
 
@@ -94,7 +95,7 @@ module.exports = {
        if (result.affectedRows === 0){
         return response.status(404).json({
             sucesso:false,
-            mansagem: 'Agendamento ${agd_id} não encontrado!',
+            mensagem: `Agendamento ${agd_id} não encontrado!`,
             dados:null
         });
        }
@@ -112,7 +113,7 @@ module.exports = {
 
             return response.status(200).json({
                 sucesso: true, 
-                mensagem: 'Alteração no Agendamento $(agd_id) atualizada com sucesso!', 
+                mensagem: `Alteração no Agendamento ${agd_id} atualizada com sucesso!`, 
                 dados
             });
         } catch (error) {
