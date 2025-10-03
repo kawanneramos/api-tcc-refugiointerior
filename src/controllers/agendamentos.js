@@ -76,7 +76,7 @@ module.exports = {
     async editarAgendamento(request, response) {
         try {
 
-            const {psi_id ,usu_id, agd_data_consulta,agd_inicio_consulta,agd_fim_consulta, agd_anotacoes_consulta}  = request.body;
+            const {psi_id ,usu_id, data_consulta, inicio_consulta, fim_consulta, anotacoes_consulta}  = request.body;
             const { agd_id } = request.params;
             const sql = `
             UPDATE agendamentos SET
@@ -85,7 +85,7 @@ module.exports = {
            WHERE
              agd_id = ?;
        `;
-       const values = [psi_id, usu_id, agd_data_consulta, agd_inicio_consulta, agd_fim_consulta, agd_anotacoes_consulta, agd_id];
+       const values = [psi_id, usu_id, data_consulta, inicio_consulta, fim_consulta, anotacoes_consulta, agd_id];
 
 
        const [result] = await db.query(sql, values);
@@ -104,10 +104,10 @@ module.exports = {
           agd_id ,
           psi_id ,
           usu_id, 
-          agd_data_consulta,
-          agd_inicio_consulta,
-          agd_fim_consulta, 
-          agd_anotacoes_consulta
+          data_consulta,
+          inicio_consulta,
+          fim_consulta, 
+          anotacoes_consulta
        };
 
 

@@ -28,7 +28,7 @@ module.exports = {
     async cadastrarFeedback_consulta(request, response) {
         try {
 
-            const { psi_id, usu_id, mensagem, data_hora } = request.body;
+            const { psi_id, usu_id, fdbk_mensagem, data_hora } = request.body;
       
             const sql = `
            INSERT INTO feedback_consulta (psi_id, usu_id, fdbk_mensagem, fdbk_data_hora) 
@@ -36,13 +36,13 @@ module.exports = {
                 (?, ?, ?, ?);
              `;
 
-             const values = [psi_id, usu_id, mensagem, data_hora];
+             const values = [psi_id, usu_id, fdbk_mensagem, data_hora];
 
              const [result] = await db.query(sql, values);
 
              const dados = {
                 fdbk_id: result.insertId,
-                mensagem,
+                fdbk_mensagem,
                 data_hora
              };
 
@@ -62,7 +62,7 @@ module.exports = {
     async editarFeedback_consulta(request, response) {
         try {
 
-                const { psi_id, usu_id, mensagem, data_hora } = request.body;
+                const { psi_id, usu_id, fdbk_mensagem, data_hora } = request.body;
     
                 const { fdbk_id } = request.params;
     
@@ -72,7 +72,7 @@ module.exports = {
                  WHERE fdbk_id = ?;
                  `;
     
-                 const values = [ psi_id, usu_id, mensagem, data_hora, fdbk_id ];
+                 const values = [ psi_id, usu_id, fdbk_mensagem, data_hora, fdbk_id ];
     
                  const [result] = await db.query(sql, values);
     
@@ -86,7 +86,7 @@ module.exports = {
     
                  const dados = {
                     fdbk_id,
-                    mensagem,
+                    fdbk_mensagem,
                     data_hora
                  };
     

@@ -103,21 +103,21 @@ module.exports = {
     }, 
     async apagarComentarios(request, response) {
         try {
-            const { com_id } = request.params;
+            const { id } = request.params;
             const sql = `DELETE FROM Comentarios WHERE com_id = ?`;
-            const values = [com_id];
+            const values = [id];
             const[result] = await db.query(sql, values);
 
             if (result.affectedRows === 0){
                 return response.status(404).json({
                     sucesso: false,
-                    mensagem: `Comentario ${com_id} não encontrado!`,
+                    mensagem: `Comentario ${id} não encontrado!`,
                     dados: null
                 });
             }
             return response.status(200).json({
                 sucesso: true, 
-                mensagem:`Comentario ${com_id} Excluido com sucesso `, 
+                mensagem:`Comentario ${id} Excluido com sucesso `, 
                 dados: null
             });
         } catch (error) {
