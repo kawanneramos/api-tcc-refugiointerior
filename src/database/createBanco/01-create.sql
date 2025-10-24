@@ -15,7 +15,7 @@ create table perfil_psicologo (
     psi_id int primary key auto_increment,
     prf_especialidades varchar(200),
     prf_biografia varchar(200),
-    prf_preco_consulta decimal(6,2),
+    prf_imagem varchar(255),
     prf_crp varchar(20) not null
 );
 
@@ -83,17 +83,9 @@ create table redes_apoio (
 
     redeapoio_id int primary key auto_increment,
     redeapoio_nome varchar(100) not null,
-    redeapoio_descricao varchar(200),
+    redeapoio_descricao varchar(500),
     redeapoio_contato varchar(20) not null,
-    redeapoio_logo varchar(55)
-);
--- tabela comentarios
-create table comentarios (
-    com_id int primary key auto_increment,
-    pub_id int not null,
-    usu_id int not null,
-    com_texto varchar(200) not null,
-    com_moderacao varchar(200),
-    foreign key (pub_id) references publicacoes(pub_id),
-    foreign key (usu_id) references usuarios(usu_id)
+    redeapoio_logo varchar(55),
+    redeapoio_link varchar(255)
+
 );

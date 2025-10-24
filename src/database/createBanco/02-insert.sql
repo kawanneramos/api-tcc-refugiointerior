@@ -12,22 +12,36 @@ INSERT INTO usuarios (usu_nome, usu_email, usu_telefone, usu_senha, usu_data_nas
 ('Gustavo Nunes', 'gustavo.nunes@email.com', '11932165498', 'gustavo@99', '1989-08-25', '78965432100', 2);
 
 
-INSERT INTO redes_apoio (redeapoio_nome, redeapoio_descricao, redeapoio_contato, redeapoio_logo) VALUES
-('Apoio Psicológico Online', 'Plataforma de atendimento psicológico remoto para pessoas em crise.', '11987654321', 'apoio_online.png'),
-('Grupo Esperança', 'Grupo de apoio para pessoas com ansiedade e depressão.', '11976543210', 'grupo_esperanca.jpg'),
-('Rede Solidária', 'Atendimentos gratuitos para comunidades carentes.', '11965498732', 'rede_solidaria.png'),
-('Acolher Bem', 'Projeto de acolhimento para vítimas de violência doméstica.', '11954321987', 'acolher_bem.jpg'),
-('Vida Plena', 'Apoio para jovens lidando com transtornos emocionais.', '11943219876', 'vida_plena.png'),
-('Escuta Amiga', 'Rede de voluntários que oferecem escuta empática gratuita.', '11987651234', 'escuta_amiga.jpg'),
-('Recomeço', 'Acompanhamento psicológico para dependentes químicos.', '11976549876', 'recomeco.png'),
-('Mente Sã', 'Programa de mindfulness e terapia cognitiva.', '11954328765', 'mente_sa.jpg'),
-('Cuidar', 'Projeto voltado para o suporte emocional de idosos.', '11943217654', 'cuidar.png'),
-('Voz Interior', 'Espaço de terapia para autoconhecimento e desenvolvimento pessoal.', '11932165498', 'voz_interior.jpg');
+INSERT INTO redes_apoio 
+(redeapoio_nome, redeapoio_descricao, redeapoio_contato, redeapoio_logo, redeapoio_link) 
+VALUES
+('Centro de Valorização da Vida', 
+ 'Formado exclusivamente por voluntários, oferece apoio emocional e prevenção do suicídio de forma gratuita. As pessoas que o procuram, em geral, estão se sentindo sozinhas ou precisam conversar com alguém de maneira sigilosa, sem julgamentos, críticas ou comparações. O CVV atua em todo o território nacional, oferecendo atendimento pelo telefone 188 — disponível 24 horas por dia e sem custo de ligação —, além de chat, e-mail e atendimento presencial em alguns endereços. Fundado em 1962, o CVV é uma entidade nacional independente, tanto financeira quanto ideologicamente, sem qualquer vinculação religiosa, político-partidária ou empresarial.', 
+ '11987654321', 
+ 'CVV.png', 
+ 'https://www.cvv.org.br'),
+
+('Rede Pode Falar', 
+ 'A Rede Pode Falar nasceu como um canal de escuta acolhedora e transformou-se em uma rede de instituições e pessoas que não apenas oferecem um serviço de apoio emocional e conteúdos confiáveis em saúde mental, mas também capacitam futuros profissionais da área de cuidado humano, sensíveis às necessidades específicas desse ciclo da vida. As instituições que participam desta rede de cuidado, devido à sua especialização e conhecimento neste tema, realizam pesquisas, avaliam programas e fazem recomendações para a melhoria das políticas públicas de saúde mental nesta faixa etária, tanto em âmbito nacional quanto estadual e municipal.', 
+ '11976543210', 
+ 'RPF.png', 
+ 'https://redepodefalar.org.br'),
+
+('Instituto Bem-Estar', 
+ 'A Missão do Bem-Estar é uma organização sem fins lucrativos que atua na promoção do bem-estar mental por meio do letramento socioemocional e do advocacy. Tem como foco mulheres, jovens e pessoas LGBTQIAPN+, e busca colaborar para a redução do estigma em saúde mental. Por meio de suas frentes de atuação, promove ações que unem educação emocional, conscientização e impacto social. Na área de Letramento Socioemocional, desenvolve atividades e materiais educativos que auxiliam as pessoas a reconhecer, compreender e gerenciar suas emoções, estimulando o autoconhecimento e o cuidado com a saúde mental. '
+ '11998765432', 
+ 'IBE.png', 
+ 'https://institutobemestar.org.br'),
+
+('Instituto Vita Alegre', 
+ 'O Instituto Vita Alegre é uma organização sem fins lucrativos dedicada a oferecer apoio psicológico e social para pessoas em situação de vulnerabilidade, com foco especial em vítimas de violência doméstica. Fundado em 2005, o instituto desenvolve programas de acolhimento, terapia individual e em grupo, além de campanhas de conscientização sobre saúde mental e prevenção da violência. Com uma equipe multidisciplinar de profissionais, o Instituto Vita Alegre busca promover a recuperação emocional e a reintegração social de seus assistidos.', 
+ '11954321987', 
+ 'IVA.png', 
+ 'https://www.institutovitaalegre.org.br');
 
 
-
-INSERT INTO perfil_psicologo ( psi_id, prf_especialidades, prf_biografia, prf_preco_consulta, prf_crp) VALUES
-(1,'Terapia de Casal', 'Psicólogo especializado em relações conjugais e conflitos familiares.', 150.00, 'CRP-123456'),
+INSERT INTO perfil_psicologo ( psi_id, prf_especialidades, prf_biografia, prf_imagem, prf_crp) VALUES
+(1,'Terapia de Casal', 'Psicólogo especializado em relações conjugais e conflitos familiares.', 'ana.png', 'CRP-123456'),
 (2,'Ansiedade', 'Ajudo pacientes a lidarem com transtornos de ansiedade e estresse.', 120.00, 'CRP-234567'),
 (3,'Depressão', 'Experiência no tratamento da depressão e ressignificação emocional.', 130.00, 'CRP-345678'),
 (4,'Psicologia Infantil', 'Atendo crianças com dificuldades emocionais e comportamentais.', 140.00, 'CRP-456789'),
@@ -131,18 +145,6 @@ VALUES
 (10, 4, 7, '18:00:00', 0);  -- Domingo (Não disponível)
 
 
-
-INSERT INTO comentarios (com_id, pub_id, usu_id, com_texto, com_moderacao) VALUES
-(1, 1, 1, 'Ótimo artigo! Aprendi muito sobre o assunto.', 'Aprovado'), 
-(2, 2, 2, 'Não concordo com a opinião do autor, mas o texto está bem escrito.', 'Aprovado'),
-(3, 3, 3, 'Esse conteúdo me ajudou a resolver um problema que eu tinha.', 'Aprovado'),
-(4, 4, 4, 'Faltaram mais exemplos práticos. Acho que o artigo poderia ser mais explicativo.', 'Aprovado'),
-(5, 5, 5, 'O tema é interessante, mas o texto é um pouco longo.', 'Aprovado'),
-(6, 6, 6, 'Muito bom, mas poderia ter abordado mais detalhes técnicos.', 'Aprovado'),
-(7, 7, 7, 'Excelente conteúdo! Com certeza vou recomendar para meus colegas.', 'Aprovado'),
-(8, 8, 8, 'Achei algumas partes confusas, não consegui entender bem.', 'Reprovado'),
-(9, 9, 9, 'Adorei o texto! Muito bem explicado e fácil de entender.', 'Aprovado'),
-(10, 10, 10, 'Texto muito bom, mas poderia ter um título mais chamativo.', 'Aprovado');
 
 
 
