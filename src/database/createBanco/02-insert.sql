@@ -11,7 +11,7 @@ INSERT INTO usuarios (usu_nome, usu_email, usu_telefone, usu_senha, usu_data_nas
 ('Juliana Ferreira', 'juliana.ferreira@email.com', '11943217654', 'juliana@123', '1993-10-12', '45678912300', 1),
 ('Gustavo Nunes', 'gustavo.nunes@email.com', '11932165498', 'gustavo@99', '1989-08-25', '78965432100', 2);
 
-
+/*igual no vscode */
 INSERT INTO redes_apoio 
 (redeapoio_nome, redeapoio_descricao, redeapoio_contato, redeapoio_logo, redeapoio_link) 
 VALUES
@@ -102,19 +102,19 @@ VALUES
 (10, 'Ser e Viver', '66033-000', 'Umarizal', 'Perto da praça', 'Belém', 'PA');
 
 
-
+/*igual no vscode */
 INSERT INTO feedback_consulta (psi_id, usu_id, fdbk_mensagem, fdbk_data_hora) 
 VALUES
-(1, 5, 'Ótimo atendimento! Profissional muito atencioso.', '2025-03-01 10:30:00'),
-(2, 3, 'Me senti muito confortável durante a consulta.', '2025-03-02 14:15:00'),
-(3, 7, 'Ajudou bastante com minhas questões pessoais.', '2025-03-03 16:45:00'),
-(4, 2, 'Terapia incrível! Me fez enxergar novas perspectivas.', '2025-03-04 09:00:00'),
-(5, 8, 'Gostei da abordagem, mas esperava um pouco mais de direcionamento.', '2025-03-05 11:20:00'),
-(6, 1, 'Muito profissional e acolhedor. Recomendo!', '2025-03-06 15:30:00'),
-(7, 4, 'Consulta bem estruturada e eficiente.', '2025-03-07 17:00:00'),
-(8, 9, 'Ótima escuta ativa e empatia.', '2025-03-08 13:45:00'),
-(9, 6, 'Fiquei mais tranquilo após a consulta, me ajudou bastante.', '2025-03-09 18:10:00'),
-(10, 10, 'Me identifiquei muito com o psicólogo, ótima escolha!', '2025-03-10 12:00:00');
+(1, 5, 'Ótimo atendimento! Profissional muito atencioso.', '2025-10-24 10:30:00'),
+(2, 3, 'Me senti muito confortável durante a consulta.', '2025-10-24 14:15:00'),
+(3, 7, 'Ajudou bastante com minhas questões pessoais.', '22025-10-24 16:45:00'),
+(4, 2, 'Terapia incrível! Me fez enxergar novas perspectivas.', '2025-10-24 09:00:00'),
+(5, 8, 'Gostei da abordagem, mas esperava um pouco mais de direcionamento.', '22025-10-24 11:20:00'),
+(6, 1, 'Muito profissional e acolhedor. Recomendo!', '2025-10-24 15:30:00'),
+(7, 4, 'Consulta bem estruturada e eficiente.', '2025-10-24 17:00:00'),
+(8, 9, 'Ótima escuta ativa e empatia.', '2025-10-24 13:45:00'),
+(9, 6, 'Fiquei mais tranquilo após a consulta, me ajudou bastante.', '22025-10-24 18:10:00'),
+(10, 10, 'Me identifiquei muito com o psicólogo, ótima escolha!', '2025-10-24 12:00:00');
 
 
 
