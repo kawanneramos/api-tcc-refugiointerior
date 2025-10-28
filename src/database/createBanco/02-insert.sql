@@ -11,6 +11,18 @@ INSERT INTO usuarios (usu_nome, usu_email, usu_telefone, usu_senha, usu_data_nas
 ('Juliana Ferreira', 'juliana.ferreira@email.com', '11943217654', 'juliana@123', '1993-10-12', '45678912300', 1),
 ('Gustavo Nunes', 'gustavo.nunes@email.com', '11932165498', 'gustavo@99', '1989-08-25', '78965432100', 2);
 
+INSERT INTO perfil_psicologo ( psi_id, prf_especialidades, prf_biografia, prf_imagem, prf_crp) VALUES
+(1,'Terapia de Casal', 'Psicólogo especializado em relações conjugais e conflitos familiares.', 'ana.png', 'CRP-123456'),
+(2,'Ansiedade', 'Ajudo pacientes a lidarem com transtornos de ansiedade e estresse.', 'carlos.png', 'CRP-234567'),
+(3,'Depressão', 'Experiência no tratamento da depressão e ressignificação emocional.', 'ana.png', 'CRP-345678'),
+(4,'Psicologia Infantil', 'Atendo crianças com dificuldades emocionais e comportamentais.', 'ana.png', 'CRP-456789'),
+(5,'Terapia Cognitivo-Comportamental', 'Utilizo a TCC para tratar diversos transtornos psicológicos.', 'ana.png', 'CRP-567890'),
+(6,'Psicologia Organizacional', 'Especialista em bem-estar no trabalho e desenvolvimento profissional.', 'ana.png', 'CRP-678901'),
+(7,'Dependência Química', 'Atuo no tratamento e reabilitação de pacientes com vícios.', 'ana.png', 'CRP-789012'),
+(8,'Psicologia do Esporte', 'Ajudo atletas a desenvolverem foco e controle emocional.', 'ana.png', 'CRP-890123'),
+(9,'Psicanálise', 'Trabalho com interpretação do inconsciente para autoconhecimento.', 'ana.png', 'CRP-901234'),
+(10,'Neuropsicologia', 'Especialista em avaliação e reabilitação neuropsicológica.', 'ana.png', 'CRP-012345');
+
 /*igual no vscode */
 INSERT INTO redes_apoio 
 (redeapoio_nome, redeapoio_descricao, redeapoio_contato, redeapoio_logo, redeapoio_link) 
@@ -40,50 +52,38 @@ VALUES
  'https://www.institutovitaalegre.org.br');
 
 
-INSERT INTO perfil_psicologo ( psi_id, prf_especialidades, prf_biografia, prf_imagem, prf_crp) VALUES
-(1,'Terapia de Casal', 'Psicólogo especializado em relações conjugais e conflitos familiares.', 'ana.png', 'CRP-123456'),
-(2,'Ansiedade', 'Ajudo pacientes a lidarem com transtornos de ansiedade e estresse.', 120.00, 'CRP-234567'),
-(3,'Depressão', 'Experiência no tratamento da depressão e ressignificação emocional.', 130.00, 'CRP-345678'),
-(4,'Psicologia Infantil', 'Atendo crianças com dificuldades emocionais e comportamentais.', 140.00, 'CRP-456789'),
-(5,'Terapia Cognitivo-Comportamental', 'Utilizo a TCC para tratar diversos transtornos psicológicos.', 125.00, 'CRP-567890'),
-(6,'Psicologia Organizacional', 'Especialista em bem-estar no trabalho e desenvolvimento profissional.', 160.00, 'CRP-678901'),
-(7,'Dependência Química', 'Atuo no tratamento e reabilitação de pacientes com vícios.', 135.00, 'CRP-789012'),
-(8,'Psicologia do Esporte', 'Ajudo atletas a desenvolverem foco e controle emocional.', 145.00, 'CRP-890123'),
-(9,'Psicanálise', 'Trabalho com interpretação do inconsciente para autoconhecimento.', 155.00, 'CRP-901234'),
-(10,'Neuropsicologia', 'Especialista em avaliação e reabilitação neuropsicológica.', 170.00, 'CRP-012345');
-
 
 
 INSERT INTO publicacoes (pub_id, psi_id, pub_titulo, pub_texto, pub_data_postagem, pub_imagem, pub_status) VALUES 
 (1, 1, 'A Importância da Terapia de Casal', 
- 'Entenda como a terapia pode fortalecer os laços e melhorar a comunicação no relacionamento.', 
+ 'A terapia de casal oferece um espaço seguro e estruturado para que parceiros possam explorar padrões de comunicação, expectativas e feridas emocionais que impactam a convivência. Ao trabalhar com técnicas de escuta ativa, mediação de conflitos e desenvolvimento de habilidades de resolução, o casal aprende a identificar gatilhos, reformular narrativas e construir acordos que promovam mais intimidade e respeito. Além disso, a terapia auxilia no reconhecimento de ciclos repetitivos, favorecendo mudanças práticas no dia a dia e fortalecendo a parceria através do comprometimento mútuo com o crescimento emocional e a empatia.', 
  '2025-03-14', 'terapia_casal.jpg', 'ativo'),
 (2, 2, 'Ansiedade: Como Identificar e Controlar?', 
- 'Dicas essenciais para reconhecer os sintomas da ansiedade e como lidar com eles no dia a dia.', 
+ 'A ansiedade é uma resposta natural a situações de demanda ou perigo, mas quando se torna persistente pode prejudicar a qualidade de vida. Identificar sintomas como preocupação excessiva, inquietação, problemas de sono, tensão muscular e dificuldades de concentração é o primeiro passo. O controle envolve estratégias psicoeducativas, práticas de regulação emocional como respiração diafragmática e técnicas de relaxamento, reestruturação cognitiva para questionar pensamentos catastróficos, exposição gradual a medos e, quando indicado, intervenções farmacológicas em conjunto com psicoterapia. O acompanhamento profissional ajuda a personalizar ferramentas e estabelecer metas reais de melhora.', 
  '2025-03-12', 'ansiedade_tips.jpg', 'ativo'),
 (3, 3, 'Os Sinais da Depressão', 
- 'Conheça os principais sinais da depressão e quando procurar ajuda profissional.', 
+ 'A depressão pode se manifestar por apagamentos de interesse, tristeza persistente, fadiga, alterações de apetite e sono, sentimentos de culpa ou inutilidade e redução da capacidade de tomar decisões. Reconhecer esses sinais é fundamental para buscar apoio precoce. O tratamento combina psicoterapia, que trabalha com processamento emocional, reestruturação de pensamentos e desenvolvimento de estratégias de enfrentamento, com intervenções médicas quando necessário. O suporte social, rotinas de sono e atividade física e intervenções direcionadas para atividades prazerosas também desempenham papel crucial na recuperação. Buscar ajuda é um passo corajoso e decisivo para restabelecer funcionamento e bem-estar.', 
  '2025-03-10', 'depressao_sinais.jpg', 'ativo'),
 (4, 4, 'Como Ajudar uma Criança a Expressar Emoções', 
- 'Estratégias para pais e cuidadores ajudarem as crianças a lidarem com suas emoções.', 
+ 'Ajudar uma criança a expressar emoções exige paciência, escuta atenta e estratégias concretas que a tornem segura para nomear o que sente. Práticas como rotular emoções durante o dia a dia, utilizar brincadeiras terapêuticas, histórias e desenhos para externalizar sentimentos, criar rituais de conversa sem julgamento e validar experiências são muito eficazes. Adultos servem de modelo ao demonstrar regulação emocional e linguagem adequada para sentimentos. Intervenções preventivas e intervenções psicoterapêuticas, quando necessárias, fortalecem a autorregulação, promovem vínculo seguro e previnem que emoções não processadas evoluam para dificuldades comportamentais ou transtornos ao longo do desenvolvimento.', 
  '2025-03-08', 'psicologia_infantil.jpg', 'ativo'),
 (5, 5, 'Terapia Cognitivo-Comportamental: O que é e Como Funciona?', 
- 'Saiba como a TCC pode auxiliar no tratamento de diversos transtornos psicológicos.', 
+ 'A Terapia Cognitivo-Comportamental (TCC) é uma abordagem prática e orientada a metas que identifica e modifica padrões de pensamento e comportamento que mantêm o sofrimento. Por meio de avaliação colaborativa, o terapeuta e o paciente constroem hipóteses sobre crises atuais, aplicam técnicas de reestruturação cognitiva, experimentos comportamentais e tarefas de casa para testar novas formas de agir. A TCC é indicada para ansiedade, depressão, transtornos alimentares e outras condições, valorizando o aprendizado de habilidades, monitoramento de progressos e promoção de autonomia. Resultados frequentemente aparecem em semanas a meses, com foco em manutenção das mudanças a longo prazo.', 
  '2025-03-06', 'tcc_terapia.jpg', 'ativo'),
 (6, 6, 'Saúde Mental no Ambiente de Trabalho', 
- 'A importância do bem-estar psicológico no desempenho profissional e qualidade de vida.', 
+ 'A saúde mental no trabalho é essencial para o desempenho sustentável e para o clima organizacional. Ambientes com alta demanda, pouca autonomia, falta de reconhecimento e cultura de estresse aumentam o risco de burnout, ansiedade e queda de produtividade. Estratégias preventivas incluem promoção de pausas, programas de bem-estar, treinamento de liderança empática, políticas de equilíbrio entre vida pessoal e profissional e acesso facilitado a apoio psicológico. Intervenções devem considerar fatores individuais, de equipe e organizacionais, integrando acolhimento, prevenção e tratamento para criar locais de trabalho mais saudáveis e humanos.', 
  '2025-03-04', 'psicologia_organizacional.jpg', 'ativo'),
 (7, 7, 'Superando a Dependência Química', 
- 'Entenda os desafios do tratamento e a importância do apoio psicológico para a recuperação.', 
+ 'O tratamento da dependência química exige abordagem integrada que considere aspectos biológicos, psicológicos e sociais. O processo envolve avaliação clínica, desintoxicação segura quando necessária, psicoterapias que abordem gatilhos e mecanismos de manutenção do consumo, programas de reabilitação, grupos de apoio e estratégias de prevenção de recaída. A reinserção social, familiar e laboral é parte essencial da recuperação, assim como o fortalecimento de redes de suporte e habilidades de enfrentamento. A compaixão, continuidade do cuidado e personalização das intervenções aumentam a chance de mudança sustentável e recuperação a longo prazo.', 
  '2025-03-02', 'dependencia_quimica.jpg', 'ativo'),
 (8, 8, 'Psicologia do Esporte: O Impacto da Mente no Desempenho', 
- 'Como atletas podem treinar a mente para melhorar o rendimento esportivo.', 
+ 'A psicologia do esporte trabalha habilidades mentais que potencializam o rendimento e o bem-estar do atleta, como foco, controle da ansiedade competitiva, rotina pré-competição, visualização e estabelecimento de metas. O trabalho inclui avaliação de perfil psicológico, treino de concentração, manejo de lesões e apoio em transições de carreira. Técnicas de preparação mental, aliadas a treinos físicos e táticos, melhoram consistência de performance e reduzem impacto de fatores estressantes. Além disso, o suporte psicossocial favorece coesão de equipe e resiliência diante de adversidades, contribuindo para resultados consistentes e saúde psicológica.', 
  '2025-03-01', 'psicologia_esporte.jpg', 'ativo'),
 (9, 9, 'Psicanálise: Explorando o Inconsciente', 
- 'Descubra como a psicanálise pode ajudar no autoconhecimento e resolução de conflitos internos.', 
+ 'A psicanálise oferece um caminho de investigação das dinâmicas inconscientes que orientam escolhas, sintomas e relacionamentos. Por meio da escuta prolongada, análise de sonhos, associação livre e da relação transferencial, o paciente pode trazer à consciência temas repetitivos, conflitos internos e desejos ocultos, possibilitando re-significações profundas. Trata-se de um processo que privilegia compreensão histórica do indivíduo, linguagem simbólica e insight como facilitadores de mudança. Embora possa ser mais longo que outras abordagens, a psicanálise tende a promover transformações duradouras na estrutura psíquica e na qualidade das relações interpessoais.', 
  '2025-02-28', 'psicanalise.jpg', 'ativo'),
 (10, 10, 'Neuropsicologia e Funções Cognitivas', 
- 'Como a neuropsicologia pode auxiliar no diagnóstico e tratamento de distúrbios cognitivos.', 
+ 'A neuropsicologia investiga como funções cognitivas como atenção, memória, linguagem, funções executivas e processamento visuoespacial se relacionam com o funcionamento cerebral. Avaliações neuropsicológicas detalhadas ajudam a identificar déficits após lesões, em demências ou transtornos do desenvolvimento, orientando intervenções reabilitadoras e planejamento de suporte educacional e ocupacional. A reabilitação cognitiva utiliza exercícios específicos, estratégias compensatórias e adaptação ambiental para maximizar autonomia. O trabalho interdisciplinar com médicos, terapeutas ocupacionais e fonoaudiólogos potencializa resultados e melhora qualidade de vida do paciente e de sua família.', 
  '2025-02-26', 'neuropsicologia.jpg', 'ativo');
 
 
