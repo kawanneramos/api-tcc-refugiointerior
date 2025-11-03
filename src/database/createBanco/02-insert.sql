@@ -4,47 +4,48 @@ INSERT INTO usuarios
 (usu_id, usu_nome, usu_email, usu_telefone, usu_senha, usu_cpf, usu_adm, usu_status, usu_imagem, usu_crp) VALUES
 
 
-('Mariana Lima dos Santos', 'marianalima.7093@gmail.com', '(11)98765-4321', 'Limamariana@43', '12345678901', 0, 'ativo', 'mariana.png', '06/12345'),
+(1, 'Mariana Lima dos Santos', 'marianalima.7093@gmail.com', '(11)98765-4321', 'Limamariana@43', '12345678901', 0, 'ativo', 'mariana.png', '06/12345'),
 
-('Letícia Almeida Ferreira', 'leticia_ferreira52@gmail.com', '(11)99005-7552', '1234Leticia@', '23456789012', 0, 'ativo', 'leticia.png', '04/67890'),
+(2, 'Letícia Almeida Ferreira', 'leticia_ferreira52@gmail.com', '(11)99005-7552', '1234Leticia@', '23456789012', 0, 'ativo', 'leticia.png', '04/67890'),
 
-('João Pereira', 'joao.perreira@gmail.com', '(21)3401-2453', 'JoaoP#789', '34567890123', 0, 'aguardando aprovação', 'joao.png', '05/67890'),
+(3, 'João Pereira', 'joao.perreira@gmail.com', '(21)3401-2453', 'JoaoP#789', '34567890123', 0, 'aguardando aprovação', 'joao.png', '05/67890'),
 
-('Camila Ribeiro Nunes', 'camila.nunes@gmail.com', '(51)2090-0344', 'Camilan!321', '45678901234', 0, 'inativo', 'camila.png', '07/13579'),
+(4, 'Camila Ribeiro Nunes', 'camila.nunes@gmail.com', '(51)2090-0344', 'Camilan!321', '45678901234', 0, 'inativo', 'camila.png', '07/13579'),
 
-('Bruno Ferreira Costa', 'bruno.costa@gmail.com', '(71)1030-0972', 'costaNunes$654', '56789012345', 0, 'ativo', 'bruno.png', '06/12345'),
+(5, 'Bruno Ferreira Costa', 'bruno.costa@gmail.com', '(71)1030-0972', 'costaNunes$654', '56789012345', 0, 'ativo', 'bruno.png', '06/12345'),
 
-('Fernanda Maria Souza', 'fernanda.souza@example.com', '(61)99876-5544', 'Camilan!987', '67890123456', 0, 'ativo', 'fernanda.png', '07/33456'),
+(6, 'Fernanda Maria Souza', 'fernanda.souza@example.com', '(61)99876-5544', 'Camilan!987', '67890123456', 0, 'ativo', 'fernanda.png', '07/33456'),
 
-('Lucas Pereira Santos', 'lucas.pereira@example.com', '(71)97788-6655', 'Camilan!321159', '78901234567', 0, 'ativo', 'lucas.png', '09/55678'),
+(7, 'Lucas Pereira Santos', 'lucas.pereira@example.com', '(71)97788-6655', 'Camilan!321159', '78901234567', 0, 'ativo', 'lucas.png', '09/55678'),
 
-('Amanda Ribeiro Duarte', 'amanda.ribeiro@example.com', '(81)98899-7766', 'Camilan!321753', '89012345678', 0, 'ativo', 'amanda.png', '12/022945'),
+(8, 'Amanda Ribeiro Duarte', 'amanda.ribeiro@example.com', '(81)98899-7766', 'Camilan!321753', '89012345678', 0, 'ativo', 'amanda.png', '12/022945'),
 
-('Thiago Luís Martins', 'thiago.martins@example.com', '(91)99911-8877', 'Camilan!321852', '90123456789', 0, 'ativo', 'thiago.png', '10/66789'),
+(9, 'Thiago Luís Martins', 'thiago.martins@example.com', '(91)99911-8877', 'Camilan!321852', '90123456789', 0, 'ativo', 'thiago.png', '10/66789'),
 
-('Beatriz Helena Nunes', 'beatriz.nunes@example.com', '(85)97654-9988', 'Camilan!951', '01234567890', 0, 'ativo', 'beatriz.png', '09/324567');
+(10, 'Beatriz Helena Nunes', 'beatriz.nunes@example.com', '(85)97654-9988', 'Camilan!951', '01234567890', 0, 'ativo', 'beatriz.png', '09/324567');
 
 INSERT INTO redes_apoio 
 (redeapoio_id, redeapoio_nome, redeapoio_descricao, redeapoio_contato, redeapoio_logo, redeapoio_link) VALUES
 
-('Centro de Valorização da Vida', 
+(1, 'Centro de Valorização da Vida', 
  'Formado exclusivamente por voluntários, oferece apoio emocional e prevenção do suicídio de forma gratuita. As pessoas que o procuram, em geral, estão se sentindo sozinhas ou precisam conversar com alguém de maneira sigilosa, sem julgamentos, críticas ou comparações. O CVV atua em todo o território nacional, oferecendo atendimento pelo telefone 188 — disponível 24 horas por dia e sem custo de ligação —, além de chat, e-mail e atendimento presencial em alguns endereços. Fundado em 1962, o CVV é uma entidade nacional independente, tanto financeira quanto ideologicamente, sem qualquer vinculação religiosa, político-partidária ou empresarial.', 
  '188', 
  'CVV.png', 
  'https://www.cvv.org.br'),
 
-('Rede Pode Falar', 
+(2, 'Rede Pode Falar', 
  'A Rede Pode Falar nasceu como um canal de escuta acolhedora e transformou-se em uma rede de instituições e pessoas que não apenas oferecem um serviço de apoio emocional e conteúdos confiáveis em saúde mental, mas também capacitam futuros profissionais da área de cuidado humano, sensíveis às necessidades específicas desse ciclo da vida. As instituições que participam desta rede de cuidado, devido à sua especialização e conhecimento neste tema, realizam pesquisas, avaliam programas e fazem recomendações para a melhoria das políticas públicas de saúde mental nesta faixa etária, tanto em âmbito nacional quanto estadual e municipal.', 
  '(61) 9660-8843', 
  'RPF.png', 
  'https://redepodefalar.org.br'),
 
-('Instituto Bem-Estar', 
- 'A Missão do Bem-Estar é uma organização sem fins lucrativos que atua na promoção do bem-estar mental por meio do letramento socioemocional e do advocacy. Tem como foco mulheres, jovens e pessoas LGBTQIAPN+, e busca colaborar para a redução do estigma em saúde mental. Por meio de suas frentes de atuação, promove ações que unem educação emocional, conscientização e impacto social. Na área de Letramento Socioemocional, desenvolve atividades e materiais educativos que auxiliam as pessoas a reconhecer, compreender e gerenciar suas emoções, estimulando o autoconhecimento e o cuidado com a saúde mental. ',
+(3, 'Instituto Bem-Estar', 
+ 'A Missão do Bem-Estar é promover a saúde mental por meio de programas e atendimentos acessíveis a toda população.', 
+ NULL, 
  'IBE.png', 
  'https://institutobemestar.org.br'),
 
-('Instituto Vita Alegre', 
+(4, 'Instituto Vita Alegre', 
  'O Instituto Vita Alegre é uma organização sem fins lucrativos dedicada a oferecer apoio psicológico e social para pessoas em situação de vulnerabilidade, com foco especial em vítimas de violência doméstica. Fundado em 2005, o instituto desenvolve programas de acolhimento, terapia individual e em grupo, além de campanhas de conscientização sobre saúde mental e prevenção da violência. Com uma equipe multidisciplinar de profissionais, o Instituto Vita Alegre busca promover a recuperação emocional e a reintegração social de seus assistidos.', 
  '(11) 97647-0989', 
  'IVA.png', 
