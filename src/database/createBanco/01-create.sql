@@ -88,7 +88,7 @@ create table redes_apoio (
 create table especialidades (
 
     esp_id int primary key auto_increment,
-    usu_id int not null auto_increment,
+    usu_id int not null 
     esp_nome varchar(200) not null,
     foreign key (usu_id) references usuarios(usu_id)
 

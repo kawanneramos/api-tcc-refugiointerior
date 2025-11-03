@@ -1,58 +1,48 @@
 0-PSICOLOGO
 
 INSERT INTO usuarios 
-(usu_id, usu_nome, usu_email, usu_telefone, usu_senha, usu_cpf, usu_adm, usu_status, usu_imagem, usu_crp) VALUES
+(usu_nome, usu_email, usu_telefone, usu_senha, usu_cpf, usu_adm, usu_status, usu_imagem, usu_crp) VALUES
+('Mariana Lima dos Santos', 'marianalima.7093@gmail.com', '(11)98765-4321', 'Limamariana@43', '12345678901', 0, 'ativo', 'mariana.png', '0612345'),
+('Letícia Almeida Ferreira', 'leticia_ferreira52@gmail.com', '(11)99005-7552', '1234Leticia@', '23456789012', 0, 'ativo', 'leticia.png', '0467890'),
+('João Pereira', 'joao.perreira@gmail.com', '(21)3401-2453', 'JoaoP#789', '34567890123', 0, 'aguardando aprovação', 'joao.png', '0567890'),
+('Camila Ribeiro Nunes', 'camila.nunes@gmail.com', '(51)2090-0344', 'Camilan!321', '45678901234', 0, 'inativo', 'camila.png', '0713579'),
+('Bruno Ferreira Costa', 'bruno.costa@gmail.com', '(71)1030-0972', 'costaNunes$654', '56789012345', 0, 'ativo', 'bruno.png', '0612345'),
+('Fernanda Maria Souza', 'fernanda.souza@example.com', '(61)99876-5544', 'Camilan!987', '67890123456', 0, 'ativo', 'fernanda.png', '0733456'),
+('Lucas Pereira Santos', 'lucas.pereira@example.com', '(71)97788-6655', 'Camilan!321159', '78901234567', 0, 'ativo', 'lucas.png', '0955678'),
+('Amanda Ribeiro Duarte', 'amanda.ribeiro@example.com', '(81)98899-7766', 'Camilan!321753', '89012345678', 0, 'ativo', 'amanda.png', '1202294'),
+('Thiago Luís Martins', 'thiago.martins@example.com', '(91)99911-8877', 'Camilan!321852', '90123456789', 0, 'ativo', 'thiago.png', '1066789'),
+('Beatriz Helena Nunes', 'beatriz.nunes@example.com', '(85)97654-9988', 'Camilan!951', '01234567890', 0, 'ativo', 'beatriz.png', '0932456');
 
-
-(1, 'Mariana Lima dos Santos', 'marianalima.7093@gmail.com', '(11)98765-4321', 'Limamariana@43', '12345678901', 0, 'ativo', 'mariana.png', '06/12345'),
-
-(2, 'Letícia Almeida Ferreira', 'leticia_ferreira52@gmail.com', '(11)99005-7552', '1234Leticia@', '23456789012', 0, 'ativo', 'leticia.png', '04/67890'),
-
-(3, 'João Pereira', 'joao.perreira@gmail.com', '(21)3401-2453', 'JoaoP#789', '34567890123', 0, 'aguardando aprovação', 'joao.png', '05/67890'),
-
-(4, 'Camila Ribeiro Nunes', 'camila.nunes@gmail.com', '(51)2090-0344', 'Camilan!321', '45678901234', 0, 'inativo', 'camila.png', '07/13579'),
-
-(5, 'Bruno Ferreira Costa', 'bruno.costa@gmail.com', '(71)1030-0972', 'costaNunes$654', '56789012345', 0, 'ativo', 'bruno.png', '06/12345'),
-
-(6, 'Fernanda Maria Souza', 'fernanda.souza@example.com', '(61)99876-5544', 'Camilan!987', '67890123456', 0, 'ativo', 'fernanda.png', '07/33456'),
-
-(7, 'Lucas Pereira Santos', 'lucas.pereira@example.com', '(71)97788-6655', 'Camilan!321159', '78901234567', 0, 'ativo', 'lucas.png', '09/55678'),
-
-(8, 'Amanda Ribeiro Duarte', 'amanda.ribeiro@example.com', '(81)98899-7766', 'Camilan!321753', '89012345678', 0, 'ativo', 'amanda.png', '12/022945'),
-
-(9, 'Thiago Luís Martins', 'thiago.martins@example.com', '(91)99911-8877', 'Camilan!321852', '90123456789', 0, 'ativo', 'thiago.png', '10/66789'),
-
-(10, 'Beatriz Helena Nunes', 'beatriz.nunes@example.com', '(85)97654-9988', 'Camilan!951', '01234567890', 0, 'ativo', 'beatriz.png', '09/324567');
 
 INSERT INTO redes_apoio 
-(redeapoio_id, redeapoio_nome, redeapoio_descricao, redeapoio_contato, redeapoio_logo, redeapoio_link) VALUES
+(redeapoio_nome, redeapoio_descricao, redeapoio_contato, redeapoio_logo, redeapoio_link) VALUES
 
-(1, 'Centro de Valorização da Vida', 
+('Centro de Valorização da Vida', 
  'Formado exclusivamente por voluntários, oferece apoio emocional e prevenção do suicídio de forma gratuita. As pessoas que o procuram, em geral, estão se sentindo sozinhas ou precisam conversar com alguém de maneira sigilosa, sem julgamentos, críticas ou comparações. O CVV atua em todo o território nacional, oferecendo atendimento pelo telefone 188 — disponível 24 horas por dia e sem custo de ligação —, além de chat, e-mail e atendimento presencial em alguns endereços. Fundado em 1962, o CVV é uma entidade nacional independente, tanto financeira quanto ideologicamente, sem qualquer vinculação religiosa, político-partidária ou empresarial.', 
  '188', 
  'CVV.png', 
  'https://www.cvv.org.br'),
 
-(2, 'Rede Pode Falar', 
+('Rede Pode Falar', 
  'A Rede Pode Falar nasceu como um canal de escuta acolhedora e transformou-se em uma rede de instituições e pessoas que não apenas oferecem um serviço de apoio emocional e conteúdos confiáveis em saúde mental, mas também capacitam futuros profissionais da área de cuidado humano, sensíveis às necessidades específicas desse ciclo da vida. As instituições que participam desta rede de cuidado, devido à sua especialização e conhecimento neste tema, realizam pesquisas, avaliam programas e fazem recomendações para a melhoria das políticas públicas de saúde mental nesta faixa etária, tanto em âmbito nacional quanto estadual e municipal.', 
  '(61) 9660-8843', 
  'RPF.png', 
  'https://redepodefalar.org.br'),
 
-(3, 'Instituto Bem-Estar', 
+('Instituto Bem-Estar', 
  'A Missão do Bem-Estar é promover a saúde mental por meio de programas e atendimentos acessíveis a toda população.', 
  NULL, 
  'IBE.png', 
  'https://institutobemestar.org.br'),
 
-(4, 'Instituto Vita Alegre', 
+('Instituto Vita Alegre', 
  'O Instituto Vita Alegre é uma organização sem fins lucrativos dedicada a oferecer apoio psicológico e social para pessoas em situação de vulnerabilidade, com foco especial em vítimas de violência doméstica. Fundado em 2005, o instituto desenvolve programas de acolhimento, terapia individual e em grupo, além de campanhas de conscientização sobre saúde mental e prevenção da violência. Com uma equipe multidisciplinar de profissionais, o Instituto Vita Alegre busca promover a recuperação emocional e a reintegração social de seus assistidos.', 
  '(11) 97647-0989', 
  'IVA.png', 
  'https://www.institutovitaalegre.org.br');
 
-INSERT INTO publicacoes (pub_id, usu_id, pub_titulo, pub_texto, pub_imagem) VALUES
 
+INSERT INTO publicacoes (usu_id, pub_titulo, pub_texto, pub_imagem) VALUES
 (1, 'Entendendo a Ansiedade', 'A ansiedade é uma emoção natural e essencial para a sobrevivência humana. Ela funciona como um alerta do corpo diante de situações que envolvem perigo, incerteza ou estresse, preparando o organismo para reagir a ameaças reais ou imaginárias. Em níveis moderados, pode ser positiva, ajudando na concentração, no foco e na tomada de decisões. No entanto, quando se torna constante ou desproporcional aos estímulos, pode evoluir para um transtorno de ansiedade. Nesses casos, surgem sintomas como palpitações, insônia, preocupação excessiva e sensação de perda de controle. Entender a ansiedade é o primeiro passo para lidar melhor com ela. Procurar apoio psicológico, praticar atividades físicas, manter uma rotina equilibrada e desenvolver técnicas de relaxamento são estratégias que ajudam a reduzir seus impactos e promover o bem-estar emocional.', 'pub1img.png'),
 
 (2, 'Técnicas de Relaxamento', 'As técnicas de relaxamento são ferramentas eficazes para reduzir o estresse e controlar a ansiedade no dia a dia. Uma das mais conhecidas é a respiração profunda: sente-se confortavelmente, inspire lentamente pelo nariz contando até quatro, segure o ar por mais quatro segundos e expire pela boca contando até seis. Repita por cinco minutos e perceba como o corpo relaxa gradualmente. Outras práticas, como alongamentos, meditação guiada e mindfulness, também ajudam a desacelerar os pensamentos e aliviar tensões. O ideal é incluir essas técnicas na rotina, especialmente em momentos de sobrecarga emocional. Criar um ambiente calmo, ouvir músicas suaves e se desconectar das telas por alguns minutos pode potencializar os efeitos. Pequenas pausas diárias são grandes aliadas para o equilíbrio mental e o cuidado com a saúde emocional.', 'pub2img.png'),
@@ -74,8 +64,9 @@ INSERT INTO publicacoes (pub_id, usu_id, pub_titulo, pub_texto, pub_imagem) VALU
 (10, 'Mindfulness: vivendo o presente', 'O mindfulness, ou atenção plena, é uma prática que convida a mente a estar totalmente presente no momento, sem julgamentos. Ele ajuda a reduzir a ansiedade, melhorar a concentração e fortalecer o autoconhecimento. A técnica pode ser aplicada em atividades simples do cotidiano, como comer, caminhar ou respirar conscientemente. Ao direcionar o foco para o agora, diminuímos o impacto de pensamentos negativos sobre o passado ou preocupações com o futuro. Praticar mindfulness regularmente favorece a regulação emocional e o bem-estar geral. Pequenos momentos de presença podem transformar a forma como lidamos com a vida, trazendo mais calma e clareza mental.', 'pub10img.png');
 
 
-INSERT INTO localizacoes (lcz_id, usu_id, lcz_nome_clinica, lcz_cep, lcz_logradouro, lcz_complemento, lcz_bairro, lcz_localidade, lcz_uf)  VALUES
-
+INSERT INTO localizacoes 
+(usu_id, lcz_nome_clinica, lcz_cep, lcz_logradouro, lcz_complemento, lcz_bairro, lcz_localidade, lcz_uf)  
+VALUES
 (1, 'Clínica Vida Plena', '13015-120', 'Rua Barão de Jaguara, 1020', 'Sala 302', 'Centro', 'Campinas', 'SP'),
 (2, 'Espaço Equilíbrio Mental', '04004-020', 'Rua Vergueiro, 1455', 'Conjunto 804', 'Paraíso', 'São Paulo', 'SP'),
 (3, 'Clínica Bem-Estar', '30130-002', 'Rua da Bahia, 950', '2º andar', 'Centro', 'Belo Horizonte', 'MG'),
@@ -88,34 +79,23 @@ INSERT INTO localizacoes (lcz_id, usu_id, lcz_nome_clinica, lcz_cep, lcz_logrado
 (10, 'Viver Psicologia e Saúde', '66035-000', 'Avenida Nazaré, 1001', 'Sala 301', 'Nazaré', 'Belém', 'PA');
 
 
-INSERT INTO feedback_consulta (fdbk_id, usu_id, fdbk_mensagem, fdbk_data_hora, fdbk_nota, fdbk_identificacao, fdbk_acesso) VALUES
+INSERT INTO feedback_consulta 
+(usu_id, fdbk_mensagem, fdbk_data_hora, fdbk_nota, fdbk_identificacao, fdbk_acesso) VALUES
 
-
-(1, 'A consulta foi excelente. O psicólogo me ajudou a entender melhor minha ansiedade e me passou técnicas práticas para lidar com ela.', 5, 'Rafaela Souza', 'Acesso liberado ao psicólogo responsável.'),
-
-(2, 'Achei a sessão produtiva, mas senti que o tempo foi curto para abordar todos os assuntos que eu queria.', 5, 'Carlos Alberto', 'Acesso permitido ao psicólogo da consulta.'),
-
-(3, 'A profissional foi muito atenciosa e acolhedora. Saí da consulta mais tranquila e confiante.', 5, 'Lucas Martins', 'Acesso concedido ao psicólogo.'),
-
-(4, 'O seu profissionalismo e empatia tornam a terapia muito eficaz e reconfortante.', 5, 'Marcos Vinícius', 'Acesso liberado.'),
-
-(5, 'Gostei bastante do atendimento online, foi pontual e direto. Me senti confortável durante toda a conversa.', 5, 'Gustavo Andrade', 'Acesso permitido ao psicólogo da consulta.'),
-
-(6, 'Me sinto muito mais leve após nossas sessões. Agradeço por toda atenção e compreensão.', 5, 'Joana Figueiredo', 'Acesso permitido ao psicólogo da consulta.'),
-
-(7, 'Achei a consulta esclarecedora.', 5, 'Camila Torres', 'Acesso liberado.'),
-
-(8, 'Adorei cada sessão', 5, 'Larissa Costa', 'Acesso permitido ao psicólogo da consulta.'),
-
-(9, 'A psicóloga foi muito empática e me fez perceber coisas que eu não havia notado antes. Excelente atendimento.', 5, 'Tatiane Souza', 'Acesso permitido ao psicólogo da consulta.'),
-
-(10, 'O atendimento foi muito bom e especial', 5, 'Isabela Martins', 'Acesso permitido ao psicólogo da consulta.');
+(1, 'A consulta foi excelente. O psicólogo me ajudou a entender melhor minha ansiedade e me passou técnicas práticas para lidar com ela.', '2025-11-03 14:00:00', 5, 'Rafaela Souza', 'Acesso liberado ao psicólogo responsável.'),
+(2, 'Achei a sessão produtiva, mas senti que o tempo foi curto para abordar todos os assuntos que eu queria.', '2025-11-03 14:15:00', 5, 'Carlos Alberto', 'Acesso permitido ao psicólogo da consulta.'),
+(3, 'A profissional foi muito atenciosa e acolhedora. Saí da consulta mais tranquila e confiante.', '2025-11-03 14:30:00', 5, 'Lucas Martins', 'Acesso concedido ao psicólogo.'),
+(4, 'O seu profissionalismo e empatia tornam a terapia muito eficaz e reconfortante.', '2025-11-03 14:45:00', 5, 'Marcos Vinícius', 'Acesso liberado.'),
+(5, 'Gostei bastante do atendimento online, foi pontual e direto. Me senti confortável durante toda a conversa.', '2025-11-03 15:00:00', 5, 'Gustavo Andrade', 'Acesso permitido ao psicólogo da consulta.'),
+(6, 'Me sinto muito mais leve após nossas sessões. Agradeço por toda atenção e compreensão.', '2025-11-03 15:15:00', 5, 'Joana Figueiredo', 'Acesso permitido ao psicólogo da consulta.'),
+(7, 'Achei a consulta esclarecedora.', '2025-11-03 15:30:00', 5, 'Camila Torres', 'Acesso liberado.'),
+(8, 'Adorei cada sessão', '2025-11-03 15:45:00', 5, 'Larissa Costa', 'Acesso permitido ao psicólogo da consulta.'),
+(9, 'A psicóloga foi muito empática e me fez perceber coisas que eu não havia notado antes. Excelente atendimento.', '2025-11-03 16:00:00', 5, 'Tatiane Souza', 'Acesso permitido ao psicólogo da consulta.'),
+(10, 'O atendimento foi muito bom e especial', '2025-11-03 16:15:00', 5, 'Isabela Martins', 'Acesso permitido ao psicólogo da consulta.');
 
 
 
-INSERT INTO especialidades (esp_id, usu_id, esp_nome) VALUES
-
-
+INSERT INTO especialidades (usu_id, esp_nome) VALUES
 (1, 'Psicologia Clínica, Psicologia Escolar e Educacional'),
 (2, 'Psicologia Clínica'),
 (3, 'Psicologia Clínica, Psicologia em Saúde'),
@@ -129,125 +109,180 @@ INSERT INTO especialidades (esp_id, usu_id, esp_nome) VALUES
 
 
 
+INSERT INTO disponibilidades (lcz_id, dsp_dia_semana, dsp_horario, dsp_status) VALUES
 
-INSERT INTO disponibilidades
-(dsp_id, usu_id,  lcz_id, dsp_dia_semana, dsp_horario, dsp_status) 
-VALUES
+-- Psicólogo 1 – Clínica Vida Plena (lcz_id = 1)
+(1, 'Segunda-feira', '08:00:00', 1),
+(1, 'Segunda-feira', '09:00:00', 1),
+(1, 'Segunda-feira', '11:00:00', 1),
+(1, 'Segunda-feira', '17:00:00', 1),
+(1, 'Terça-feira', '00:00:00', 0), -- Indisponível, horário fictício
+(1, 'Quarta-feira', '13:00:00', 1),
+(1, 'Quarta-feira', '15:00:00', 1),
+(1, 'Quarta-feira', '17:00:00', 1),
+(1, 'Quinta-feira', '00:00:00', 0),
+(1, 'Sexta-feira', '00:00:00', 0),
+(1, 'Sábado', '13:00:00', 1),
+(1, 'Sábado', '14:00:00', 1),
+(1, 'Sábado', '15:00:00', 1);
 
--- Psicólogo 1 – São Paulo - SP
-(1, 1, 'Segunda-feira', '08:00, 09:00, 11:00, 17:00', 'Disponível'),
-(1, 1, 'Terça-feira', 'Indisponível'),
-(1, 1, 'Quarta-feira', '13:00, 15:00, 17:00', 'Disponível'),
-(1, 1, 'Quinta-feira', 'Indisponível'),
-(1, 1, 'Sexta-feira', 'Indisponível'),
-(1, 1, 'Sábado', '13:00, 14:00, 15:00',  'Disponível'),
+-- Psicólogo 2 – Espaço Equilíbrio Mental (lcz_id = 2)
+(2, 'Segunda-feira', '09:00:00', 1),
+(2, 'Segunda-feira', '10:00:00', 1),
+(2, 'Segunda-feira', '14:00:00', 1),
+(2, 'Segunda-feira', '16:00:00', 1),
+(2, 'Terça-feira', '00:00:00', 0),
+(2, 'Quarta-feira', '08:00:00', 1),
+(2, 'Quarta-feira', '09:00:00', 1),
+(2, 'Quarta-feira', '10:00:00', 1),
+(2, 'Quinta-feira', '13:00:00', 1),
+(2, 'Quinta-feira', '14:00:00', 1),
+(2, 'Sexta-feira', '00:00:00', 0),
+(2, 'Sábado', '09:00:00', 1),
+(2, 'Sábado', '10:00:00', 1),
+(2, 'Sábado', '11:00:00', 1);
 
--- Psicólogo 2 – São Paulo - SP
-(2, 2, 'Segunda-feira', '09:00, 10:00, 14:00, 16:00', 'Disponível'),
-(2, 2, 'Terça-feira', 'Indisponível'),
-(2, 2, 'Quarta-feira', '08:00, 09:00, 10:00', 'Disponível'),
-(2, 2, 'Quinta-feira', '13:00, 14:00', 'Disponível'),
-(2, 2, 'Sexta-feira', 'Indisponível'),
-(2, 2, 'Sábado', '09:00, 10:00, 11:00', 'Disponível'),
-
--- Psicólogo 3 – Belo Horizonte - MG
-(3, 3, 'Segunda-feira', 'Indisponível'),
-(3, 3, 'Terça-feira', '14:00, 15:00, 16:00', 'Disponível'),
-(3, 3, 'Quarta-feira', '08:00, 09:00', 'Disponível'),
-(3, 3, 'Quinta-feira', 'Indisponível'),
-(3, 3, 'Sexta-feira', '10:00, 11:00, 13:00, 15:00', 'Disponível'),
-(3, 3, 'Sábado', 'Indisponível'),
+-- Psicólogo 3 – Clínica Bem-Estar (lcz_id = 3)
+(3, 'Segunda-feira', '00:00:00', 0),
+(3, 'Terça-feira', '14:00:00', 1),
+(3, 'Terça-feira', '15:00:00', 1),
+(3, 'Terça-feira', '16:00:00', 1),
+(3, 'Quarta-feira', '08:00:00', 1),
+(3, 'Quarta-feira', '09:00:00', 1),
+(3, 'Quinta-feira', '00:00:00', 0),
+(3, 'Sexta-feira', '10:00:00', 1),
+(3, 'Sexta-feira', '11:00:00', 1),
+(3, 'Sexta-feira', '13:00:00', 1),
+(3, 'Sexta-feira', '15:00:00', 1),
+(3, 'Sábado', '00:00:00', 0);
 
 -- Psicólogo 4 – Porto Alegre - RS
-(4, 4, 'Segunda-feira', '07:00, 08:00, 09:00', 'Disponível'),
-(4, 4, 'Terça-feira', 'Indisponível'),
-(4, 4, 'Quarta-feira', '14:00, 15:00, 16:00', 'Disponível'),
-(4, 4, 'Quinta-feira', '08:00, 09:00, 10:00, 11:00', 'Disponível'),
-(4, 4, 'Sexta-feira', 'Indisponível'),
-(4, 4, 'Sábado', '13:00, 14:00, 15:00', 'Disponível'),
+(4, 'Segunda-feira', '07:00:00', 1),
+(4, 'Segunda-feira', '08:00:00', 1),
+(4, 'Segunda-feira', '09:00:00', 1),
+(4, 'Quarta-feira', '14:00:00', 1),
+(4, 'Quarta-feira', '15:00:00', 1),
+(4, 'Quarta-feira', '16:00:00', 1),
+(4, 'Quinta-feira', '08:00:00', 1),
+(4, 'Quinta-feira', '09:00:00', 1),
+(4, 'Quinta-feira', '10:00:00', 1),
+(4, 'Quinta-feira', '11:00:00', 1),
+(4, 'Sábado', '13:00:00', 1),
+(4, 'Sábado', '14:00:00', 1),
+(4, 'Sábado', '15:00:00', 1);
 
 -- Psicólogo 5 – Salvador - BA
-(5, 5, 'Segunda-feira', '10:00, 11:00, 13:00', 'Disponível'),
-(5, 5, 'Terça-feira', '08:00, 09:00, 10:00', 'Disponível'),
-(5, 5, 'Quarta-feira', 'Indisponível'),
-(5, 5, 'Quinta-feira', '15:00, 16:00, 17:00', 'Disponível'),
-(5, 5, 'Sexta-feira', '08:00, 09:00, 10:00', 'Disponível'),
-(5, 5, 'Sábado', 'Indisponível'),
+(5, 'Segunda-feira', '10:00:00', 1),
+(5, 'Segunda-feira', '11:00:00', 1),
+(5, 'Segunda-feira', '13:00:00', 1),
+(5, 'Terça-feira', '08:00:00', 1),
+(5, 'Terça-feira', '09:00:00', 1),
+(5, 'Terça-feira', '10:00:00', 1),
+(5, 'Quinta-feira', '15:00:00', 1),
+(5, 'Quinta-feira', '16:00:00', 1),
+(5, 'Quinta-feira', '17:00:00', 1),
+(5, 'Sexta-feira', '08:00:00', 1),
+(5, 'Sexta-feira', '09:00:00', 1),
+(5, 'Sexta-feira', '10:00:00', 1);
 
 -- Psicólogo 6 – Curitiba - PR
-(6, 6, 'Segunda-feira', '09:00, 10:00, 11:00', 'Disponível'),
-(6, 6, 'Terça-feira', 'Indisponível'),
-(6, 6, 'Quarta-feira', '13:00, 14:00, 15:00', 'Disponível'),
-(6, 6, 'Quinta-feira', 'Indisponível'),
-(6, 6, 'Sexta-feira', '08:00, 09:00, 10:00', 'Disponível'),
-(6, 6, 'Sábado', 'Indisponível'),
+(6, 'Segunda-feira', '09:00:00', 1),
+(6, 'Segunda-feira', '10:00:00', 1),
+(6, 'Segunda-feira', '11:00:00', 1),
+(6, 'Quarta-feira', '13:00:00', 1),
+(6, 'Quarta-feira', '14:00:00', 1),
+(6, 'Quarta-feira', '15:00:00', 1),
+(6, 'Sexta-feira', '08:00:00', 1),
+(6, 'Sexta-feira', '09:00:00', 1),
+(6, 'Sexta-feira', '10:00:00', 1);
 
 -- Psicólogo 7 – Recife - PE
-(7, 7, 'Segunda-feira', '08:00, 09:00, 10:00', 'Disponível'),
-(7, 7, 'Terça-feira', '13:00, 14:00', 'Disponível'),
-(7, 7, 'Quarta-feira', 'Indisponível'),
-(7, 7, 'Quinta-feira', '09:00, 10:00, 11:00', 'Disponível'),
-(7, 7, 'Sexta-feira', 'Indisponível'),
-(7, 7, 'Sábado', '08:00, 09:00', 'Disponível'),
+(7, 'Segunda-feira', '08:00:00', 1),
+(7, 'Segunda-feira', '09:00:00', 1),
+(7, 'Segunda-feira', '10:00:00', 1),
+(7, 'Terça-feira', '13:00:00', 1),
+(7, 'Terça-feira', '14:00:00', 1),
+(7, 'Quinta-feira', '09:00:00', 1),
+(7, 'Quinta-feira', '10:00:00', 1),
+(7, 'Quinta-feira', '11:00:00', 1),
+(7, 'Sábado', '08:00:00', 1),
+(7, 'Sábado', '09:00:00', 1);
 
 -- Psicólogo 8 – Fortaleza - CE
-(8, 8, 'Segunda-feira', '14:00, 15:00, 16:00', 'Disponível'),
-(8, 8, 'Terça-feira', 'Indisponível'),
-(8, 8, 'Quarta-feira', '09:00, 10:00, 11:00', 'Disponível'),
-(8, 8, 'Quinta-feira', 'Indisponível'),
-(8, 8, 'Sexta-feira', '13:00, 14:00', 'Disponível'),
-(8, 8, 'Sábado', '10:00, 11:00', 'Disponível'),
+(8, 'Segunda-feira', '14:00:00', 1),
+(8, 'Segunda-feira', '15:00:00', 1),
+(8, 'Segunda-feira', '16:00:00', 1),
+(8, 'Quarta-feira', '09:00:00', 1),
+(8, 'Quarta-feira', '10:00:00', 1),
+(8, 'Quarta-feira', '11:00:00', 1),
+(8, 'Sexta-feira', '13:00:00', 1),
+(8, 'Sexta-feira', '14:00:00', 1),
+(8, 'Sábado', '10:00:00', 1),
+(8, 'Sábado', '11:00:00', 1);
 
 -- Psicólogo 9 – Brasília - DF
-(9, 9, 'Segunda-feira', '07:00, 08:00, 09:00', 'Disponível'),
-(9, 9, 'Terça-feira', 'Indisponível'),
-(9, 9, 'Quarta-feira', '14:00, 15:00, 16:00', 'Disponível'),
-(9, 9, 'Quinta-feira', '09:00, 10:00', 'Disponível'),
-(9, 9, 'Sexta-feira', 'Indisponível'),
-(9, 9, 'Sábado', '08:00, 09:00, 10:00', 'Disponível'),
+
+(9, 'Segunda-feira', '07:00:00', 1),
+(9, 'Segunda-feira', '08:00:00', 1),
+(9, 'Segunda-feira', '09:00:00', 1),
+(9, 'Quarta-feira', '14:00:00', 1),
+(9, 'Quarta-feira', '15:00:00', 1),
+(9, 'Quarta-feira', '16:00:00', 1),
+(9, 'Quinta-feira', '09:00:00', 1),
+(9, 'Quinta-feira', '10:00:00', 1),
+(9, 'Sábado', '08:00:00', 1),
+(9, 'Sábado', '09:00:00', 1),
+(9, 'Sábado', '10:00:00', 1);
 
 -- Psicólogo 10 – Florianópolis - SC
-(10, 10, 'Segunda-feira', '09:00, 10:00, 11:00, 12:00', 'Disponível'),
-(10, 10, 'Terça-feira', 'Indisponível'),
-(10, 10, 'Quarta-feira', '13:00, 14:00', 'Disponível'),
-(10, 10, 'Quinta-feira', '08:00, 09:00', 'Disponível'),
-(10, 10, 'Sexta-feira', 'Indisponível'),
-(10, 10, 'Sábado', '09:00, 10:00, 11:00', 'Disponível');
+
+(10, 'Segunda-feira', '09:00:00', 1),
+(10, 'Segunda-feira', '10:00:00', 1),
+(10, 'Segunda-feira', '11:00:00', 1),
+(10, 'Segunda-feira', '12:00:00', 1),
+(10, 'Quarta-feira', '13:00:00', 1),
+(10, 'Quarta-feira', '14:00:00', 1),
+(10, 'Quinta-feira', '08:00:00', 1),
+(10, 'Quinta-feira', '09:00:00', 1),
+(10, 'Sábado', '09:00:00', 1),
+(10, 'Sábado', '10:00:00', 1),
+(10, 'Sábado', '11:00:00', 1);
 
 
-INSERT INTO agendamentos (agd_id, usu_id, agd_paciente,  agd_data_consulta, agd_inicio_consulta, agd_fim_consulta, agd_anotacoes_consulta)
-VALUES 
 
-(1, 'Rafaela Souza', 'Paciente relatou ansiedade e dificuldade para dormir.'),
-(1, 'Amanda Beatriz', 'Sessão voltada à autoestima e autoconfiança.'),
 
-(2, 'Carlos Alberto', 'Primeira sessão, foco em autoconhecimento.'),
-(2, 'Fernanda Oliveira', 'Discussão sobre relacionamento interpessoal.'),
+INSERT INTO agendamentos 
+(usu_id, agd_paciente, agd_data_consulta, agd_inicio_consulta, agd_fim_consulta, agd_anotacoes_consulta)
+VALUES
+(1, 'Rafaela Souza', '2025-11-04', '09:00:00', '09:50:00', 'Paciente relatou ansiedade e dificuldade para dormir.'),
+(1, 'Amanda Beatriz', '2025-11-04', '10:00:00', '10:50:00', 'Sessão voltada à autoestima e autoconfiança.'),
 
-(3, 'Lucas Martins', 'Paciente em processo de adaptação no trabalho.'),
-(3, 'Juliana Ribeiro', 'Retorno, avaliar progresso com técnicas de relaxamento.'),
+(2, 'Carlos Alberto', '2025-11-05', '09:00:00', '09:50:00', 'Primeira sessão, foco em autoconhecimento.'),
+(2, 'Fernanda Oliveira', '2025-11-05', '10:00:00', '10:50:00', 'Discussão sobre relacionamento interpessoal.'),
 
-(4, 'Marcos Vinícius', 'Apresentou melhora no controle da impulsividade.'),
-(4, 'Beatriz Lima', 'Relatou dificuldade em lidar com pressão escolar.'),
+(3, 'Lucas Martins', '2025-11-06', '09:00:00', '09:50:00', 'Paciente em processo de adaptação no trabalho.'),
+(3, 'Juliana Ribeiro', '2025-11-06', '10:00:00', '10:50:00', 'Retorno, avaliar progresso com técnicas de relaxamento.'),
 
-(5, 'Gustavo Andrade', 'Primeira consulta, queixa de falta de motivação.'),
-(5, 'Patrícia Gomes', 'Sessão voltada à autoestima e autoconfiança.'),
+(4, 'Marcos Vinícius', '2025-11-07', '09:00:00', '09:50:00', 'Apresentou melhora no controle da impulsividade.'),
+(4, 'Beatriz Lima', '2025-11-07', '10:00:00', '10:50:00', 'Relatou dificuldade em lidar com pressão escolar.'),
 
-(6, 'Joana Figueiredo', 'Paciente trouxe questões sobre equilíbrio emocional no trabalho.'),
-(6, 'Bruno Henrique', 'Relatou estresse constante devido à rotina intensa.'),
+(5, 'Gustavo Andrade', '2025-11-08', '09:00:00', '09:50:00', 'Primeira consulta, queixa de falta de motivação.'),
+(5, 'Patrícia Gomes', '2025-11-08', '10:00:00', '10:50:00', 'Sessão voltada à autoestima e autoconfiança.'),
 
-(7, 'Camila Torres', 'Primeira sessão, objetivo é melhorar comunicação interpessoal.'),
-(7, 'Ricardo Alves', 'Paciente apresentou avanços no controle da ansiedade.'),
+(6, 'Joana Figueiredo', '2025-11-09', '09:00:00', '09:50:00', 'Paciente trouxe questões sobre equilíbrio emocional no trabalho.'),
+(6, 'Bruno Henrique', '2025-11-09', '10:00:00', '10:50:00', 'Relatou estresse constante devido à rotina intensa.'),
 
-(8, 'Larissa Costa', 'Sessão voltada para desenvolvimento de autoconfiança.'),
-(8, 'Felipe Mendes', 'Relatou dificuldade em manter foco nos estudos.'),
+(7, 'Camila Torres', '2025-11-10', '09:00:00', '09:50:00', 'Primeira sessão, objetivo é melhorar comunicação interpessoal.'),
+(7, 'Ricardo Alves', '2025-11-10', '10:00:00', '10:50:00', 'Paciente apresentou avanços no controle da ansiedade.'),
 
-(9, 'Tatiane Souza', 'Primeira consulta, queixa principal: insônia recorrente.'),
-(9, 'Eduardo Lima', 'Sessão de acompanhamento, relatou progresso significativo.'),
+(8, 'Larissa Costa', '2025-11-11', '09:00:00', '09:50:00', 'Sessão voltada para desenvolvimento de autoconfiança.'),
+(8, 'Felipe Mendes', '2025-11-11', '10:00:00', '10:50:00', 'Relatou dificuldade em manter foco nos estudos.'),
 
-(10, 'Isabela Martins', 'Paciente apresentou melhora na organização emocional.'),
-(10, 'Rogério Carvalho', 'Sessão com foco em autoconhecimento e autocontrole.');
+(9, 'Tatiane Souza', '2025-11-12', '09:00:00', '09:50:00', 'Primeira consulta, queixa principal: insônia recorrente.'),
+(9, 'Eduardo Lima', '2025-11-12', '10:00:00', '10:50:00', 'Sessão de acompanhamento, relatou progresso significativo.'),
 
+(10, 'Isabela Martins', '2025-11-13', '09:00:00', '09:50:00', 'Paciente apresentou melhora na organização emocional.'),
+(10, 'Rogério Carvalho', '2025-11-13', '10:00:00', '10:50:00', 'Sessão com foco em autoconhecimento e autocontrole.');
 
 
 
