@@ -1,148 +1,260 @@
-USE bd_tcc_etim_123_g6;
-INSERT INTO usuarios (usu_nome, usu_email, usu_telefone, usu_senha, usu_data_nascimento, usu_cpf, usu_tipo) VALUES
-('Ana Souza', 'ana.souza@email.com', '11987654321', 'senha123', '1995-06-15', '12345678900', 1),
-('Carlos Mendes', 'carlos.mendes@email.com', '11976543210', 'segredo99', '1988-12-10', '98765432100', 2),
-('Mariana Lima', 'mariana.lima@email.com', '11965498732', 'pass1234', '1990-03-22', '32198765400', 1),
-('Roberto Almeida', 'roberto.almeida@email.com', '11954321987', 'roberto@99', '1985-09-08', '78912345600', 2),
-('Fernanda Costa', 'fernanda.costa@email.com', '11943219876', 'minhasenha', '1998-07-01', '65432198700', 2),
-('Lucas Martins', 'lucas.martins@email.com', '11987651234', 'martins123', '1992-11-20', '32165498700', 2),
-('Patrícia Oliveira', 'patricia.oliveira@email.com', '11976549876', 'paty2023', '2000-04-18', '98732165400', 1),
-('Daniel Ribeiro', 'daniel.ribeiro@email.com', '11954328765', 'dani@ribeiro', '1987-05-30', '65498732100', 2),
-('Juliana Ferreira', 'juliana.ferreira@email.com', '11943217654', 'juliana@123', '1993-10-12', '45678912300', 1),
-('Gustavo Nunes', 'gustavo.nunes@email.com', '11932165498', 'gustavo@99', '1989-08-25', '78965432100', 2);
+0-PSICOLOGO
 
-INSERT INTO perfil_psicologo ( psi_id, prf_especialidades, prf_biografia, prf_imagem, prf_crp) VALUES
-(1,'Terapia de Casal', 'Psicólogo especializado em relações conjugais e conflitos familiares.', 'ana.png', 'CRP-123456'),
-(2,'Ansiedade', 'Ajudo pacientes a lidarem com transtornos de ansiedade e estresse.', 'carlos.png', 'CRP-234567'),
-(3,'Depressão', 'Experiência no tratamento da depressão e ressignificação emocional.', 'ana.png', 'CRP-345678'),
-(4,'Psicologia Infantil', 'Atendo crianças com dificuldades emocionais e comportamentais.', 'ana.png', 'CRP-456789'),
-(5,'Terapia Cognitivo-Comportamental', 'Utilizo a TCC para tratar diversos transtornos psicológicos.', 'ana.png', 'CRP-567890'),
-(6,'Psicologia Organizacional', 'Especialista em bem-estar no trabalho e desenvolvimento profissional.', 'ana.png', 'CRP-678901'),
-(7,'Dependência Química', 'Atuo no tratamento e reabilitação de pacientes com vícios.', 'ana.png', 'CRP-789012'),
-(8,'Psicologia do Esporte', 'Ajudo atletas a desenvolverem foco e controle emocional.', 'ana.png', 'CRP-890123'),
-(9,'Psicanálise', 'Trabalho com interpretação do inconsciente para autoconhecimento.', 'ana.png', 'CRP-901234'),
-(10,'Neuropsicologia', 'Especialista em avaliação e reabilitação neuropsicológica.', 'ana.png', 'CRP-012345');
+INSERT INTO usuarios 
+(usu_id, usu_nome, usu_email, usu_telefone, usu_senha, usu_cpf, usu_adm, usu_status, usu_imagem, usu_crp) VALUES
 
-/*igual no vscode */
+
+('Mariana Lima dos Santos', 'marianalima.7093@gmail.com', '(11)98765-4321', 'Limamariana@43', '12345678901', 0, 'ativo', 'mariana.png', '06/12345'),
+
+('Letícia Almeida Ferreira', 'leticia_ferreira52@gmail.com', '(11)99005-7552', '1234Leticia@', '23456789012', 0, 'ativo', 'leticia.png', '04/67890'),
+
+('João Pereira', 'joao.perreira@gmail.com', '(21)3401-2453', 'JoaoP#789', '34567890123', 0, 'aguardando aprovação', 'joao.png', '05/67890'),
+
+('Camila Ribeiro Nunes', 'camila.nunes@gmail.com', '(51)2090-0344', 'Camilan!321', '45678901234', 0, 'inativo', 'camila.png', '07/13579'),
+
+('Bruno Ferreira Costa', 'bruno.costa@gmail.com', '(71)1030-0972', 'costaNunes$654', '56789012345', 0, 'ativo', 'bruno.png', '06/12345'),
+
+('Fernanda Maria Souza', 'fernanda.souza@example.com', '(61)99876-5544', 'Camilan!987', '67890123456', 0, 'ativo', 'fernanda.png', '07/33456'),
+
+('Lucas Pereira Santos', 'lucas.pereira@example.com', '(71)97788-6655', 'Camilan!321159', '78901234567', 0, 'ativo', 'lucas.png', '09/55678'),
+
+('Amanda Ribeiro Duarte', 'amanda.ribeiro@example.com', '(81)98899-7766', 'Camilan!321753', '89012345678', 0, 'ativo', 'amanda.png', '12/022945'),
+
+('Thiago Luís Martins', 'thiago.martins@example.com', '(91)99911-8877', 'Camilan!321852', '90123456789', 0, 'ativo', 'thiago.png', '10/66789'),
+
+('Beatriz Helena Nunes', 'beatriz.nunes@example.com', '(85)97654-9988', 'Camilan!951', '01234567890', 0, 'ativo', 'beatriz.png', '09/324567');
+
 INSERT INTO redes_apoio 
-(redeapoio_nome, redeapoio_descricao, redeapoio_contato, redeapoio_logo, redeapoio_link) 
-VALUES
+(redeapoio_id, redeapoio_nome, redeapoio_descricao, redeapoio_contato, redeapoio_logo, redeapoio_link) VALUES
+
 ('Centro de Valorização da Vida', 
  'Formado exclusivamente por voluntários, oferece apoio emocional e prevenção do suicídio de forma gratuita. As pessoas que o procuram, em geral, estão se sentindo sozinhas ou precisam conversar com alguém de maneira sigilosa, sem julgamentos, críticas ou comparações. O CVV atua em todo o território nacional, oferecendo atendimento pelo telefone 188 — disponível 24 horas por dia e sem custo de ligação —, além de chat, e-mail e atendimento presencial em alguns endereços. Fundado em 1962, o CVV é uma entidade nacional independente, tanto financeira quanto ideologicamente, sem qualquer vinculação religiosa, político-partidária ou empresarial.', 
- '11987654321', 
+ '188', 
  'CVV.png', 
  'https://www.cvv.org.br'),
 
 ('Rede Pode Falar', 
  'A Rede Pode Falar nasceu como um canal de escuta acolhedora e transformou-se em uma rede de instituições e pessoas que não apenas oferecem um serviço de apoio emocional e conteúdos confiáveis em saúde mental, mas também capacitam futuros profissionais da área de cuidado humano, sensíveis às necessidades específicas desse ciclo da vida. As instituições que participam desta rede de cuidado, devido à sua especialização e conhecimento neste tema, realizam pesquisas, avaliam programas e fazem recomendações para a melhoria das políticas públicas de saúde mental nesta faixa etária, tanto em âmbito nacional quanto estadual e municipal.', 
- '11976543210', 
+ '(61) 9660-8843', 
  'RPF.png', 
  'https://redepodefalar.org.br'),
 
 ('Instituto Bem-Estar', 
- 'A Missão do Bem-Estar é uma organização sem fins lucrativos que atua na promoção do bem-estar mental por meio do letramento socioemocional e do advocacy. Tem como foco mulheres, jovens e pessoas LGBTQIAPN+, e busca colaborar para a redução do estigma em saúde mental. Por meio de suas frentes de atuação, promove ações que unem educação emocional, conscientização e impacto social. Na área de Letramento Socioemocional, desenvolve atividades e materiais educativos que auxiliam as pessoas a reconhecer, compreender e gerenciar suas emoções, estimulando o autoconhecimento e o cuidado com a saúde mental. '
- '11998765432', 
+ 'A Missão do Bem-Estar é uma organização sem fins lucrativos que atua na promoção do bem-estar mental por meio do letramento socioemocional e do advocacy. Tem como foco mulheres, jovens e pessoas LGBTQIAPN+, e busca colaborar para a redução do estigma em saúde mental. Por meio de suas frentes de atuação, promove ações que unem educação emocional, conscientização e impacto social. Na área de Letramento Socioemocional, desenvolve atividades e materiais educativos que auxiliam as pessoas a reconhecer, compreender e gerenciar suas emoções, estimulando o autoconhecimento e o cuidado com a saúde mental. ',
  'IBE.png', 
  'https://institutobemestar.org.br'),
 
 ('Instituto Vita Alegre', 
  'O Instituto Vita Alegre é uma organização sem fins lucrativos dedicada a oferecer apoio psicológico e social para pessoas em situação de vulnerabilidade, com foco especial em vítimas de violência doméstica. Fundado em 2005, o instituto desenvolve programas de acolhimento, terapia individual e em grupo, além de campanhas de conscientização sobre saúde mental e prevenção da violência. Com uma equipe multidisciplinar de profissionais, o Instituto Vita Alegre busca promover a recuperação emocional e a reintegração social de seus assistidos.', 
- '11954321987', 
+ '(11) 97647-0989', 
  'IVA.png', 
  'https://www.institutovitaalegre.org.br');
 
+INSERT INTO publicacoes (pub_id, usu_id, pub_titulo, pub_texto, pub_imagem) VALUES
+
+(1, 'Entendendo a Ansiedade', 'A ansiedade é uma emoção natural e essencial para a sobrevivência humana. Ela funciona como um alerta do corpo diante de situações que envolvem perigo, incerteza ou estresse, preparando o organismo para reagir a ameaças reais ou imaginárias. Em níveis moderados, pode ser positiva, ajudando na concentração, no foco e na tomada de decisões. No entanto, quando se torna constante ou desproporcional aos estímulos, pode evoluir para um transtorno de ansiedade. Nesses casos, surgem sintomas como palpitações, insônia, preocupação excessiva e sensação de perda de controle. Entender a ansiedade é o primeiro passo para lidar melhor com ela. Procurar apoio psicológico, praticar atividades físicas, manter uma rotina equilibrada e desenvolver técnicas de relaxamento são estratégias que ajudam a reduzir seus impactos e promover o bem-estar emocional.', 'pub1img.png'),
+
+(2, 'Técnicas de Relaxamento', 'As técnicas de relaxamento são ferramentas eficazes para reduzir o estresse e controlar a ansiedade no dia a dia. Uma das mais conhecidas é a respiração profunda: sente-se confortavelmente, inspire lentamente pelo nariz contando até quatro, segure o ar por mais quatro segundos e expire pela boca contando até seis. Repita por cinco minutos e perceba como o corpo relaxa gradualmente. Outras práticas, como alongamentos, meditação guiada e mindfulness, também ajudam a desacelerar os pensamentos e aliviar tensões. O ideal é incluir essas técnicas na rotina, especialmente em momentos de sobrecarga emocional. Criar um ambiente calmo, ouvir músicas suaves e se desconectar das telas por alguns minutos pode potencializar os efeitos. Pequenas pausas diárias são grandes aliadas para o equilíbrio mental e o cuidado com a saúde emocional.', 'pub2img.png'),
+
+(3, 'Saúde mental em números', 'A saúde mental é um dos maiores desafios da nossa época. De fato, o ritmo acelerado da vida, o excesso de telas, a pressão por produtividade, a instabilidade econômica e formas de intolerância como bullying, preconceito e racismo, tornam o cenário ainda mais grave. Ansiedade: O Brasil lidera o ranking global, com mais de 18 milhões de pessoas afetadas, aproximadamente 9,3% da população. Depressão: 5,8% da população brasileira, cerca de 11,5 milhões de pessoas, sofre de depressão, registrando assim o maior índice da América Latina. Afastamentos do trabalho: Para ilustrar, em 2024 os afastamentos laborais alcançaram o maior nível da última década, com um aumento de 67% em comparação a 2023, totalizando quase meio milhão de licenças.', 'pub3img.png'),
+
+(4, 'Estigma x Discriminação', 'O estigma é uma marca social que faz uma pessoa ser excluída ou vista como inferior pelos outros, diminuindo seu valor dentro do grupo ao qual pertence. Ele está ligado a atitudes e comportamentos negativos, especialmente contra pessoas com problemas de saúde mental ou de uso de substâncias. Em muitos casos, o estigma pode causar mais sofrimento e riscos do que a própria condição de saúde. Já a discriminação é uma ação ou decisão que trata alguém de forma injusta por causa de características como raça, origem, cor, religião, sexo, idade ou deficiência. Pessoas com transtornos mentais que sofrem discriminação enfrentam dificuldades para conseguir e manter emprego, ter moradia segura e acessar serviços de saúde. Além disso, o preconceito e o tratamento desigual afetam suas relações com a família, os amigos e a comunidade, aumentando o isolamento e a exclusão social.', 'pub4img.png'),
+
+(5, 'O papel da mente na conquista de metas', 'Manter uma boa saúde mental, tanto dentro quanto fora da escola, depende de uma rotina de autocuidado. Esse autocuidado não se limita apenas às atividades diárias voltadas para o bem-estar físico e emocional, mas também envolve a forma como criamos e lidamos com nossas metas e objetivos. É importante acreditar em nossas capacidades, mas também reconhecer o valor dos aprendizados que surgem durante o processo, inclusive aqueles que vêm das falhas e dos erros. Muitas vezes, o medo de errar ou se frustrar leva as pessoas a imaginar situações negativas que talvez nunca aconteçam, o que gera autossabotagem e faz com que desistam de seus próprios sonhos. Por isso, para quem quer alcançar suas metas sem prejudicar a saúde mental, é essencial adotar uma postura mais gentil e menos crítica consigo mesmo. Além disso, é fundamental valorizar as pequenas vitórias, confiar no processo e compreender que os erros também fazem parte do crescimento e do aprendizado.', 'pub5img.png'),
+
+(6, 'Autocuidado: o primeiro passo para o bem-estar', 'Praticar o autocuidado é mais do que reservar um tempo para si; é um compromisso com o equilíbrio emocional, físico e mental. Isso inclui dormir bem, alimentar-se de forma saudável, realizar atividades físicas e estabelecer limites em relações e responsabilidades. Muitas pessoas negligenciam o autocuidado por acreditarem que é um luxo, mas ele é uma necessidade. Cuidar de si é uma forma de preservar a saúde mental e fortalecer a resiliência diante das pressões cotidianas. O autocuidado também envolve reconhecer e respeitar as próprias emoções, permitindo-se sentir sem culpa. Ao criar hábitos saudáveis e realistas, é possível reduzir o estresse, melhorar o humor e aumentar a qualidade de vida. Afinal, cuidar de si mesmo é o primeiro passo para cuidar do mundo ao redor.', 'pub6img.png'),
+
+(7, 'Como lidar com o estresse diário', 'O estresse é uma reação natural do corpo, mas quando se torna constante, pode prejudicar a saúde física e mental. Identificar suas causas é essencial para controlá-lo. Uma boa estratégia é organizar as tarefas do dia a dia, estabelecer prioridades e incluir momentos de pausa. Exercícios físicos, técnicas de respiração e contato com a natureza ajudam a aliviar a tensão. Outro ponto importante é cultivar relações saudáveis e buscar apoio quando necessário. O acompanhamento psicológico também pode oferecer ferramentas para compreender e gerenciar melhor o estresse. Aprender a desacelerar é um desafio, mas é essencial para viver com mais leveza e equilíbrio.', 'pub7img.png'),
+
+(8, 'A importância da escuta empática', 'Ouvir com empatia é uma das habilidades mais valiosas nas relações humanas. Ela vai além de simplesmente escutar palavras: envolve compreender sentimentos, respeitar o tempo do outro e evitar julgamentos. Na prática psicológica e no convívio social, a escuta empática fortalece vínculos e promove acolhimento. Quando alguém se sente ouvido e compreendido, há uma redução do sofrimento emocional e aumento da confiança. Para desenvolver essa habilidade, é importante praticar a presença genuína, manter o foco no diálogo e demonstrar interesse real. A empatia não exige soluções imediatas, mas sim disponibilidade e sensibilidade para estar com o outro em sua dor ou alegria.', 'pub8img.png'),
+
+(9, 'Sinais de que é hora de buscar ajuda psicológica', 'Nem sempre é fácil reconhecer o momento de procurar ajuda profissional. No entanto, alguns sinais indicam que a saúde mental precisa de atenção: tristeza persistente, perda de prazer em atividades, insônia, irritabilidade, crises de ansiedade ou sensação constante de esgotamento. Quando esses sintomas interferem na rotina ou nos relacionamentos, é hora de buscar um psicólogo. A terapia oferece um espaço seguro para compreender emoções, desenvolver estratégias de enfrentamento e resgatar o equilíbrio emocional. Cuidar da mente é tão importante quanto cuidar do corpo. Procurar ajuda não é sinal de fraqueza, e sim de coragem e amor-próprio.', 'pub9img.png'),
+
+(10, 'Mindfulness: vivendo o presente', 'O mindfulness, ou atenção plena, é uma prática que convida a mente a estar totalmente presente no momento, sem julgamentos. Ele ajuda a reduzir a ansiedade, melhorar a concentração e fortalecer o autoconhecimento. A técnica pode ser aplicada em atividades simples do cotidiano, como comer, caminhar ou respirar conscientemente. Ao direcionar o foco para o agora, diminuímos o impacto de pensamentos negativos sobre o passado ou preocupações com o futuro. Praticar mindfulness regularmente favorece a regulação emocional e o bem-estar geral. Pequenos momentos de presença podem transformar a forma como lidamos com a vida, trazendo mais calma e clareza mental.', 'pub10img.png');
+
+
+INSERT INTO localizacoes (lcz_id, usu_id, lcz_nome_clinica, lcz_cep, lcz_logradouro, lcz_complemento, lcz_bairro, lcz_localidade, lcz_uf)  VALUES
+
+(1, 'Clínica Vida Plena', '13015-120', 'Rua Barão de Jaguara, 1020', 'Sala 302', 'Centro', 'Campinas', 'SP'),
+(2, 'Espaço Equilíbrio Mental', '04004-020', 'Rua Vergueiro, 1455', 'Conjunto 804', 'Paraíso', 'São Paulo', 'SP'),
+(3, 'Clínica Bem-Estar', '30130-002', 'Rua da Bahia, 950', '2º andar', 'Centro', 'Belo Horizonte', 'MG'),
+(4, 'PsiCare Terapias Integradas', '90010-001', 'Avenida Borges de Medeiros, 312', 'Sala 507', 'Centro Histórico', 'Porto Alegre', 'RS'),
+(5, 'Instituto Mente Serena', '40020-000', 'Avenida Sete de Setembro, 1200', 'Sala 1101', 'Campo Grande', 'Salvador', 'BA'),
+(6, 'Clínica Psicovida', '88015-200', 'Rua Felipe Schmidt, 456', 'Sala 503', 'Centro', 'Florianópolis', 'SC'),
+(7, 'Espaço Terapêutico Harmonia', '80010-180', 'Rua XV de Novembro, 215', 'Sala 305', 'Centro', 'Curitiba', 'PR'),
+(8, 'Clínica Alma Livre', '64000-220', 'Avenida Frei Serafim, 875', 'Sala 207', 'Centro', 'Teresina', 'PI'),
+(9, 'Centro Psi Evoluir', '69005-040', 'Rua Joaquim Nabuco, 322', 'Sala 402', 'Centro', 'Manaus', 'AM'),
+(10, 'Viver Psicologia e Saúde', '66035-000', 'Avenida Nazaré, 1001', 'Sala 301', 'Nazaré', 'Belém', 'PA');
+
+
+INSERT INTO feedback_consulta (fdbk_id, usu_id, fdbk_mensagem, fdbk_data_hora, fdbk_nota, fdbk_identificacao, fdbk_acesso) VALUES
+
+
+(1, 'A consulta foi excelente. O psicólogo me ajudou a entender melhor minha ansiedade e me passou técnicas práticas para lidar com ela.', 5, 'Rafaela Souza', 'Acesso liberado ao psicólogo responsável.'),
+
+(2, 'Achei a sessão produtiva, mas senti que o tempo foi curto para abordar todos os assuntos que eu queria.', 5, 'Carlos Alberto', 'Acesso permitido ao psicólogo da consulta.'),
+
+(3, 'A profissional foi muito atenciosa e acolhedora. Saí da consulta mais tranquila e confiante.', 5, 'Lucas Martins', 'Acesso concedido ao psicólogo.'),
+
+(4, 'O seu profissionalismo e empatia tornam a terapia muito eficaz e reconfortante.', 5, 'Marcos Vinícius', 'Acesso liberado.'),
+
+(5, 'Gostei bastante do atendimento online, foi pontual e direto. Me senti confortável durante toda a conversa.', 5, 'Gustavo Andrade', 'Acesso permitido ao psicólogo da consulta.'),
+
+(6, 'Me sinto muito mais leve após nossas sessões. Agradeço por toda atenção e compreensão.', 5, 'Joana Figueiredo', 'Acesso permitido ao psicólogo da consulta.'),
+
+(7, 'Achei a consulta esclarecedora.', 5, 'Camila Torres', 'Acesso liberado.'),
+
+(8, 'Adorei cada sessão', 5, 'Larissa Costa', 'Acesso permitido ao psicólogo da consulta.'),
+
+(9, 'A psicóloga foi muito empática e me fez perceber coisas que eu não havia notado antes. Excelente atendimento.', 5, 'Tatiane Souza', 'Acesso permitido ao psicólogo da consulta.'),
+
+(10, 'O atendimento foi muito bom e especial', 5, 'Isabela Martins', 'Acesso permitido ao psicólogo da consulta.');
 
 
 
-INSERT INTO publicacoes (pub_id, psi_id, pub_titulo, pub_texto, pub_data_postagem, pub_imagem, pub_status) VALUES 
-(1, 1, 'A Importância da Terapia de Casal', 
- 'A terapia de casal oferece um espaço seguro e estruturado para que parceiros possam explorar padrões de comunicação, expectativas e feridas emocionais que impactam a convivência. Ao trabalhar com técnicas de escuta ativa, mediação de conflitos e desenvolvimento de habilidades de resolução, o casal aprende a identificar gatilhos, reformular narrativas e construir acordos que promovam mais intimidade e respeito. Além disso, a terapia auxilia no reconhecimento de ciclos repetitivos, favorecendo mudanças práticas no dia a dia e fortalecendo a parceria através do comprometimento mútuo com o crescimento emocional e a empatia.', 
- '2025-03-14', 'terapia_casal.jpg', 'ativo'),
-(2, 2, 'Ansiedade: Como Identificar e Controlar?', 
- 'A ansiedade é uma resposta natural a situações de demanda ou perigo, mas quando se torna persistente pode prejudicar a qualidade de vida. Identificar sintomas como preocupação excessiva, inquietação, problemas de sono, tensão muscular e dificuldades de concentração é o primeiro passo. O controle envolve estratégias psicoeducativas, práticas de regulação emocional como respiração diafragmática e técnicas de relaxamento, reestruturação cognitiva para questionar pensamentos catastróficos, exposição gradual a medos e, quando indicado, intervenções farmacológicas em conjunto com psicoterapia. O acompanhamento profissional ajuda a personalizar ferramentas e estabelecer metas reais de melhora.', 
- '2025-03-12', 'ansiedade_tips.jpg', 'ativo'),
-(3, 3, 'Os Sinais da Depressão', 
- 'A depressão pode se manifestar por apagamentos de interesse, tristeza persistente, fadiga, alterações de apetite e sono, sentimentos de culpa ou inutilidade e redução da capacidade de tomar decisões. Reconhecer esses sinais é fundamental para buscar apoio precoce. O tratamento combina psicoterapia, que trabalha com processamento emocional, reestruturação de pensamentos e desenvolvimento de estratégias de enfrentamento, com intervenções médicas quando necessário. O suporte social, rotinas de sono e atividade física e intervenções direcionadas para atividades prazerosas também desempenham papel crucial na recuperação. Buscar ajuda é um passo corajoso e decisivo para restabelecer funcionamento e bem-estar.', 
- '2025-03-10', 'depressao_sinais.jpg', 'ativo'),
-(4, 4, 'Como Ajudar uma Criança a Expressar Emoções', 
- 'Ajudar uma criança a expressar emoções exige paciência, escuta atenta e estratégias concretas que a tornem segura para nomear o que sente. Práticas como rotular emoções durante o dia a dia, utilizar brincadeiras terapêuticas, histórias e desenhos para externalizar sentimentos, criar rituais de conversa sem julgamento e validar experiências são muito eficazes. Adultos servem de modelo ao demonstrar regulação emocional e linguagem adequada para sentimentos. Intervenções preventivas e intervenções psicoterapêuticas, quando necessárias, fortalecem a autorregulação, promovem vínculo seguro e previnem que emoções não processadas evoluam para dificuldades comportamentais ou transtornos ao longo do desenvolvimento.', 
- '2025-03-08', 'psicologia_infantil.jpg', 'ativo'),
-(5, 5, 'Terapia Cognitivo-Comportamental: O que é e Como Funciona?', 
- 'A Terapia Cognitivo-Comportamental (TCC) é uma abordagem prática e orientada a metas que identifica e modifica padrões de pensamento e comportamento que mantêm o sofrimento. Por meio de avaliação colaborativa, o terapeuta e o paciente constroem hipóteses sobre crises atuais, aplicam técnicas de reestruturação cognitiva, experimentos comportamentais e tarefas de casa para testar novas formas de agir. A TCC é indicada para ansiedade, depressão, transtornos alimentares e outras condições, valorizando o aprendizado de habilidades, monitoramento de progressos e promoção de autonomia. Resultados frequentemente aparecem em semanas a meses, com foco em manutenção das mudanças a longo prazo.', 
- '2025-03-06', 'tcc_terapia.jpg', 'ativo'),
-(6, 6, 'Saúde Mental no Ambiente de Trabalho', 
- 'A saúde mental no trabalho é essencial para o desempenho sustentável e para o clima organizacional. Ambientes com alta demanda, pouca autonomia, falta de reconhecimento e cultura de estresse aumentam o risco de burnout, ansiedade e queda de produtividade. Estratégias preventivas incluem promoção de pausas, programas de bem-estar, treinamento de liderança empática, políticas de equilíbrio entre vida pessoal e profissional e acesso facilitado a apoio psicológico. Intervenções devem considerar fatores individuais, de equipe e organizacionais, integrando acolhimento, prevenção e tratamento para criar locais de trabalho mais saudáveis e humanos.', 
- '2025-03-04', 'psicologia_organizacional.jpg', 'ativo'),
-(7, 7, 'Superando a Dependência Química', 
- 'O tratamento da dependência química exige abordagem integrada que considere aspectos biológicos, psicológicos e sociais. O processo envolve avaliação clínica, desintoxicação segura quando necessária, psicoterapias que abordem gatilhos e mecanismos de manutenção do consumo, programas de reabilitação, grupos de apoio e estratégias de prevenção de recaída. A reinserção social, familiar e laboral é parte essencial da recuperação, assim como o fortalecimento de redes de suporte e habilidades de enfrentamento. A compaixão, continuidade do cuidado e personalização das intervenções aumentam a chance de mudança sustentável e recuperação a longo prazo.', 
- '2025-03-02', 'dependencia_quimica.jpg', 'ativo'),
-(8, 8, 'Psicologia do Esporte: O Impacto da Mente no Desempenho', 
- 'A psicologia do esporte trabalha habilidades mentais que potencializam o rendimento e o bem-estar do atleta, como foco, controle da ansiedade competitiva, rotina pré-competição, visualização e estabelecimento de metas. O trabalho inclui avaliação de perfil psicológico, treino de concentração, manejo de lesões e apoio em transições de carreira. Técnicas de preparação mental, aliadas a treinos físicos e táticos, melhoram consistência de performance e reduzem impacto de fatores estressantes. Além disso, o suporte psicossocial favorece coesão de equipe e resiliência diante de adversidades, contribuindo para resultados consistentes e saúde psicológica.', 
- '2025-03-01', 'psicologia_esporte.jpg', 'ativo'),
-(9, 9, 'Psicanálise: Explorando o Inconsciente', 
- 'A psicanálise oferece um caminho de investigação das dinâmicas inconscientes que orientam escolhas, sintomas e relacionamentos. Por meio da escuta prolongada, análise de sonhos, associação livre e da relação transferencial, o paciente pode trazer à consciência temas repetitivos, conflitos internos e desejos ocultos, possibilitando re-significações profundas. Trata-se de um processo que privilegia compreensão histórica do indivíduo, linguagem simbólica e insight como facilitadores de mudança. Embora possa ser mais longo que outras abordagens, a psicanálise tende a promover transformações duradouras na estrutura psíquica e na qualidade das relações interpessoais.', 
- '2025-02-28', 'psicanalise.jpg', 'ativo'),
-(10, 10, 'Neuropsicologia e Funções Cognitivas', 
- 'A neuropsicologia investiga como funções cognitivas como atenção, memória, linguagem, funções executivas e processamento visuoespacial se relacionam com o funcionamento cerebral. Avaliações neuropsicológicas detalhadas ajudam a identificar déficits após lesões, em demências ou transtornos do desenvolvimento, orientando intervenções reabilitadoras e planejamento de suporte educacional e ocupacional. A reabilitação cognitiva utiliza exercícios específicos, estratégias compensatórias e adaptação ambiental para maximizar autonomia. O trabalho interdisciplinar com médicos, terapeutas ocupacionais e fonoaudiólogos potencializa resultados e melhora qualidade de vida do paciente e de sua família.', 
- '2025-02-26', 'neuropsicologia.jpg', 'ativo');
+INSERT INTO especialidades (esp_id, usu_id, esp_nome) VALUES
+
+
+(1, 'Psicologia Clínica, Psicologia Escolar e Educacional'),
+(2, 'Psicologia Clínica'),
+(3, 'Psicologia Clínica, Psicologia em Saúde'),
+(4, 'Psicologia Clínica, Psicopedagogia'),
+(5, 'Psicologia Clínica'),
+(6, 'Psicologia Clínica, Psicologia em Saúde'),
+(7, 'Psicologia Clínica'),
+(8, 'Psicologia Clínica, Psicologia Organizacional e do Trabalho'),
+(9, 'Psicologia Clínica'),
+(10, 'Psicologia Clínica, Psicologia Hospitalar');
 
 
 
-INSERT INTO localizacoes (psi_id, lcz_nome_clinica, lcz_cep, lcz_bairro, lcz_complemento, lcz_cidade, lcz_estado) 
+
+INSERT INTO disponibilidades
+(dsp_id, usu_id,  lcz_id, dsp_dia_semana, dsp_horario, dsp_status) 
 VALUES
-(1, 'Clínica Bem-Estar', '01001-000', 'Centro', 'Sala 101', 'São Paulo', 'SP'),
-(2, 'Psicologia Viva', '20031-144', 'Copacabana', 'Bloco B', 'Rio de Janeiro', 'RJ'),
-(3, 'Equilíbrio Mental', '30130-009', 'Savassi', 'Edifício Orion', 'Belo Horizonte', 'MG'),
-(4, 'Ser Pleno', '40020-220', 'Barra', 'Sala 302', 'Salvador', 'BA'),
-(5, 'Mente Saudável', '60140-140', 'Meireles', 'Perto da praça', 'Fortaleza', 'CE'),
-(6, 'Psiquê Clínica', '80030-110', 'Batel', 'Andar 5', 'Curitiba', 'PR'),
-(7, 'Vida em Harmonia', '69010-000', 'Centro', 'Próximo ao teatro', 'Manaus', 'AM'),
-(8, 'Nova Perspectiva', '77006-000', 'Plano Diretor', 'Edifício Cristal', 'Palmas', 'TO'),
-(9, 'Consciência Plena', '88015-202', 'Trindade', 'Sala 203', 'Florianópolis', 'SC'),
-(10, 'Ser e Viver', '66033-000', 'Umarizal', 'Perto da praça', 'Belém', 'PA');
+
+-- Psicólogo 1 – São Paulo - SP
+(1, 1, 'Segunda-feira', '08:00, 09:00, 11:00, 17:00', 'Disponível'),
+(1, 1, 'Terça-feira', 'Indisponível'),
+(1, 1, 'Quarta-feira', '13:00, 15:00, 17:00', 'Disponível'),
+(1, 1, 'Quinta-feira', 'Indisponível'),
+(1, 1, 'Sexta-feira', 'Indisponível'),
+(1, 1, 'Sábado', '13:00, 14:00, 15:00',  'Disponível'),
+
+-- Psicólogo 2 – São Paulo - SP
+(2, 2, 'Segunda-feira', '09:00, 10:00, 14:00, 16:00', 'Disponível'),
+(2, 2, 'Terça-feira', 'Indisponível'),
+(2, 2, 'Quarta-feira', '08:00, 09:00, 10:00', 'Disponível'),
+(2, 2, 'Quinta-feira', '13:00, 14:00', 'Disponível'),
+(2, 2, 'Sexta-feira', 'Indisponível'),
+(2, 2, 'Sábado', '09:00, 10:00, 11:00', 'Disponível'),
+
+-- Psicólogo 3 – Belo Horizonte - MG
+(3, 3, 'Segunda-feira', 'Indisponível'),
+(3, 3, 'Terça-feira', '14:00, 15:00, 16:00', 'Disponível'),
+(3, 3, 'Quarta-feira', '08:00, 09:00', 'Disponível'),
+(3, 3, 'Quinta-feira', 'Indisponível'),
+(3, 3, 'Sexta-feira', '10:00, 11:00, 13:00, 15:00', 'Disponível'),
+(3, 3, 'Sábado', 'Indisponível'),
+
+-- Psicólogo 4 – Porto Alegre - RS
+(4, 4, 'Segunda-feira', '07:00, 08:00, 09:00', 'Disponível'),
+(4, 4, 'Terça-feira', 'Indisponível'),
+(4, 4, 'Quarta-feira', '14:00, 15:00, 16:00', 'Disponível'),
+(4, 4, 'Quinta-feira', '08:00, 09:00, 10:00, 11:00', 'Disponível'),
+(4, 4, 'Sexta-feira', 'Indisponível'),
+(4, 4, 'Sábado', '13:00, 14:00, 15:00', 'Disponível'),
+
+-- Psicólogo 5 – Salvador - BA
+(5, 5, 'Segunda-feira', '10:00, 11:00, 13:00', 'Disponível'),
+(5, 5, 'Terça-feira', '08:00, 09:00, 10:00', 'Disponível'),
+(5, 5, 'Quarta-feira', 'Indisponível'),
+(5, 5, 'Quinta-feira', '15:00, 16:00, 17:00', 'Disponível'),
+(5, 5, 'Sexta-feira', '08:00, 09:00, 10:00', 'Disponível'),
+(5, 5, 'Sábado', 'Indisponível'),
+
+-- Psicólogo 6 – Curitiba - PR
+(6, 6, 'Segunda-feira', '09:00, 10:00, 11:00', 'Disponível'),
+(6, 6, 'Terça-feira', 'Indisponível'),
+(6, 6, 'Quarta-feira', '13:00, 14:00, 15:00', 'Disponível'),
+(6, 6, 'Quinta-feira', 'Indisponível'),
+(6, 6, 'Sexta-feira', '08:00, 09:00, 10:00', 'Disponível'),
+(6, 6, 'Sábado', 'Indisponível'),
+
+-- Psicólogo 7 – Recife - PE
+(7, 7, 'Segunda-feira', '08:00, 09:00, 10:00', 'Disponível'),
+(7, 7, 'Terça-feira', '13:00, 14:00', 'Disponível'),
+(7, 7, 'Quarta-feira', 'Indisponível'),
+(7, 7, 'Quinta-feira', '09:00, 10:00, 11:00', 'Disponível'),
+(7, 7, 'Sexta-feira', 'Indisponível'),
+(7, 7, 'Sábado', '08:00, 09:00', 'Disponível'),
+
+-- Psicólogo 8 – Fortaleza - CE
+(8, 8, 'Segunda-feira', '14:00, 15:00, 16:00', 'Disponível'),
+(8, 8, 'Terça-feira', 'Indisponível'),
+(8, 8, 'Quarta-feira', '09:00, 10:00, 11:00', 'Disponível'),
+(8, 8, 'Quinta-feira', 'Indisponível'),
+(8, 8, 'Sexta-feira', '13:00, 14:00', 'Disponível'),
+(8, 8, 'Sábado', '10:00, 11:00', 'Disponível'),
+
+-- Psicólogo 9 – Brasília - DF
+(9, 9, 'Segunda-feira', '07:00, 08:00, 09:00', 'Disponível'),
+(9, 9, 'Terça-feira', 'Indisponível'),
+(9, 9, 'Quarta-feira', '14:00, 15:00, 16:00', 'Disponível'),
+(9, 9, 'Quinta-feira', '09:00, 10:00', 'Disponível'),
+(9, 9, 'Sexta-feira', 'Indisponível'),
+(9, 9, 'Sábado', '08:00, 09:00, 10:00', 'Disponível'),
+
+-- Psicólogo 10 – Florianópolis - SC
+(10, 10, 'Segunda-feira', '09:00, 10:00, 11:00, 12:00', 'Disponível'),
+(10, 10, 'Terça-feira', 'Indisponível'),
+(10, 10, 'Quarta-feira', '13:00, 14:00', 'Disponível'),
+(10, 10, 'Quinta-feira', '08:00, 09:00', 'Disponível'),
+(10, 10, 'Sexta-feira', 'Indisponível'),
+(10, 10, 'Sábado', '09:00, 10:00, 11:00', 'Disponível');
 
 
-/*igual no vscode */
-INSERT INTO feedback_consulta (psi_id, usu_id, fdbk_mensagem, fdbk_data_hora) 
-VALUES
-(1, 5, 'Ótimo atendimento! Profissional muito atencioso.', '2025-10-24 10:30:00'),
-(2, 3, 'Me senti muito confortável durante a consulta.', '2025-10-24 14:15:00'),
-(3, 7, 'Ajudou bastante com minhas questões pessoais.', '22025-10-24 16:45:00'),
-(4, 2, 'Terapia incrível! Me fez enxergar novas perspectivas.', '2025-10-24 09:00:00'),
-(5, 8, 'Gostei da abordagem, mas esperava um pouco mais de direcionamento.', '22025-10-24 11:20:00'),
-(6, 1, 'Muito profissional e acolhedor. Recomendo!', '2025-10-24 15:30:00'),
-(7, 4, 'Consulta bem estruturada e eficiente.', '2025-10-24 17:00:00'),
-(8, 9, 'Ótima escuta ativa e empatia.', '2025-10-24 13:45:00'),
-(9, 6, 'Fiquei mais tranquilo após a consulta, me ajudou bastante.', '22025-10-24 18:10:00'),
-(10, 10, 'Me identifiquei muito com o psicólogo, ótima escolha!', '2025-10-24 12:00:00');
-
-
-
-INSERT INTO agendamentos (agd_id, psi_id, usu_id, agd_data_consulta, agd_inicio_consulta, agd_fim_consulta, agd_anotacoes_consulta)
+INSERT INTO agendamentos (agd_id, usu_id, agd_paciente,  agd_data_consulta, agd_inicio_consulta, agd_fim_consulta, agd_anotacoes_consulta)
 VALUES 
-(1, 1, 1, '2025-03-15', '10:00:00', '11:00:00', 'Paciente relatou melhoria no quadro de ansiedade.'),
-(2, 2, 2, '2025-03-15', '11:30:00', '12:30:00', 'Discussão sobre dificuldades no relacionamento pessoal.'),
-(3, 3, 3, '2025-03-16', '14:00:00', '15:00:00', 'Exploração de traumas de infância e como afetam o comportamento atual.'),
-(4, 1, 4, '2025-03-16', '09:00:00', '10:00:00', 'Reforço nas técnicas de respiração e relaxamento para controle de estresse.'),
-(5, 4, 5, '2025-03-17', '15:00:00', '16:00:00', 'Paciente apresentou dificuldades com a rotina de trabalho.'),
-(6, 2, 6, '2025-03-17', '16:30:00', '17:30:00', 'Discutido progresso em relação à gestão de ansiedade.'),
-(7, 5, 7, '2025-03-18', '08:00:00', '09:00:00', 'Avaliação de comportamentos relacionados a vícios.'),
-(8, 1, 8, '2025-03-18', '13:00:00', '14:00:00', 'Tratamento de distúrbios alimentares e acompanhamento psicológico.'),
-(9, 6, 9, '2025-03-19', '10:30:00', '11:30:00', 'Discussão sobre possíveis causas da insônia e métodos para melhora.'),
-(10, 3, 10, '2025-03-19', '11:45:00', '12:45:00', 'Paciente demonstrou grande evolução na aceitação das emoções.');
+
+(1, 'Rafaela Souza', 'Paciente relatou ansiedade e dificuldade para dormir.'),
+(1, 'Amanda Beatriz', 'Sessão voltada à autoestima e autoconfiança.'),
+
+(2, 'Carlos Alberto', 'Primeira sessão, foco em autoconhecimento.'),
+(2, 'Fernanda Oliveira', 'Discussão sobre relacionamento interpessoal.'),
+
+(3, 'Lucas Martins', 'Paciente em processo de adaptação no trabalho.'),
+(3, 'Juliana Ribeiro', 'Retorno, avaliar progresso com técnicas de relaxamento.'),
+
+(4, 'Marcos Vinícius', 'Apresentou melhora no controle da impulsividade.'),
+(4, 'Beatriz Lima', 'Relatou dificuldade em lidar com pressão escolar.'),
+
+(5, 'Gustavo Andrade', 'Primeira consulta, queixa de falta de motivação.'),
+(5, 'Patrícia Gomes', 'Sessão voltada à autoestima e autoconfiança.'),
+
+(6, 'Joana Figueiredo', 'Paciente trouxe questões sobre equilíbrio emocional no trabalho.'),
+(6, 'Bruno Henrique', 'Relatou estresse constante devido à rotina intensa.'),
+
+(7, 'Camila Torres', 'Primeira sessão, objetivo é melhorar comunicação interpessoal.'),
+(7, 'Ricardo Alves', 'Paciente apresentou avanços no controle da ansiedade.'),
+
+(8, 'Larissa Costa', 'Sessão voltada para desenvolvimento de autoconfiança.'),
+(8, 'Felipe Mendes', 'Relatou dificuldade em manter foco nos estudos.'),
+
+(9, 'Tatiane Souza', 'Primeira consulta, queixa principal: insônia recorrente.'),
+(9, 'Eduardo Lima', 'Sessão de acompanhamento, relatou progresso significativo.'),
+
+(10, 'Isabela Martins', 'Paciente apresentou melhora na organização emocional.'),
+(10, 'Rogério Carvalho', 'Sessão com foco em autoconhecimento e autocontrole.');
 
 
 
-   -- Segunda-feira 
-(2, 1, 1, '14:00:00', 1),  -- Segunda-feira
-(3, 2, 2, '10:00:00', 1),  -- Terça-feira
-(4, 3, 3, '09:30:00', 0),  -- Quarta-feira (Não disponível)
-(5, 1, 3, '15:00:00', 1),  -- Quarta-feira
-(6, 4, 4, '11:00:00', 1),  -- Quinta-feira
-(7, 2, 5, '13:00:00', 0),  -- Sexta-feira (Não disponível)
-(8, 3, 6, '08:30:00', 1),  -- Sábado
-(9, 5, 7, '16:00:00', 1),  -- Domingo
-(10, 4, 7, '18:00:00', 0);  -- Domingo (Não disponível)
+
+
+
+
+
+
 
 
 
