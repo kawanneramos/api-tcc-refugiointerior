@@ -4,9 +4,7 @@ module.exports = {
         try {
 
            const sql = `
-           SELECT 
-           agd_id, psi_id, usu_id, DATE_FORMAT(agd_data_consulta, '%d/%m/%Y') AS agd_data_consulta, agd_inicio_consulta, 
-           agd_fim_consulta, agd_anotacoes_consulta 
+           SELECT agd_id, usu_id, agd_paciente,  agd_data_consulta, agd_inicio_consulta, agd_fim_consulta, agd_anotacoes_consulta 
            FROM agendamentos;
            `;
            const [ rows] = await db.query(sql);
@@ -33,22 +31,21 @@ module.exports = {
     async cadastrarAgendamento(request, response) {
         try {
 
-            const {psi_id ,usu_id, data_consulta,inicio_consulta,fim_consulta, 
+            const {usu_id, data_consulta,inicio_consulta,fim_consulta, 
                    anotacoes_consulta}  = request.body;
              const sql = `
-             INSERT INTO agendamentos  
-                 (psi_id, usu_id, agd_data_consulta, agd_inicio_consulta, agd_fim_consulta, agd_anotacoes_consulta)
+                      INSERT INTO agendamentos 
+                (usu_id, agd_paciente, agd_data_consulta, agd_inicio_consulta, agd_fim_consulta, agd_anotacoes_consulta)
              VALUES 
               (?, ?, ?, ?, ?, ?)
              `;
 
-             const values = [psi_id ,usu_id, data_consulta,inicio_consulta,fim_consulta, anotacoes_consulta];
+             const values = [usu_id, data_consulta,inicio_consulta,fim_consulta, anotacoes_consulta];
 
              const [result] = await db.query(sql, values);
 
              const dados = {
                 agd_id: result.insertId,
-                psi_id ,
                 usu_id, 
                 data_consulta,
                 inicio_consulta,
@@ -76,16 +73,16 @@ module.exports = {
     async editarAgendamento(request, response) {
         try {
 
-            const {psi_id ,usu_id, data_consulta, inicio_consulta, fim_consulta, anotacoes_consulta}  = request.body;
+            const {usu_id, data_consulta, inicio_consulta, fim_consulta, anotacoes_consulta}  = request.body;
             const { agd_id } = request.params;
             const sql = `
             UPDATE agendamentos SET
-              psi_id = ?, usu_id =?, agd_data_consulta=?, agd_inicio_consulta=?, 
+               usu_id =?, agd_data_consulta=?, agd_inicio_consulta=?, 
            agd_fim_consulta=?, agd_anotacoes_consulta =?
            WHERE
              agd_id = ?;
        `;
-       const values = [psi_id, usu_id, data_consulta, inicio_consulta, fim_consulta, anotacoes_consulta, agd_id];
+       const values = [usu_id, data_consulta, inicio_consulta, fim_consulta, anotacoes_consulta, agd_id];
 
 
        const [result] = await db.query(sql, values);
@@ -102,7 +99,6 @@ module.exports = {
 
        const dados = {
           agd_id ,
-          psi_id ,
           usu_id, 
           data_consulta,
           inicio_consulta,

@@ -5,8 +5,8 @@ module.exports = {
         try {
             const sql = 
              `
-            SELECT dsp_id, lcz_id, dsp_dia_semana, dsp_horario, 
-            dsp_status FROM disponibilidades;
+            SELECT dsp_id, lcz_id, dsp_dia_semana, dsp_horario, dsp_status
+             FROM disponibilidades;
             `;
             const [rows] = await db.query(sql);
             return response.status(200).json({
