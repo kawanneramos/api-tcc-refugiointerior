@@ -78,8 +78,8 @@ create table redes_apoio (
 
     redeapoio_id int primary key auto_increment,
     redeapoio_nome varchar(100) not null,
-    redeapoio_descricao varchar(200),
-    redeapoio_contato varchar(20) not null,
+    redeapoio_descricao Text,
+    redeapoio_contato varchar(20),
     redeapoio_link varchar(255) not null
     redeapoio_logo varchar(255)
 );

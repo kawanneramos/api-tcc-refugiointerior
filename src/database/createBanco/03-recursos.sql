@@ -2,7 +2,7 @@ SELECT usu_id, usu_nome, usu_email, usu_telefone, usu_senha, usu_cpf, usu_adm, u
 
 SELECT redeapoio_id, redeapoio_nome, redeapoio_descricao, redeapoio_contato, redeapoio_logo, redeapoio_link FROM  redes_apoio;
 
-SELECT pub_id, usu_id, pub_titulo, pub_texto, pub_imagem FROM publicacoes;
+SELECT pub_id, usu_id, pub_titulo, pub_texto, pub_imagem, pub_data_postagem, pub_status FROM publicacoes;
 
 SELECT lcz_id, usu_id, lcz_nome_clinica, lcz_cep, lcz_logradouro, lcz_complemento, lcz_bairro, lcz_localidade, lcz_uf FROM localizacoes;
  
