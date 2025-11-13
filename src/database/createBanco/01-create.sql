@@ -55,7 +55,7 @@ create table localizacoes (
 create table disponibilidades (
     dsp_id int primary key auto_increment,
     lcz_id int not null,
-    dsp_dia_semana varchar(50) not null, -- 0 a 6 (domingo a sábado)
+    dsp_dia_semana varchar(50) not null, -- 0 a 6 (segunda a sábado)
     dsp_horario time not null,
     dsp_status tinyint not null,
     foreign key (lcz_id) references localizacoes(lcz_id)
