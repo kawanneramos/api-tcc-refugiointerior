@@ -1,3 +1,5 @@
+use bd_tcc_etim_123_g6
+
 SELECT usu_id, usu_nome, usu_email, usu_telefone, usu_senha, usu_cpf, usu_adm, usu_status, usu_imagem, usu_crp FROM usuarios;
 
 SELECT redeapoio_id, redeapoio_nome, redeapoio_descricao, redeapoio_contato, redeapoio_logo, redeapoio_link FROM  redes_apoio;
@@ -10,7 +12,7 @@ SELECT fdbk_id, usu_id, fdbk_mensagem, fdbk_data_hora, fdbk_nota, fdbk_identific
 
 SELECT esp_id, usu_id, esp_nome FROM especialidades; 
 
-SELECT dsp_id, usu_id,  lcz_id, dsp_dia_semana, dsp_horario, dsp_status FROM disponibilidades;
+SELECT dsp_id, lcz_id, dsp_dia_semana, dsp_horario, dsp_status FROM disponibilidades;
 
 SELECT agd_id, usu_id, agd_paciente,  agd_data_consulta, agd_inicio_consulta, agd_fim_consulta, agd_anotacoes_consulta FROM agendamentos;
 
