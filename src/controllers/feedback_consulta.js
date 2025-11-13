@@ -5,9 +5,8 @@ module.exports = {
         try {
 
             const sql = `
-            SELECT fdbk_id, psi_id, usu_id, fdbk_mensagem, 
-            fdbk_data_hora 
-            FROM feedback_consulta;
+          SELECT fdbk_id, usu_id, fdbk_mensagem, fdbk_data_hora, fdbk_nota, fdbk_identificacao, fdbk_acesso 
+          FROM feedback_consulta;
             `;
 
             const [rows] = await db.query(sql);
@@ -28,12 +27,13 @@ module.exports = {
     async cadastrarFeedback_consulta(request, response) {
         try {
 
-            const { psi_id, usu_id, fdbk_mensagem, data_hora } = request.body;
+            const {usu_id, fdbk_mensagem, data_hora } = request.body;
       
             const sql = `
-           INSERT INTO feedback_consulta (psi_id, usu_id, fdbk_mensagem, fdbk_data_hora) 
-                VALUES
-                (?, ?, ?, ?);
+           INSERT INTO feedback_consulta 
+            (usu_id, fdbk_mensagem, fdbk_data_hora, fdbk_nota, fdbk_identificacao, fdbk_acesso) 
+            VALUES
+                (?, ?, ?, ?, ?, ?);
              `;
 
              const values = [psi_id, usu_id, fdbk_mensagem, data_hora];
@@ -62,17 +62,17 @@ module.exports = {
     async editarFeedback_consulta(request, response) {
         try {
 
-                const { psi_id, usu_id, fdbk_mensagem, data_hora } = request.body;
+                const {usu_id, fdbk_mensagem, data_hora } = request.body;
     
                 const { fdbk_id } = request.params;
     
                 const sql = `
                 UPDATE feedback_consulta SET
-                 psi_id = ?, usu_id = ?, fdbk_mensagem = ?, fdbk_data_hora = ?
+                  usu_id = ?, fdbk_mensagem = ?, fdbk_data_hora = ?
                  WHERE fdbk_id = ?;
                  `;
     
-                 const values = [ psi_id, usu_id, fdbk_mensagem, data_hora, fdbk_id ];
+                 const values = [usu_id, fdbk_mensagem, data_hora, fdbk_id ];
     
                  const [result] = await db.query(sql, values);
     
