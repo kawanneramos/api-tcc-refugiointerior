@@ -12,9 +12,9 @@ module.exports = {
             const [rows] =await db.query(sql);
 
              // ALTERNATIVA SEM MEXER COM TODOS OS CAMPOS
-            const dados = rows.map(ingrediente => ({
-                ...ingrediente,
-                ing_img: gerarUrl(ingrediente.ing_img, 'ingredientes', 'sem.jpg')
+            const dados = rows.map(redes_apoio => ({
+                ...redes_apoio,
+                ing_img: gerarUrl(redes_apoio.ing_img, 'redes_apoio', 'cvv.png','IBE.png','IVA.png','RPF.png')
             }));
 
             return response.status(200).json({

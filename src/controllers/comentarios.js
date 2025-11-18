@@ -38,25 +38,18 @@ module.exports = {
             
             const [result] = await db.query(sql, values);
 
-        
-               
-                
-            
-
-            // ALTERNATIVA SEM MEXER COM TODOS OS CAMPOS
-            const dados = rows.map(ingrediente => ({
-                ...ingrediente,
-                ing_img: gerarUrl(ingrediente.ing_img, 'ingredientes', 'sem.jpg'),
+            const dados = {
                 id: result.insertId,
                 com_texto,
                 com_moderacao
-            }));
+                
+            };
+            
            
             return response.status(200).json({
                 sucesso: true, 
                 mensagem: 'Cadastro de comentarios', 
-                dados: dados,
-                nItens
+                dados: dados
             });
         } catch (error) {
             return response.status(500).json({

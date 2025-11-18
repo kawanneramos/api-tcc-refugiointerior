@@ -12,9 +12,10 @@ module.exports = {
             const [ rows] = await db.query(sql);
             
              // ALTERNATIVA SEM MEXER COM TODOS OS CAMPOS
-            const dados = rows.map(ingrediente => ({
-                ...ingrediente,
-                ing_img: gerarUrl(ingrediente.ing_img, 'ingredientes', 'sem.jpg')
+            const dados = rows.map(publicacoes => ({
+                ...publicacoes,
+                ing_img: gerarUrl(publicacoes.ing_img, 'publicacoes', 'pub1img.jpg','pub2img.jpg','pub3img.png','pub4img.png'
+                ,'pub5img.webp','pub6img.webp','pub7img.jpg','pub8img.png','pub9img.webp','pub10img.webp')
             }));
 
 

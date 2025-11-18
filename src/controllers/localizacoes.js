@@ -11,11 +11,7 @@ module.exports = {
             `;
             const[rows] = await db.query(sql);
 
-             // ALTERNATIVA SEM MEXER COM TODOS OS CAMPOS
-            const dados = rows.map(ingrediente => ({
-                ...ingrediente,
-                ing_img: gerarUrl(ingrediente.ing_img, 'ingredientes', 'sem.jpg')
-            }));
+            
 
             return response.status(200).json({
                 sucesso: true, 
