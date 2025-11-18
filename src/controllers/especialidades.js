@@ -1,20 +1,19 @@
 const db = require('../dataBase/connection'); 
 
 module.exports = {
-    async listarPerfil_psicologo(request, response) {
+    async listarEspecialidades(request, response) {
 
         try {
 
             const sql = `
-            SELECT psi_id, prf_especialidades, prf_biografia, prf_preco_consulta,
-             prf_crp 
-             FROM perfil_psicologo;
+            SELECT esp_id, usu_id, esp_nome
+             FROM especialidades; 
             `;
 
             const [rows] = await db.query(sql);
             return response.status(200).json({
                 sucesso: true, 
-                mensagem: 'Lista de perfil_psicologo', 
+                mensagem: 'Lista de Especialidades', 
                 itens: rows.length,
                 dados: rows
             });
@@ -26,33 +25,27 @@ module.exports = {
             });
         }
     }, 
-    async cadastrarPerfil_psicologo(request, response) {
+    async cadastrarEspecialidades(request, response) {
         try {
 
-            const { especialidades, biografia, preco_consulta, crp } = request.body;
+            const {usu_id, esp_nome} = request.body;
       
             const sql = `
-                INSERT INTO perfil_psicologo 
-            (prf_especialidades, prf_biografia, prf_preco_consulta, prf_crp) 
-             VALUES
-                (?, ?, ?, ?);
+                INSERT INTO especialidades (usu_id, esp_nome) VALUES
+                (?, ?);
              `;
 
-             const values = [especialidades, biografia, preco_consulta, crp];
+             const values = [usu_id, esp_nome];
 
              const [result] = await db.query(sql, values);
 
              const dados = {
-                psi_id: result.insertId,
-                especialidades,
-                biografia,
-                preco_consulta,
-                crp
+                esp_nome
              };
 
             return response.status(200).json({
                 sucesso: true, 
-                mensagem: 'Cadastro de perfil_psicologo', 
+                mensagem: 'Cadastro de Especialidades', 
                 dados: dados
             });
         } catch (error) {
@@ -63,42 +56,38 @@ module.exports = {
             });
         }
     }, 
-    async editarPerfil_psicologo(request, response) {
+    async editarEspecialidades(request, response) {
         try {
 
-            const { especialidades, biografia, preco_consulta, crp } = request.body;
+            const {usu_id, esp_nome} = request.body;
 
-            const { psi_id } = request.params;
+            const {esp_id} = request.params;
 
             const sql = `
-            UPDATE perfil_psicologo SET
-             prf_especialidades = ?, prf_biografia = ?, prf_preco_consulta = ?, prf_crp = ?
-            WHERE psi_id = ?;
+            UPDATE especialidades SET
+             usu_id = ?, esp_nome = ?
+            WHERE esp_id = ?;
              `;
 
-             const values = [ especialidades, biografia, preco_consulta, crp, psi_id ];
+             const values = [usu_id, esp_nome];
 
              const [result] = await db.query(sql, values);
 
              if (result.affectedRows === 0) {
                 return response.status(404).json({
                     sucesso: false,
-                    mensagem: `Perfil_psicologo ${psi_id} não encontrado!`,
+                    mensagem: `Especialidades ${esp_id} não encontrado!`,
                     dados: null
                 });
              }
 
              const dados = {
-                psi_id,
-                especialidades,
-                biografia,
-                preco_consulta,
-                crp
+                esp_nome
              };
 
             return response.status(200).json({
                 sucesso: true, 
-                mensagem: `Perfil_psicologo ${psi_id} atualizado com sucesso!`, 
+                mensagem: `Especialidades ${esp_id} atualizado com sucesso!`, 
                 dados
             });
 
@@ -110,28 +99,28 @@ module.exports = {
             });
         }
     }, 
-    async apagarPerfil_psicologo(request, response) {
+    async apagarEspecialidades(request, response) {
         try {
 
-            const { psi_id } = request.params;
+            const {esp_id} = request.params;
 
-            const sql = `DELETE FROM perfil_psicologo WHERE psi_id = ?`;
+            const sql = `DELETE FROM especialidades WHERE esp_id = ?`;
 
-            const values = [psi_id];
+            const values = [esp_id];
 
             const [result] = await db.query(sql, values);
 
             if (result.affectedRows === 0) {
                 return response.status(404).json({
                     sucesso: false,
-                    mensagem: `Perfil_psicologo ${psi_id} não encontrado!`,
+                    mensagem: `Especialidades ${esp_id} não encontrado!`,
                     dados: null
                 });
              }
 
              return response.status(500).json({
                 sucesso: true, 
-                mensagem: `Perfil_psicologo ${psi_id} excluído com sucesso!`,
+                mensagem: `Especialidades ${esp_id} excluído com sucesso!`,
                 dados: null
             });
 

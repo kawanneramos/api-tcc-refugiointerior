@@ -4,9 +4,8 @@ module.exports = {
     async listarLocalizacoes(request, response) {
         try {
             const sql = `
-            SELECT
-               lcz_id, psi_id, lcz_nome_clinica, lcz_cep, lcz_bairro, lcz_complemento, 
-               lcz_cidade, lcz_estado FROM localizacoes;
+            SELECT lcz_id, usu_id, lcz_nome_clinica, lcz_cep, lcz_logradouro, lcz_complemento, lcz_bairro, lcz_localidade, lcz_uf 
+            FROM localizacoes;
             `;
             const[rows] = await db.query(sql);
             return response.status(200).json({
@@ -25,27 +24,27 @@ module.exports = {
     }, 
     async cadastrarLocalizacoes(request, response) {
         try {
-            const{psi_id, lcz_nome_clinica, lcz_cep, lcz_bairro, lcz_complemento, lcz_cidade, lcz_estado}= request.body;
+            const{usu_id, lcz_nome_clinica, lcz_cep, lcz_logradouro, lcz_complemento, lcz_bairro, lcz_localidade, lcz_uf}= request.body;
 
             const sql= `
-                INSERT INTO localizacoes 
-                     (psi_id, lcz_nome_clinica, lcz_cep, lcz_bairro, lcz_complemento, lcz_cidade, lcz_estado) 
+               INSERT INTO localizacoes 
+                (usu_id, lcz_nome_clinica, lcz_cep, lcz_logradouro, lcz_complemento, lcz_bairro, lcz_localidade, lcz_uf)  
                 VALUES
-                     (?, ?, ?, ?, ?, ?, ?);
+                     (?, ?, ?, ?, ?, ?, ?, ?);
             `
-            const values= [psi_id, lcz_nome_clinica, lcz_cep, lcz_bairro, lcz_complemento, lcz_cidade, lcz_estado];
+            
+            const values= [usu_id, lcz_nome_clinica, lcz_cep, lcz_logradouro, lcz_complemento, lcz_bairro, lcz_localidade, lcz_uf];
 
             const [result]= await db.query(sql, values);
 
             const dados= {
                 lcz_id: result.insertId,
                 lcz_nome_clinica,
-                lcz_complemento,
-                lcz_cep, 
+                lcz_cep,
+                lcz_logradouro,
+                lcz_complemento, 
                 lcz_bairro,
-                lcz_cidade, 
-                lcz_estado
-                 
+                lcz_localidade
             };
 
             return response.status(200).json({
@@ -63,24 +62,24 @@ module.exports = {
     }, 
     async editarLocalizacoes(request, response) {
         try {
-            const{psi_id, lcz_nome_clinica, lcz_cep, lcz_bairro, lcz_complemento, lcz_cidade, lcz_estado}= request.body;
+            const{usu_id, lcz_nome_clinica, lcz_cep, lcz_logradouro, lcz_complemento, lcz_bairro, lcz_localidade, lcz_uf}= request.body;
             const {lcz_id} = request.params;
 
             const sql= `
                 UPDATE localizacoes SET 
-                   psi_id = ?, lcz_nome_clinica = ?, lcz_cep = ?, lcz_bairro = ?, lcz_complemento = ?, lcz_cidade = ?, lcz_estado = ? 
+                   usu_id = ?, lcz_nome_clinica = ?, lcz_cep = ?, lcz_logradouro = ?, lcz_complemento = ?, lcz_bairro = ?, lcz_localidade = ?,  lcz_uf = ?
                    WHERE 
                      lcz_id = ?;
             `;
 
-            const values= [psi_id, lcz_nome_clinica, lcz_cep, lcz_bairro, lcz_complemento, lcz_cidade, lcz_estado, lcz_id ];
+            const values= [usu_id, lcz_nome_clinica, lcz_cep, lcz_logradouro, lcz_complemento, lcz_bairro, lcz_localidade, lcz_uf];
 
             const [result]= await db.query(sql, values);
 
             if(result.affectedRows === 0) {
                 return response.status(404) .json({
                     sucesso: false,
-                    mensagem:`Rede de apoio ${lcz_id} não encontrado!`,
+                    mensagem:`Localização ${lcz_id} não encontrada!`,
                     dados:null
                 });
             }
@@ -88,17 +87,16 @@ module.exports = {
             const dados = {
                 lcz_id: result.insertId,
                 lcz_nome_clinica,
-                lcz_complemento,
-                lcz_cep, 
+                lcz_cep,
+                lcz_logradouro,
+                lcz_complemento, 
                 lcz_bairro,
-                lcz_cidade, 
-                lcz_estado
-                 
+                lcz_localidade  
             };
 
             return response.status(200).json({
                 sucesso: true, 
-                mensagem: `localização ${lcz_id} atualizado com sucesso!`, 
+                mensagem: `Localização ${lcz_id} atualizado com sucesso!`, 
                 dados
             });
         } catch (error) {

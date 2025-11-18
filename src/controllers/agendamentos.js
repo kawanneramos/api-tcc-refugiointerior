@@ -31,7 +31,7 @@ module.exports = {
     async cadastrarAgendamento(request, response) {
         try {
 
-            const {usu_id, data_consulta,inicio_consulta,fim_consulta, 
+            const {usu_id, agd_paciente, data_consulta,inicio_consulta,fim_consulta, 
                    anotacoes_consulta}  = request.body;
              const sql = `
                       INSERT INTO agendamentos 
@@ -40,13 +40,12 @@ module.exports = {
               (?, ?, ?, ?, ?, ?)
              `;
 
-             const values = [usu_id, data_consulta,inicio_consulta,fim_consulta, anotacoes_consulta];
+             const values = [usu_id, agd_paciente, data_consulta,inicio_consulta,fim_consulta, anotacoes_consulta];
 
              const [result] = await db.query(sql, values);
 
              const dados = {
                 agd_id: result.insertId,
-                usu_id, 
                 data_consulta,
                 inicio_consulta,
                 fim_consulta, 
@@ -98,8 +97,7 @@ module.exports = {
        }
 
        const dados = {
-          agd_id ,
-          usu_id, 
+          agd_id , 
           data_consulta,
           inicio_consulta,
           fim_consulta, 

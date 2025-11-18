@@ -5,11 +5,8 @@ module.exports = {
         try {
 
             const sql = `
-                SELECT
-                usu_id, usu_nome, usu_email,
-                usu_telefone, usu_senha, usu_data_nascimento,
-                usu_cpf, usu_tipo 
-                FROM usuarios;
+               SELECT usu_id, usu_nome, usu_email, usu_telefone, usu_senha, usu_cpf, usu_adm, usu_status, usu_imagem, usu_crp 
+               FROM usuarios;
             `;
 
             const [rows] = await db.query(sql);
@@ -31,24 +28,28 @@ module.exports = {
     async cadastrarUsuarios(request, response) {
         try {
 
-            const { nome, email, telefone, senha, data_nascimento, cpf, tipo } = request.body;
+            const {usu_nome, usu_email, usu_telefone, usu_senha, usu_cpf, usu_adm, usu_status, usu_imagem, usu_crp} = request.body;
       
             const sql = `
-            INSERT INTO usuarios
-             (usu_nome, usu_email, usu_telefone, usu_senha, usu_data_nascimento, usu_cpf, usu_tipo) 
+            INSERT INTO usuarios 
+            (usu_nome, usu_email, usu_telefone, usu_senha, usu_cpf, usu_adm, usu_status, usu_imagem, usu_crp)
              VALUES
-                (?, ?, ?, ?, ?, ?, ?);
+                (?, ?, ?, ?, ?, ?, ?, ?, ? );
              `;
 
-             const values = [nome, email, telefone, senha, data_nascimento, cpf, tipo];
+             const values = [usu_nome, usu_email, usu_telefone, usu_senha, usu_cpf, usu_adm, usu_status, usu_imagem, usu_crp];
 
              const [result] = await db.query(sql, values);
 
              const dados = {
                 usu_id: result.insertId,
-                nome,
-                email,
-                tipo
+                usu_nome,
+                usu_email,
+                usu_telefone,
+                usu_senha,
+                usu_status,
+                usu_cpf,
+                usu_crp
              };
 
             return response.status(200).json({
@@ -67,7 +68,7 @@ module.exports = {
     async editarUsuarios(request, response) {
         try {
 
-            const { nome, email, telefone, senha, data_nascimento, cpf, tipo } = request.body;
+            const {usu_nome, usu_email, usu_telefone, usu_senha, usu_cpf, usu_adm, usu_status, usu_imagem, usu_crp} = request.body;
 
             const { usu_id } = request.params;
 
@@ -78,7 +79,7 @@ module.exports = {
                 usu_id = ?;
              `;
 
-             const values = [ nome, email, telefone, senha, data_nascimento, cpf, tipo, usu_id ];
+             const values = [usu_nome, usu_email, usu_telefone, usu_senha, usu_cpf, usu_adm, usu_status, usu_imagem, usu_crp];
 
              const [result] = await db.query(sql, values);
 
@@ -92,9 +93,13 @@ module.exports = {
 
              const dados = {
                 usu_id,
-                nome,
-                email,
-                tipo
+                usu_nome,
+                usu_email,
+                usu_telefone,
+                usu_senha,
+                usu_status,
+                usu_cpf,
+                usu_crp
              };
 
             return response.status(200).json({

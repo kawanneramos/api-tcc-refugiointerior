@@ -4,10 +4,10 @@ module.exports = {
     async listarRedes_apoio(request, response) {
         try {
             const sql = `
-            SELECT
-             redeapoio_id, redeapoio_nome, redeapoio_descricao, redeapoio_contato, 
-             redeapoio_logo FROM redes_apoio;
+            SELECT redeapoio_id, redeapoio_nome, redeapoio_descricao, redeapoio_contato, redeapoio_logo, redeapoio_link
+             FROM  redes_apoio;
             `;
+            
             const [rows] =await db.query(sql);
             return response.status(200).json({
                 sucesso: true, 
@@ -29,9 +29,9 @@ module.exports = {
 
             const sql= `
                 INSERT INTO redes_apoio 
-                    (redeapoio_nome, redeapoio_descricao, redeapoio_contato, redeapoio_logo)
-                 VALUES
-                     (?, ?, ?, ?);
+              (redeapoio_nome, redeapoio_descricao, redeapoio_contato, redeapoio_logo, redeapoio_link) 
+              VALUES
+                     (?, ?, ?, ?, ?);
             `
             const values= [nome, descricao, contato, logo];
 
@@ -65,7 +65,7 @@ module.exports = {
 
             const sql= `
                 UPDATE redes_apoio SET
-                    redeapoio_nome = ?, redeapoio_descricao = ?, redeapoio_contato = ?, redeapoio_logo= ? 
+                    redeapoio_nome = ?, redeapoio_descricao = ?, redeapoio_contato = ?, redeapoio_logo= ? redeapoio_link= ?
                  WHERE 
                      redeapoio_id = ?;
             `
