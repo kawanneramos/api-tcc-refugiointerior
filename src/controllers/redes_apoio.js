@@ -1,4 +1,5 @@
 const db = require('../database/connection'); 
+const { gerarUrl } = require('../utils/gerarUrl');
 
 module.exports = {
     async listarRedes_apoio(request, response) {
@@ -9,6 +10,13 @@ module.exports = {
              redeapoio_logo FROM redes_apoio;
             `;
             const [rows] =await db.query(sql);
+
+             // ALTERNATIVA SEM MEXER COM TODOS OS CAMPOS
+            const dados = rows.map(ingrediente => ({
+                ...ingrediente,
+                ing_img: gerarUrl(ingrediente.ing_img, 'ingredientes', 'sem.jpg')
+            }));
+
             return response.status(200).json({
                 sucesso: true, 
                 mensagem: 'Lista de redes_apoio', 

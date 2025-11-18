@@ -1,4 +1,5 @@
-const db = require('../dataBase/connection'); 
+const db = require('../database/connection'); 
+const { gerarUrl } = require('../utils/gerarUrl');
 
 module.exports = {
     async listarComentarios(request, response) {
@@ -37,17 +38,25 @@ module.exports = {
             
             const [result] = await db.query(sql, values);
 
-            const dados = {
+        
+               
+                
+            
+
+            // ALTERNATIVA SEM MEXER COM TODOS OS CAMPOS
+            const dados = rows.map(ingrediente => ({
+                ...ingrediente,
+                ing_img: gerarUrl(ingrediente.ing_img, 'ingredientes', 'sem.jpg'),
                 id: result.insertId,
                 com_texto,
                 com_moderacao
-                
-            };
+            }));
            
             return response.status(200).json({
                 sucesso: true, 
                 mensagem: 'Cadastro de comentarios', 
-                dados: dados
+                dados: dados,
+                nItens
             });
         } catch (error) {
             return response.status(500).json({

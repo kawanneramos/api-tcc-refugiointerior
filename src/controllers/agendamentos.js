@@ -1,4 +1,5 @@
 const db = require('../database/connection');
+const { gerarUrl } = require('../utils/gerarUrl');
 module.exports = {
     async listarAgendamento(request, response) {
         try {
@@ -9,12 +10,21 @@ module.exports = {
            `;
            const [ rows] = await db.query(sql);
 
+           // ALTERNATIVA SEM MEXER COM TODOS OS CAMPOS
+            const dados = rows.map(ingrediente => ({
+                ...ingrediente,
+                ing_img: gerarUrl(ingrediente.ing_img, 'ingredientes', 'sem.jpg')
+            }));
+
             return response.status(200).json({
                 sucesso: true, 
                 mensagem: 'Lista de Agendamento', 
-                itens: rows.length,
-                dados: rows
+                nItens,
+                dados
             });
+
+
+            
         } catch (error) {
             return response.status(500).json({
                 sucesso: false, 
