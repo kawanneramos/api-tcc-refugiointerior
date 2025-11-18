@@ -1,4 +1,5 @@
-const db = require('../dataBase/connection'); 
+const db = require('../database/connection'); 
+const { gerarUrl } = require('../utils/gerarUrl');
 
 module.exports = {
     async listarUsuarios(request, response) {
@@ -10,6 +11,14 @@ module.exports = {
             `;
 
             const [rows] = await db.query(sql);
+
+             // ALTERNATIVA SEM MEXER COM TODOS OS CAMPOS
+            const dados = rows.map(usuario => ({
+                ...usuario,
+                ing_img: gerarUrl(usuario.ing_img, 'usuario', 'amanda.png','ana.png','beatriz.png','bruno.png'
+                ,'camila.png','fernanda.png','joao.png','leticia.png','logo.png','lucas.png','thiago.png')
+            }));
+
 
             return response.status(200).json({
                 sucesso: true, 

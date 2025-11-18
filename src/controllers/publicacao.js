@@ -1,4 +1,5 @@
 const db = require('../database/connection');
+const { gerarUrl } = require('../utils/gerarUrl');
 module.exports = {
     async listarPublicacao(request, response) {
         try {
@@ -9,6 +10,14 @@ module.exports = {
                   pub_data_postagem, pub_imagem, pub_status FROM publicacoes;
              `;
             const [ rows] = await db.query(sql);
+            
+             // ALTERNATIVA SEM MEXER COM TODOS OS CAMPOS
+            const dados = rows.map(publicacoes => ({
+                ...publicacoes,
+                ing_img: gerarUrl(publicacoes.ing_img, 'publicacoes', 'pub1img.jpg','pub2img.jpg','pub3img.png','pub4img.png'
+                ,'pub5img.webp','pub6img.webp','pub7img.jpg','pub8img.png','pub9img.webp','pub10img.webp')
+            }));
+
 
             return response.status(200).json({
                 sucesso: true, 

@@ -1,4 +1,5 @@
 const db = require('../database/connection'); 
+const { gerarUrl } = require('../utils/gerarUrl');
 
 module.exports = {
     async listarLocalizacoes(request, response) {
@@ -8,6 +9,9 @@ module.exports = {
             FROM localizacoes;
             `;
             const[rows] = await db.query(sql);
+
+            
+
             return response.status(200).json({
                 sucesso: true, 
                 mensagem: 'Lista de localizações', 

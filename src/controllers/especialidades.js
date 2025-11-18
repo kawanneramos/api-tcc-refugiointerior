@@ -1,4 +1,5 @@
-const db = require('../dataBase/connection'); 
+const db = require('../database/connection'); 
+const { gerarUrl } = require('../utils/gerarUrl');
 
 module.exports = {
     async listarEspecialidades(request, response) {
@@ -11,6 +12,9 @@ module.exports = {
             `;
 
             const [rows] = await db.query(sql);
+
+            
+
             return response.status(200).json({
                 sucesso: true, 
                 mensagem: 'Lista de Especialidades', 

@@ -2,22 +2,18 @@ const db = require('../database/connection');
 const { gerarUrl } = require('../utils/gerarUrl');
 
 module.exports = {
-    async listarDisponibilidades(request, response) {
+    async listarComentarios(request, response) {
         try {
-            const sql = 
-             `
-            SELECT dsp_id, lcz_id, dsp_dia_semana, dsp_horario, dsp_status
-             FROM disponibilidades;
+            const sql = `
+             
+            SELECT com_id, pub_id, usu_id,
+             com_texto, com_moderacao FROM comentarios;
             `;
             const [rows] = await db.query(sql);
-
-            
-
-            
             return response.status(200).json({
                 sucesso: true, 
-                mensagem: 'Lista de Disponibilidades', 
-                nItens: rows.length,
+                mensagem: 'Lista de comentarios', 
+                itens: rows.length,
                 dados: rows
             });
         } catch (error) {
@@ -28,32 +24,31 @@ module.exports = {
             });
         }
     }, 
-    async cadastrarDisponibilidades(request, response) {
+    async cadastrarComentarios(request, response) {
         try {
 
-             const {lcz_id, dsp_dia_semana, dsp_horario, dsp_status} = request.body;
+            const {pub_id, usu_id, com_texto, com_moderacao} = request.body;
              
              const sql = `
-             INSERT INTO disponibilidades 
-             (lcz_id, dsp_dia_semana, dsp_horario, dsp_status)
-              VALUES
+                INSERT INTO comentarios (pub_id, usu_id, com_texto, com_moderacao) VALUES 
                 (?,?,?,?);
             `;
-            const values = [lcz_id, dsp_dia_semana, dsp_horario, dsp_status];
+
+            const values = [pub_id, usu_id, com_texto, com_moderacao];
             
             const [result] = await db.query(sql, values);
 
             const dados = {
                 id: result.insertId,
-                dsp_dia_semana,
-                dsp_horario,
-                dsp_status
+                com_texto,
+                com_moderacao
+                
             };
-
-
+            
+           
             return response.status(200).json({
                 sucesso: true, 
-                mensagem: 'Cadastro de disponibilidades', 
+                mensagem: 'Cadastro de comentarios', 
                 dados: dados
             });
         } catch (error) {
@@ -64,27 +59,27 @@ module.exports = {
             });
         }
     }, 
-    async editarDisponibilidades(request, response) {
+    async editarComentarios(request, response) {
         try {
-            const {lcz_id, dsp_dia_semana, dsp_horario, dsp_status} = request.body;
+            const {pub_id, usu_id, com_texto, com_moderacao} = request.body;
 
             const {id} = request.params;
 
             const sql = `
-            UPDATE disponibilidades SET
-            lcz_id = ?, dsp_dia_semana = ?,
-             dsp_horario = ?,  dsp_status = ?
+            UPDATE Comentarios SET
+            pub_id = ?, usu_id = ?,
+             com_texto = ?, com_moderacao = ?
             WHERE
-            dsp_id = ?;
+            com_id = ?;
             `;
 
-            const values = [ lcz_id, dsp_dia_semana, dsp_horario, dsp_status, id ];
+            const values = [ pub_id, usu_id,com_texto, com_moderacao, id ];
             const [result] = await db.query(sql, values);
 
             if (result.affectedRows === 0) {
                return response.status(404).json({
                 sucesso: false,
-                mensagem: `diponibilidade ${id}não encontrada!`,
+                mensagem: `Comentario ${id}não encontrado!`,
                 dados: null
 
                });
@@ -92,13 +87,12 @@ module.exports = {
             }
             const dados = {
                id,
-               dsp_dia_semana,
-               dsp_horario,
-               dsp_status
+               com_texto,
+               com_moderacao
             };
             return response.status(200).json({
                 sucesso: true, 
-                mensagem: 'Alteração no cadastro de Disponibilidade', 
+                mensagem: 'Alteração no cadastro de comentario ${id}', 
                 dados
             });
         } catch (error) {
@@ -109,24 +103,23 @@ module.exports = {
             });
         }
     }, 
-    async apagarDisponibilidades(request, response) {
+    async apagarComentarios(request, response) {
         try {
             const { id } = request.params;
-            const sql = `DELETE FROM Disponibilidades WHERE dsp_id = ?`;
+            const sql = `DELETE FROM Comentarios WHERE com_id = ?`;
             const values = [id];
             const[result] = await db.query(sql, values);
 
             if (result.affectedRows === 0){
                 return response.status(404).json({
                     sucesso: false,
-                    mensagem: `Disponibilidade ${id} não encontrada!`,
+                    mensagem: `Comentario ${id} não encontrado!`,
                     dados: null
                 });
             }
-            
             return response.status(200).json({
                 sucesso: true, 
-                mensagem: `Disponibilidade ${id} Excluida com sucesso `, 
+                mensagem:`Comentario ${id} Excluido com sucesso `, 
                 dados: null
             });
         } catch (error) {
