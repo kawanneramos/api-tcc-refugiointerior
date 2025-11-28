@@ -55,12 +55,30 @@ module.exports = {
                 usu_crp
             } = request.body;
 
-            // Validação no código (já que o banco permite NULL)
+            // Validação dos campos obrigatórios
             if (!usu_nome || !usu_email || !usu_senha || !usu_cpf || !usu_crp || !usu_imagem) {
                 return response.status(400).json({
                     sucesso: false,
                     mensagem: 'Campos obrigatórios faltando!',
                     dados: 'usu_nome, usu_email, usu_senha, usu_cpf, usu_crp e usu_imagem são obrigatórios'
+                });
+            }
+
+            // Verificar tamanho do CRP (máximo 7 caracteres)
+            if (usu_crp.length > 7) {
+                return response.status(400).json({
+                    sucesso: false,
+                    mensagem: 'CRP deve ter no máximo 7 caracteres!',
+                    dados: null
+                });
+            }
+
+            // Verificar tamanho do CPF (máximo 11 caracteres)
+            if (usu_cpf.length > 11) {
+                return response.status(400).json({
+                    sucesso: false,
+                    mensagem: 'CPF deve ter no máximo 11 caracteres!',
+                    dados: null
                 });
             }
 
@@ -160,7 +178,7 @@ module.exports = {
                 usu_crp
             } = request.body;
 
-            const { usu_id } = request.params; // CORREÇÃO: usando usu_id
+            const { usu_id } = request.params;
 
             if (!usu_id) {
                 return response.status(400).json({
@@ -170,12 +188,30 @@ module.exports = {
                 });
             }
 
-            // Validação no código
+            // Validação dos campos obrigatórios
             if (!usu_nome || !usu_email || !usu_senha || !usu_cpf || !usu_crp || !usu_imagem) {
                 return response.status(400).json({
                     sucesso: false,
                     mensagem: 'Campos obrigatórios faltando!',
                     dados: 'usu_nome, usu_email, usu_senha, usu_cpf, usu_crp e usu_imagem são obrigatórios'
+                });
+            }
+
+            // Verificar tamanho do CRP (máximo 7 caracteres)
+            if (usu_crp.length > 7) {
+                return response.status(400).json({
+                    sucesso: false,
+                    mensagem: 'CRP deve ter no máximo 7 caracteres!',
+                    dados: null
+                });
+            }
+
+            // Verificar tamanho do CPF (máximo 11 caracteres)
+            if (usu_cpf.length > 11) {
+                return response.status(400).json({
+                    sucesso: false,
+                    mensagem: 'CPF deve ter no máximo 11 caracteres!',
+                    dados: null
                 });
             }
 
@@ -251,13 +287,13 @@ module.exports = {
                 usu_status || 'ativo', 
                 usu_imagem,
                 usu_crp,
-                usu_id // CORREÇÃO: usando usu_id
+                usu_id
             ];
 
             const [result] = await db.query(sql, values);
 
             const dados = {
-                usu_id: parseInt(usu_id), // CORREÇÃO: usando usu_id
+                usu_id: parseInt(usu_id),
                 usu_nome,
                 usu_email,
                 usu_telefone,
@@ -270,7 +306,7 @@ module.exports = {
 
             return response.status(200).json({
                 sucesso: true, 
-                mensagem: `Usuário ${usu_id} atualizado com sucesso!`, // CORREÇÃO: usando usu_id
+                mensagem: `Usuário ${usu_id} atualizado com sucesso!`, 
                 dados
             });
 
@@ -285,7 +321,7 @@ module.exports = {
 
     async apagarUsuarios(request, response) {
         try {
-            const { usu_id } = request.params; // CORREÇÃO: usando usu_id
+            const { usu_id } = request.params;
 
             if (!usu_id) {
                 return response.status(400).json({
@@ -296,21 +332,21 @@ module.exports = {
             }
 
             const sql = `DELETE FROM usuarios WHERE usu_id = ?`;
-            const values = [usu_id]; // CORREÇÃO: usando usu_id
+            const values = [usu_id];
 
             const [result] = await db.query(sql, values);
 
             if (result.affectedRows === 0) {
                 return response.status(404).json({
                     sucesso: false,
-                    mensagem: `Usuário ${usu_id} não encontrado!`, // CORREÇÃO: usando usu_id
+                    mensagem: `Usuário ${usu_id} não encontrado!`,
                     dados: null
                 });
             }
 
             return response.status(200).json({
                 sucesso: true, 
-                mensagem: `Usuário ${usu_id} excluído com sucesso!`, // CORREÇÃO: usando usu_id
+                mensagem: `Usuário ${usu_id} excluído com sucesso!`, 
                 dados: null
             });
         } catch (error) {
