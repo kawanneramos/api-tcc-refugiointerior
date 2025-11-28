@@ -4,27 +4,33 @@ const { gerarUrl } = require('../utils/gerarUrl');
 module.exports = {
     async listarUsuarios(request, response) {
         try {
-
             const sql = `
-               SELECT usu_id, usu_nome, usu_email, usu_telefone, usu_senha, usu_cpf, usu_adm, usu_status, usu_imagem, usu_crp 
-               FROM usuarios;
+                SELECT 
+                    usu_id, 
+                    usu_nome, 
+                    usu_email, 
+                    usu_telefone, 
+                    usu_senha, 
+                    usu_cpf, 
+                    usu_adm, 
+                    usu_status, 
+                    usu_imagem, 
+                    usu_crp 
+                FROM usuarios;
             `;
 
             const [rows] = await db.query(sql);
 
-             // ALTERNATIVA SEM MEXER COM TODOS OS CAMPOS
             const dados = rows.map(usuario => ({
                 ...usuario,
-                ing_img: gerarUrl(usuario.ing_img, 'usuario', 'amanda.png','ana.png','beatriz.png','bruno.png'
-                ,'camila.png','fernanda.png','joao.png','leticia.png','logo.png','lucas.png','thiago.png')
+                usu_imagem: gerarUrl(usuario.usu_imagem, 'usuarios', 'default_user.png')
             }));
-
 
             return response.status(200).json({
                 sucesso: true, 
                 mensagem: 'Lista de usuários', 
-                itens: rows.length,
-                dados: rows
+                itens: dados.length,
+                dados: dados
             });
         } catch (error) {
             return response.status(500).json({
@@ -34,36 +40,101 @@ module.exports = {
             });
         }
     }, 
+
     async cadastrarUsuarios(request, response) {
         try {
+            const {
+                usu_nome, 
+                usu_email, 
+                usu_telefone, 
+                usu_senha, 
+                usu_cpf, 
+                usu_adm, 
+                usu_status, 
+                usu_imagem, 
+                usu_crp
+            } = request.body;
 
-            const {usu_nome, usu_email, usu_telefone, usu_senha, usu_cpf, usu_adm, usu_status, usu_imagem, usu_crp} = request.body;
-      
+            // Validação no código (já que o banco permite NULL)
+            if (!usu_nome || !usu_email || !usu_senha || !usu_cpf || !usu_crp || !usu_imagem) {
+                return response.status(400).json({
+                    sucesso: false,
+                    mensagem: 'Campos obrigatórios faltando!',
+                    dados: 'usu_nome, usu_email, usu_senha, usu_cpf, usu_crp e usu_imagem são obrigatórios'
+                });
+            }
+
+            // Verificar se CRP já existe
+            const checkCrpSql = `SELECT usu_id FROM usuarios WHERE usu_crp = ?`;
+            const [existingCrp] = await db.query(checkCrpSql, [usu_crp]);
+            
+            if (existingCrp.length > 0) {
+                return response.status(400).json({
+                    sucesso: false,
+                    mensagem: 'CRP já cadastrado!',
+                    dados: null
+                });
+            }
+
+            // Verificar se CPF já existe
+            const checkCpfSql = `SELECT usu_id FROM usuarios WHERE usu_cpf = ?`;
+            const [existingCpf] = await db.query(checkCpfSql, [usu_cpf]);
+            
+            if (existingCpf.length > 0) {
+                return response.status(400).json({
+                    sucesso: false,
+                    mensagem: 'CPF já cadastrado!',
+                    dados: null
+                });
+            }
+
+            // Verificar se email já existe
+            const checkEmailSql = `SELECT usu_id FROM usuarios WHERE usu_email = ?`;
+            const [existingEmail] = await db.query(checkEmailSql, [usu_email]);
+            
+            if (existingEmail.length > 0) {
+                return response.status(400).json({
+                    sucesso: false,
+                    mensagem: 'E-mail já cadastrado!',
+                    dados: null
+                });
+            }
+
             const sql = `
-            INSERT INTO usuarios 
-            (usu_nome, usu_email, usu_telefone, usu_senha, usu_cpf, usu_adm, usu_status, usu_imagem, usu_crp)
-             VALUES
-                (?, ?, ?, ?, ?, ?, ?, ?, ? );
-             `;
+                INSERT INTO usuarios 
+                (usu_nome, usu_email, usu_telefone, usu_senha, usu_cpf, usu_adm, usu_status, usu_imagem, usu_crp)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
+            `;
 
-             const values = [usu_nome, usu_email, usu_telefone, usu_senha, usu_cpf, usu_adm, usu_status, usu_imagem, usu_crp];
+            const values = [
+                usu_nome, 
+                usu_email, 
+                usu_telefone, 
+                usu_senha, 
+                usu_cpf, 
+                usu_adm || 0, 
+                usu_status || 'ativo', 
+                usu_imagem,
+                usu_crp
+            ];
 
-             const [result] = await db.query(sql, values);
+            const [result] = await db.query(sql, values);
 
-             const dados = {
+            const dados = {
                 usu_id: result.insertId,
                 usu_nome,
                 usu_email,
                 usu_telefone,
-                usu_senha,
-                usu_status,
                 usu_cpf,
+                usu_adm: usu_adm || 0,
+                usu_status: usu_status || 'ativo',
+                usu_imagem,
                 usu_crp
-             };
+            };
 
             return response.status(200).json({
                 sucesso: true, 
-                mensagem: 'Cadastro de usuários', 
+                mensagem: 'Usuário cadastrado com sucesso!', 
                 dados: dados
             });
         } catch (error) {
@@ -74,46 +145,132 @@ module.exports = {
             });
         }
     },
+
     async editarUsuarios(request, response) {
         try {
+            const {
+                usu_nome, 
+                usu_email, 
+                usu_telefone, 
+                usu_senha, 
+                usu_cpf, 
+                usu_adm, 
+                usu_status, 
+                usu_imagem, 
+                usu_crp
+            } = request.body;
 
-            const {usu_nome, usu_email, usu_telefone, usu_senha, usu_cpf, usu_adm, usu_status, usu_imagem, usu_crp} = request.body;
+            const { usu_id } = request.params; // CORREÇÃO: usando usu_id
 
-            const { usu_id } = request.params;
+            if (!usu_id) {
+                return response.status(400).json({
+                    sucesso: false,
+                    mensagem: 'ID do usuário é obrigatório!',
+                    dados: null
+                });
+            }
 
-            const sql = `
-            UPDATE usuarios SET
-             usu_nome = ?, usu_email = ?, usu_telefone = ?, usu_senha = ?, usu_data_nascimento = ?, usu_cpf = ?, usu_tipo = ? 
-            WHERE
-                usu_id = ?;
-             `;
+            // Validação no código
+            if (!usu_nome || !usu_email || !usu_senha || !usu_cpf || !usu_crp || !usu_imagem) {
+                return response.status(400).json({
+                    sucesso: false,
+                    mensagem: 'Campos obrigatórios faltando!',
+                    dados: 'usu_nome, usu_email, usu_senha, usu_cpf, usu_crp e usu_imagem são obrigatórios'
+                });
+            }
 
-             const values = [usu_nome, usu_email, usu_telefone, usu_senha, usu_cpf, usu_adm, usu_status, usu_imagem, usu_crp];
-
-             const [result] = await db.query(sql, values);
-
-             if (result.affectedRows === 0) {
+            // Verificar se o usuário existe
+            const checkUserSql = `SELECT usu_id FROM usuarios WHERE usu_id = ?`;
+            const [existingUser] = await db.query(checkUserSql, [usu_id]);
+            
+            if (existingUser.length === 0) {
                 return response.status(404).json({
                     sucesso: false,
                     mensagem: `Usuário ${usu_id} não encontrado!`,
                     dados: null
                 });
-             }
+            }
 
-             const dados = {
-                usu_id,
+            // Verificar se CRP já existe em OUTRO usuário
+            const checkCrpSql = `SELECT usu_id FROM usuarios WHERE usu_crp = ? AND usu_id != ?`;
+            const [existingCrp] = await db.query(checkCrpSql, [usu_crp, usu_id]);
+            
+            if (existingCrp.length > 0) {
+                return response.status(400).json({
+                    sucesso: false,
+                    mensagem: 'CRP já está em uso por outro usuário!',
+                    dados: null
+                });
+            }
+
+            // Verificar se CPF já existe em OUTRO usuário
+            const checkCpfSql = `SELECT usu_id FROM usuarios WHERE usu_cpf = ? AND usu_id != ?`;
+            const [existingCpf] = await db.query(checkCpfSql, [usu_cpf, usu_id]);
+            
+            if (existingCpf.length > 0) {
+                return response.status(400).json({
+                    sucesso: false,
+                    mensagem: 'CPF já está em uso por outro usuário!',
+                    dados: null
+                });
+            }
+
+            // Verificar se email já existe em OUTRO usuário
+            const checkEmailSql = `SELECT usu_id FROM usuarios WHERE usu_email = ? AND usu_id != ?`;
+            const [existingEmail] = await db.query(checkEmailSql, [usu_email, usu_id]);
+            
+            if (existingEmail.length > 0) {
+                return response.status(400).json({
+                    sucesso: false,
+                    mensagem: 'E-mail já está em uso por outro usuário!',
+                    dados: null
+                });
+            }
+
+            const sql = `
+                UPDATE usuarios SET
+                    usu_nome = ?, 
+                    usu_email = ?, 
+                    usu_telefone = ?, 
+                    usu_senha = ?, 
+                    usu_cpf = ?, 
+                    usu_adm = ?, 
+                    usu_status = ?, 
+                    usu_imagem = ?, 
+                    usu_crp = ?
+                WHERE usu_id = ?;
+            `;
+
+            const values = [
+                usu_nome, 
+                usu_email, 
+                usu_telefone, 
+                usu_senha, 
+                usu_cpf, 
+                usu_adm || 0, 
+                usu_status || 'ativo', 
+                usu_imagem,
+                usu_crp,
+                usu_id // CORREÇÃO: usando usu_id
+            ];
+
+            const [result] = await db.query(sql, values);
+
+            const dados = {
+                usu_id: parseInt(usu_id), // CORREÇÃO: usando usu_id
                 usu_nome,
                 usu_email,
                 usu_telefone,
-                usu_senha,
-                usu_status,
                 usu_cpf,
+                usu_adm: usu_adm || 0,
+                usu_status: usu_status || 'ativo',
+                usu_imagem,
                 usu_crp
-             };
+            };
 
             return response.status(200).json({
                 sucesso: true, 
-                mensagem: `Usuário ${usu_id} atualizado com sucesso!`, 
+                mensagem: `Usuário ${usu_id} atualizado com sucesso!`, // CORREÇÃO: usando usu_id
                 dados
             });
 
@@ -125,28 +282,35 @@ module.exports = {
             });
         }
     }, 
+
     async apagarUsuarios(request, response) {
         try {
+            const { usu_id } = request.params; // CORREÇÃO: usando usu_id
 
-            const { usu_id } = request.params;
+            if (!usu_id) {
+                return response.status(400).json({
+                    sucesso: false,
+                    mensagem: 'ID do usuário é obrigatório!',
+                    dados: null
+                });
+            }
 
             const sql = `DELETE FROM usuarios WHERE usu_id = ?`;
-
-            const values = [usu_id];
+            const values = [usu_id]; // CORREÇÃO: usando usu_id
 
             const [result] = await db.query(sql, values);
 
             if (result.affectedRows === 0) {
                 return response.status(404).json({
                     sucesso: false,
-                    mensagem: `Usuário ${usu_id} não encontrado!`,
+                    mensagem: `Usuário ${usu_id} não encontrado!`, // CORREÇÃO: usando usu_id
                     dados: null
                 });
-             }
+            }
 
             return response.status(200).json({
                 sucesso: true, 
-                mensagem: `Usuário ${usu_id} excluído com sucesso!`, 
+                mensagem: `Usuário ${usu_id} excluído com sucesso!`, // CORREÇÃO: usando usu_id
                 dados: null
             });
         } catch (error) {
@@ -157,4 +321,4 @@ module.exports = {
             });
         }
     }, 
-};  
+};

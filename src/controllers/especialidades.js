@@ -1,19 +1,17 @@
 const db = require('../database/connection'); 
-const { gerarUrl } = require('../utils/gerarUrl');
 
 module.exports = {
     async listarEspecialidades(request, response) {
-
         try {
-
             const sql = `
-            SELECT esp_id, usu_id, esp_nome
-             FROM especialidades; 
+                SELECT 
+                    esp_id, 
+                    usu_id, 
+                    esp_nome
+                FROM especialidades; 
             `;
 
             const [rows] = await db.query(sql);
-
-            
 
             return response.status(200).json({
                 sucesso: true, 
@@ -29,27 +27,38 @@ module.exports = {
             });
         }
     }, 
+
     async cadastrarEspecialidades(request, response) {
         try {
+            const { usu_id, esp_nome } = request.body;
 
-            const {usu_id, esp_nome} = request.body;
-      
+            // Validação dos campos obrigatórios
+            if (!usu_id || !esp_nome) {
+                return response.status(400).json({
+                    sucesso: false,
+                    mensagem: 'Campos obrigatórios faltando!',
+                    dados: 'usu_id e esp_nome são obrigatórios'
+                });
+            }
+
             const sql = `
-                INSERT INTO especialidades (usu_id, esp_nome) VALUES
-                (?, ?);
-             `;
+                INSERT INTO especialidades (usu_id, esp_nome) 
+                VALUES (?, ?);
+            `;
 
-             const values = [usu_id, esp_nome];
+            const values = [usu_id, esp_nome];
 
-             const [result] = await db.query(sql, values);
+            const [result] = await db.query(sql, values);
 
-             const dados = {
+            const dados = {
+                esp_id: result.insertId,
+                usu_id,
                 esp_nome
-             };
+            };
 
             return response.status(200).json({
                 sucesso: true, 
-                mensagem: 'Cadastro de Especialidades', 
+                mensagem: 'Especialidade cadastrada com sucesso!', 
                 dados: dados
             });
         } catch (error) {
@@ -60,38 +69,49 @@ module.exports = {
             });
         }
     }, 
+
     async editarEspecialidades(request, response) {
         try {
+            const { usu_id, esp_nome } = request.body;
+            const { id } = request.params; // CORREÇÃO: use id (igual suas rotas)
 
-            const {usu_id, esp_nome} = request.body;
-
-            const {esp_id} = request.params;
-
-            const sql = `
-            UPDATE especialidades SET
-             usu_id = ?, esp_nome = ?
-            WHERE esp_id = ?;
-             `;
-
-             const values = [usu_id, esp_nome];
-
-             const [result] = await db.query(sql, values);
-
-             if (result.affectedRows === 0) {
-                return response.status(404).json({
+            // Validação do ID
+            if (!id) {
+                return response.status(400).json({
                     sucesso: false,
-                    mensagem: `Especialidades ${esp_id} não encontrado!`,
+                    mensagem: 'ID da especialidade é obrigatório!',
                     dados: null
                 });
-             }
+            }
 
-             const dados = {
+            const sql = `
+                UPDATE especialidades SET
+                    usu_id = ?, 
+                    esp_nome = ?
+                WHERE esp_id = ?;
+            `;
+
+            const values = [usu_id, esp_nome, id]; // CORREÇÃO: adicionei o id
+
+            const [result] = await db.query(sql, values);
+
+            if (result.affectedRows === 0) {
+                return response.status(404).json({
+                    sucesso: false,
+                    mensagem: `Especialidade ${id} não encontrada!`,
+                    dados: null
+                });
+            }
+
+            const dados = {
+                esp_id: parseInt(id),
+                usu_id,
                 esp_nome
-             };
+            };
 
             return response.status(200).json({
                 sucesso: true, 
-                mensagem: `Especialidades ${esp_id} atualizado com sucesso!`, 
+                mensagem: `Especialidade ${id} atualizada com sucesso!`, 
                 dados
             });
 
@@ -103,28 +123,37 @@ module.exports = {
             });
         }
     }, 
+
     async apagarEspecialidades(request, response) {
         try {
+            const { id } = request.params; // CORREÇÃO: use id (igual suas rotas)
 
-            const {esp_id} = request.params;
+            // Validação do ID
+            if (!id) {
+                return response.status(400).json({
+                    sucesso: false,
+                    mensagem: 'ID da especialidade é obrigatório!',
+                    dados: null
+                });
+            }
 
             const sql = `DELETE FROM especialidades WHERE esp_id = ?`;
-
-            const values = [esp_id];
+            const values = [id];
 
             const [result] = await db.query(sql, values);
 
             if (result.affectedRows === 0) {
                 return response.status(404).json({
                     sucesso: false,
-                    mensagem: `Especialidades ${esp_id} não encontrado!`,
+                    mensagem: `Especialidade ${id} não encontrada!`,
                     dados: null
                 });
-             }
+            }
 
-             return response.status(500).json({
+            // CORREÇÃO: status 200 em vez de 500
+            return response.status(200).json({
                 sucesso: true, 
-                mensagem: `Especialidades ${esp_id} excluído com sucesso!`,
+                mensagem: `Especialidade ${id} excluída com sucesso!`,
                 dados: null
             });
 
@@ -136,4 +165,4 @@ module.exports = {
             });
         }
     }, 
-};  
+};

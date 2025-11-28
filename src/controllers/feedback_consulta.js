@@ -1,21 +1,25 @@
 const db = require('../database/connection'); 
-const { gerarUrl } = require('../utils/gerarUrl');
 
 module.exports = {
     async listarFeedback_consulta(request, response) {
         try {
-
             const sql = `
-          SELECT fdbk_id, usu_id, fdbk_mensagem, fdbk_data_hora, fdbk_nota, fdbk_identificacao, fdbk_acesso 
-          FROM feedback_consulta;
+                SELECT 
+                    fdbk_id, 
+                    usu_id, 
+                    fdbk_mensagem, 
+                    fdbk_data_hora, 
+                    fdbk_nota, 
+                    fdbk_identificacao, 
+                    fdbk_acesso 
+                FROM feedback_consulta;
             `;
 
             const [rows] = await db.query(sql);
 
-
             return response.status(200).json({
                 sucesso: true, 
-                mensagem: 'Lista de feedback_consulta',
+                mensagem: 'Lista de feedbacks de consulta',
                 nItens: rows.length, 
                 dados: rows
             });
@@ -27,31 +31,58 @@ module.exports = {
             });
         }
     }, 
+
     async cadastrarFeedback_consulta(request, response) {
         try {
+            // USE OS NOMES CORRETOS DOS CAMPOS
+            const {
+                usu_id, 
+                fdbk_mensagem, 
+                fdbk_data_hora, 
+                fdbk_nota, 
+                fdbk_identificacao, 
+                fdbk_acesso 
+            } = request.body;
 
-            const {usu_id, fdbk_mensagem, data_hora } = request.body;
-      
+            // Validação dos campos obrigatórios
+            if (!usu_id || !fdbk_mensagem || !fdbk_data_hora || !fdbk_nota) {
+                return response.status(400).json({
+                    sucesso: false,
+                    mensagem: 'Campos obrigatórios faltando!',
+                    dados: 'usu_id, fdbk_mensagem, fdbk_data_hora e fdbk_nota são obrigatórios'
+                });
+            }
+
             const sql = `
-           INSERT INTO feedback_consulta 
-            (usu_id, fdbk_mensagem, fdbk_data_hora, fdbk_nota, fdbk_identificacao, fdbk_acesso) 
-            VALUES
-                (?, ?, ?, ?, ?, ?);
-             `;
+                INSERT INTO feedback_consulta 
+                (usu_id, fdbk_mensagem, fdbk_data_hora, fdbk_nota, fdbk_identificacao, fdbk_acesso) 
+                VALUES (?, ?, ?, ?, ?, ?);
+            `;
 
-             const values = [psi_id, usu_id, fdbk_mensagem, data_hora];
+            const values = [
+                usu_id, 
+                fdbk_mensagem, 
+                fdbk_data_hora, 
+                fdbk_nota, 
+                fdbk_identificacao || null, 
+                fdbk_acesso || null
+            ];
 
-             const [result] = await db.query(sql, values);
+            const [result] = await db.query(sql, values);
 
-             const dados = {
+            const dados = {
                 fdbk_id: result.insertId,
+                usu_id,
                 fdbk_mensagem,
-                data_hora
-             };
+                fdbk_data_hora,
+                fdbk_nota,
+                fdbk_identificacao,
+                fdbk_acesso
+            };
 
             return response.status(200).json({
                 sucesso: true, 
-                mensagem: 'Cadastro de feedback_consulta', 
+                mensagem: 'Feedback cadastrado com sucesso!', 
                 dados: dados
             });
         } catch (error) {
@@ -62,42 +93,76 @@ module.exports = {
             });
         }
     }, 
+
     async editarFeedback_consulta(request, response) {
         try {
+            // USE OS NOMES CORRETOS DOS CAMPOS
+            const {
+                usu_id, 
+                fdbk_mensagem, 
+                fdbk_data_hora, 
+                fdbk_nota, 
+                fdbk_identificacao, 
+                fdbk_acesso 
+            } = request.body;
 
-                const {usu_id, fdbk_mensagem, data_hora } = request.body;
-    
-                const { fdbk_id } = request.params;
-    
-                const sql = `
-                UPDATE feedback_consulta SET
-                  usu_id = ?, fdbk_mensagem = ?, fdbk_data_hora = ?
-                 WHERE fdbk_id = ?;
-                 `;
-    
-                 const values = [usu_id, fdbk_mensagem, data_hora, fdbk_id ];
-    
-                 const [result] = await db.query(sql, values);
-    
-                 if (result.affectedRows === 0) {
-                    return response.status(404).json({
-                        sucesso: false,
-                        mensagem: `Feedback_consulta ${fdbk_id} não encontrado!`,
-                        dados: null
-                    });
-                 }
-    
-                 const dados = {
-                    fdbk_id,
-                    fdbk_mensagem,
-                    data_hora
-                 };
-    
-                return response.status(200).json({
-                    sucesso: true, 
-                    mensagem: `Feedback_consulta ${fdbk_id} atualizado com sucesso!`, 
-                    dados
+            const { fdbk_id } = request.params;
+
+            // Validação do ID
+            if (!fdbk_id) {
+                return response.status(400).json({
+                    sucesso: false,
+                    mensagem: 'ID do feedback é obrigatório!',
+                    dados: null
                 });
+            }
+
+            const sql = `
+                UPDATE feedback_consulta SET
+                    usu_id = ?, 
+                    fdbk_mensagem = ?, 
+                    fdbk_data_hora = ?, 
+                    fdbk_nota = ?, 
+                    fdbk_identificacao = ?, 
+                    fdbk_acesso = ?
+                WHERE fdbk_id = ?;
+            `;
+
+            const values = [
+                usu_id, 
+                fdbk_mensagem, 
+                fdbk_data_hora, 
+                fdbk_nota, 
+                fdbk_identificacao || null, 
+                fdbk_acesso || null,
+                fdbk_id
+            ];
+
+            const [result] = await db.query(sql, values);
+
+            if (result.affectedRows === 0) {
+                return response.status(404).json({
+                    sucesso: false,
+                    mensagem: `Feedback ${fdbk_id} não encontrado!`,
+                    dados: null
+                });
+            }
+
+            const dados = {
+                fdbk_id: parseInt(fdbk_id),
+                usu_id,
+                fdbk_mensagem,
+                fdbk_data_hora,
+                fdbk_nota,
+                fdbk_identificacao,
+                fdbk_acesso
+            };
+
+            return response.status(200).json({
+                sucesso: true, 
+                mensagem: `Feedback ${fdbk_id} atualizado com sucesso!`, 
+                dados
+            });
 
         } catch (error) {
             return response.status(500).json({
@@ -107,13 +172,21 @@ module.exports = {
             });
         }
     }, 
+
     async apagarFeedback_consulta(request, response) {
         try {
-
             const { fdbk_id } = request.params;
 
-            const sql = `DELETE FROM feedback_consulta WHERE fdbk_id = ?`;
+            // Validação do ID
+            if (!fdbk_id) {
+                return response.status(400).json({
+                    sucesso: false,
+                    mensagem: 'ID do feedback é obrigatório!',
+                    dados: null
+                });
+            }
 
+            const sql = `DELETE FROM feedback_consulta WHERE fdbk_id = ?`;
             const values = [fdbk_id];
 
             const [result] = await db.query(sql, values);
@@ -121,17 +194,16 @@ module.exports = {
             if (result.affectedRows === 0) {
                 return response.status(404).json({
                     sucesso: false,
-                    mensagem: `Feedback_consulta ${fdbk_id} não encontrado!`,
+                    mensagem: `Feedback ${fdbk_id} não encontrado!`,
                     dados: null
                 });
-             }
+            }
 
             return response.status(200).json({
                 sucesso: true, 
-                mensagem: `Feedback_consulta ${fdbk_id} excluído com sucesso!`, 
+                mensagem: `Feedback ${fdbk_id} excluído com sucesso!`, 
                 dados: null
             });
-
 
         } catch (error) {
             return response.status(500).json({
@@ -141,4 +213,4 @@ module.exports = {
             });
         }
     }, 
-};  
+};
