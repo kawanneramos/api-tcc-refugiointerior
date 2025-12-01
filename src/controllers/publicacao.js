@@ -4,6 +4,8 @@ const { gerarUrl } = require('../utils/gerarUrl');
 module.exports = {
     async listarPublicacao(request, response) {
         try {
+            console.log('📋 Listando publicações...');
+            
             const sql = ` 
                 SELECT 
                     p.pub_id, 
@@ -11,7 +13,6 @@ module.exports = {
                     p.pub_titulo, 
                     p.pub_texto,
                     p.pub_data_postagem, 
-                    p.pub_imagem, 
                     p.pub_status,
                     -- Dados do usuário
                     u.usu_nome,
@@ -29,16 +30,11 @@ module.exports = {
             `;
             
             const [rows] = await db.query(sql);
+            console.log(`✅ Encontradas ${rows.length} publicações`);
 
             const dados = rows.map(publicacao => ({
                 ...publicacao,
-                pub_imagem: gerarUrl(
-                    publicacao.pub_imagem,
-                    'publicacoes',
-                    'pub1img.jpg', 'pub2img.jpg', 'pub3img.png', 'pub4img.png',
-                    'pub5img.webp', 'pub6img.webp', 'pub7img.jpg', 'pub8img.png',
-                    'pub9img.webp', 'pub10img.webp'
-                ),
+                // Foto do autor (usuário)
                 usu_imagem: gerarUrl(
                     publicacao.usu_imagem,
                     'usuarios',
@@ -57,70 +53,24 @@ module.exports = {
                 dados: dados
             });
         } catch (error) {
+            console.error('❌ Erro ao listar publicações:', error);
             return response.status(500).json({
                 sucesso: false, 
-                mensagem: 'Erro na requisição.', 
+                mensagem: 'Erro ao carregar publicações', 
                 dados: error.message
             });
         }
-    },
-
-    async listarPsicologos(request, response) {
-        try {
-            const sql = ` 
-                SELECT 
-                    usu_id,
-                    usu_nome,
-                    usu_email,
-                    usu_telefone,
-                    usu_cpf,
-                    usu_status,
-                    usu_imagem,
-                    usu_crp,
-                    -- Contar publicações
-                    (SELECT COUNT(*) FROM publicacoes p WHERE p.usu_id = u.usu_id) as total_publicacoes
-                FROM usuarios u
-                WHERE u.usu_adm = 0  -- 0 = psicólogo conforme seu schema
-                AND u.usu_status = 'ativo'
-                ORDER BY u.usu_nome;
-            `;
-            
-            const [rows] = await db.query(sql);
-
-            const dados = rows.map(psicologo => ({
-                ...psicologo,
-                usu_imagem: gerarUrl(
-                    psicologo.usu_imagem,
-                    'usuarios',
-                    'avatarPadrao.png'
-                ),
-                // Formatar CRP (06/XXXXX)
-                usu_crp_formatado: psicologo.usu_crp ? `${psicologo.usu_crp.substring(0, 2)}/${psicologo.usu_crp.substring(2)}` : null
-            }));
-
-            return response.status(200).json({
-                sucesso: true, 
-                mensagem: 'Lista de Psicólogos', 
-                itens: dados.length,
-                dados: dados
-            });
-        } catch (error) {
-            return response.status(500).json({
-                sucesso: false, 
-                mensagem: 'Erro na requisição.', 
-                dados: error.message
-            });
-        }
-    },
+    }, 
 
     async cadastrarPublicacao(request, response) {
         try {
+            console.log('📝 Recebendo nova publicação:', request.body);
+            
             const {
                 usu_id, 
                 pub_titulo, 
                 pub_texto, 
                 pub_data_postagem, 
-                pub_imagem, 
                 pub_status 
             } = request.body;
 
@@ -134,21 +84,21 @@ module.exports = {
             }
 
             // Verificar se usuário existe
-            const checkUserSql = `SELECT usu_id, usu_nome FROM usuarios WHERE usu_id = ? AND usu_status = 'ativo'`;
+            const checkUserSql = `SELECT usu_id, usu_nome FROM usuarios WHERE usu_id = ?`;
             const [user] = await db.query(checkUserSql, [usu_id]);
             
             if (user.length === 0) {
                 return response.status(404).json({
                     sucesso: false,
-                    mensagem: 'Usuário não encontrado ou inativo!',
+                    mensagem: 'Usuário não encontrado!',
                     dados: null
                 });
             }
 
             const sql = `
                 INSERT INTO publicacoes 
-                (usu_id, pub_titulo, pub_texto, pub_data_postagem, pub_imagem, pub_status) 
-                VALUES (?, ?, ?, ?, ?, ?)
+                (usu_id, pub_titulo, pub_texto, pub_data_postagem, pub_status) 
+                VALUES (?, ?, ?, ?, ?)
             `;
             
             const values = [
@@ -156,11 +106,11 @@ module.exports = {
                 pub_titulo, 
                 pub_texto, 
                 pub_data_postagem, 
-                pub_imagem || null, 
                 pub_status || 'ativo'
             ];
             
             const [result] = await db.query(sql, values);
+            console.log(`✅ Publicação criada com ID: ${result.insertId}`);
             
             // Buscar dados completos da publicação criada
             const selectSql = `
@@ -173,11 +123,6 @@ module.exports = {
             
             const dados = {
                 ...newPub[0],
-                pub_imagem: gerarUrl(
-                    newPub[0].pub_imagem,
-                    'publicacoes',
-                    'pub1img.jpg'
-                ),
                 usu_imagem: gerarUrl(
                     newPub[0].usu_imagem,
                     'usuarios',
@@ -187,17 +132,18 @@ module.exports = {
 
             return response.status(201).json({
                 sucesso: true, 
-                mensagem: 'Publicação cadastrada com sucesso!', 
+                mensagem: 'Publicação criada com sucesso!', 
                 dados: dados
             });
         } catch (error) {
+            console.error('❌ Erro ao criar publicação:', error);
             return response.status(500).json({
                 sucesso: false, 
-                mensagem: 'Erro na requisição.', 
+                mensagem: 'Erro ao criar publicação', 
                 dados: error.message
             });
         }
-    },
+    }, 
 
     async editarPublicacao(request, response) {
         try {
@@ -206,7 +152,6 @@ module.exports = {
                 pub_titulo, 
                 pub_texto, 
                 pub_data_postagem, 
-                pub_imagem, 
                 pub_status 
             } = request.body;
             
@@ -226,7 +171,6 @@ module.exports = {
                     pub_titulo = ?, 
                     pub_texto = ?,
                     pub_data_postagem = ?, 
-                    pub_imagem = ?, 
                     pub_status = ? 
                 WHERE pub_id = ?;            
             `;
@@ -236,7 +180,6 @@ module.exports = {
                 pub_titulo, 
                 pub_texto, 
                 pub_data_postagem, 
-                pub_imagem || null, 
                 pub_status || 'ativo', 
                 pub_id
             ];
@@ -257,8 +200,7 @@ module.exports = {
                 pub_titulo, 
                 pub_texto, 
                 pub_data_postagem,
-                pub_imagem, 
-                pub_status
+                pub_status: pub_status || 'ativo'
             };
 
             return response.status(200).json({
@@ -267,9 +209,10 @@ module.exports = {
                 dados
             });
         } catch (error) {
+            console.error('❌ Erro ao editar publicação:', error);
             return response.status(500).json({
                 sucesso: false, 
-                mensagem: 'Erro na requisição.', 
+                mensagem: 'Erro ao editar publicação', 
                 dados: error.message
             });
         }
@@ -305,12 +248,12 @@ module.exports = {
                 dados: null
             });
         } catch (error) {
+            console.error('❌ Erro ao apagar publicação:', error);
             return response.status(500).json({
                 sucesso: false, 
-                mensagem: 'Erro na requisição.', 
+                mensagem: 'Erro ao excluir publicação', 
                 dados: error.message
             });
         }
     }
 };
-
