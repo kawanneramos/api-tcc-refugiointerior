@@ -17,19 +17,24 @@ module.exports = {
             `;
             
             const [rows] = await db.query(sql);
-            
-            // ALTERNATIVA SEM MEXER COM TODOS OS CAMPOS
+
+            // ESSENCIAL: corrigir ing_img -> pub_imagem
             const dados = rows.map(publicacoes => ({
                 ...publicacoes,
-                ing_img: gerarUrl(publicacoes.ing_img, 'publicacoes', 'pub1img.jpg','pub2img.jpg','pub3img.png','pub4img.png'
-                ,'pub5img.webp','pub6img.webp','pub7img.jpg','pub8img.png','pub9img.webp','pub10img.webp')
+                pub_imagem: gerarUrl(
+                    publicacoes.pub_imagem,
+                    'publicacoes',
+                    'pub1img.jpg','pub2img.jpg','pub3img.png','pub4img.png',
+                    'pub5img.webp','pub6img.webp','pub7img.jpg','pub8img.png',
+                    'pub9img.webp','pub10img.webp'
+                )
             }));
 
             return response.status(200).json({
                 sucesso: true, 
                 mensagem: 'Lista de Publicações', 
-                itens: rows.length, // CORREÇÃO: rows.length (estava rows.lenght)
-                dados: dados // CORREÇÃO: dados (estava rows)
+                itens: rows.length,
+                dados: dados
             });
         } catch (error) {
             return response.status(500).json({
@@ -42,7 +47,6 @@ module.exports = {
 
     async cadastrarPublicacao(request, response) {
         try {
-            // USE OS NOMES CORRETOS (COM PREFIXO pub_)
             const {
                 usu_id, 
                 pub_titulo, 
@@ -52,7 +56,6 @@ module.exports = {
                 pub_status 
             } = request.body;
 
-            // Validação dos campos obrigatórios
             if (!usu_id || !pub_titulo || !pub_texto || !pub_data_postagem) {
                 return response.status(400).json({
                     sucesso: false,
@@ -104,7 +107,6 @@ module.exports = {
 
     async editarPublicacao(request, response) {
         try {
-            // USE OS NOMES CORRETOS (COM PREFIXO pub_)
             const {
                 usu_id, 
                 pub_titulo, 
@@ -116,7 +118,6 @@ module.exports = {
             
             const { pub_id } = request.params;
 
-            // Validação do ID
             if (!pub_id) {
                 return response.status(400).json({
                     sucesso: false,
@@ -183,8 +184,7 @@ module.exports = {
     async apagarPublicacao(request, response) {
         try {
             const { pub_id } = request.params;
-            
-            // Validação do ID
+
             if (!pub_id) {
                 return response.status(400).json({
                     sucesso: false,
@@ -217,5 +217,6 @@ module.exports = {
                 dados: error.message
             });
         }
-    }, 
+    }
 };
+
