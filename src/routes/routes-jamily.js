@@ -3,6 +3,7 @@ const router = express.Router();
 
 const agendamentoController = require('../controllers/agendamentos'); 
 const publicacaoController = require ('../controllers/publicacao');
+const usuarioController = require('../controllers/usuarios');
 
 
 router.get('/agendamentos', agendamentoController.listarAgendamento); 
@@ -12,6 +13,7 @@ router.delete('/Agendamentos/:agd_id', agendamentoController.apagarAgendamento);
 
 
 router.get('/publicacao',publicacaoController.listarPublicacao); 
+router.get('/publicacoes/psicologos', publicacaoController.listarPsicologos);
 router.post('/publicacao', publicacaoController.cadastrarPublicacao); 
 router.patch('/publicacao/:pub_id',publicacaoController.editarPublicacao); 
 router.delete('/publicacao/:pub_id', publicacaoController.apagarPublicacao); 

@@ -1,38 +1,34 @@
 const fse = require('fs-extra');
 const path = require('path');
-const { URL } = require('url'); // Módulo nativo do Node.js para trabalhar com URLs
+const { URL } = require('url');
 
-/**
- * Caminho físico para a pasta 'public'.
- */
 const PUBLIC_ROOT_PATH = path.join(process.cwd(), 'public');
-
-/**
- * Lê a URL base da API a partir das variáveis de ambiente.
- * Fornece um valor padrão caso a variável não esteja definida.
- */
 const API_URL = process.env.API_BASE_URL || 'http://localhost:3333';
 
-/**
- * Gera uma URL pública e COMPLETA para um recurso (imagem, ícone, etc.).
- *
- * @returns {string} A URL completa e formatada
- */function gerarUrl(nomeArquivo, pasta, arquivosPadrao) {
-    let arquivosValidos;
+function gerarUrl(nomeArquivo, pasta, ...arquivosPadrao) {
+    // Se arquivosPadrao for array de arrays, achata
+    const arquivosPadraoList = Array.isArray(arquivosPadrao[0]) 
+        ? arquivosPadrao[0] 
+        : arquivosPadrao;
     
-    if (Array.isArray(arquivosPadrao)) {
-        arquivosValidos = arquivosPadrao;
-    } else {
-        arquivosValidos = [arquivosPadrao];
-    }
-    
-    const caminhoFisico = path.join(PUBLIC_ROOT_PATH, pasta, nomeArquivo);
-    let caminhoRelativo;
+    // Se não tem arquivos padrão, usa um padrão genérico
+    const arquivosValidos = arquivosPadraoList.length > 0 
+        ? arquivosPadraoList 
+        : ['default.jpg'];
 
-    if (nomeArquivo && fse.existsSync(caminhoFisico)) {
-        caminhoRelativo = path.join('/public', pasta, nomeArquivo);
+    let caminhoRelativo;
+    
+    if (nomeArquivo) {
+        const caminhoFisico = path.join(PUBLIC_ROOT_PATH, pasta, nomeArquivo);
+        if (fse.existsSync(caminhoFisico)) {
+            caminhoRelativo = path.join('/public', pasta, nomeArquivo);
+        } else {
+            // Seleciona um arquivo padrão aleatório
+            const arquivoPadrao = arquivosValidos[Math.floor(Math.random() * arquivosValidos.length)];
+            caminhoRelativo = path.join('/public', pasta, arquivoPadrao);
+        }
     } else {
-        // Seleciona um arquivo padrão aleatório do array
+        // Sem nome de arquivo, usa um padrão
         const arquivoPadrao = arquivosValidos[Math.floor(Math.random() * arquivosValidos.length)];
         caminhoRelativo = path.join('/public', pasta, arquivoPadrao);
     }
@@ -42,5 +38,5 @@ const API_URL = process.env.API_BASE_URL || 'http://localhost:3333';
 
     return urlCompleta.href;
 }
-// Exporte a nova função
+
 module.exports = { gerarUrl };
