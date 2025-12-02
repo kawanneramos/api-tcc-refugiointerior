@@ -5,7 +5,10 @@ const cors = require('cors');
 const router = require('./src/routes/routes'); 
 
 const app = express(); 
-app.use(cors()); 
+app.use(cors({
+  origin: "*", // ou seu domínio específico
+  methods: "GET,POST,PATCH,DELETE"
+}));
 app.use(express.json()); 
 app.use(router);
 

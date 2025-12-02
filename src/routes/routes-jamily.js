@@ -13,7 +13,7 @@ router.delete('/Agendamentos/:agd_id', agendamentoController.apagarAgendamento);
 
 
 router.get('/publicacao',publicacaoController.listarPublicacao); 
-router.get('/publicacoes/psicologos', publicacaoController.listarPsicologos);
+router.get('/publicacao/psicologos', publicacaoController.listarPsicologos);
 router.post('/publicacao', publicacaoController.cadastrarPublicacao); 
 router.patch('/publicacao/:pub_id',publicacaoController.editarPublicacao); 
 router.delete('/publicacao/:pub_id', publicacaoController.apagarPublicacao); 
